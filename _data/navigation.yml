@@ -1,0 +1,39 @@
+# main links
+main:
+  
+  - title: "About"
+    url: /about/
+  - title: "Posts"
+    url: /year-archive/
+  - title: "Categories"
+    url: /categories/
+  - title: "Tags"
+    url: /tags/
+my-sidebar:
+  - title: "Kubernetes"
+    children:
+      - title: "Kubernetes Core Concepts"
+        url: /
+      - title: "Kubernetes Scheduling"
+        url: /
+      - title: "Kubernetes Application Life Cycle Management"
+        url: /
+      - title: "Kubernetes Storage"
+        url: /
+  - title: "OpenShift"
+    children:
+      - title: "CodeReadyContainers"
+        url: /
+     
+  - title: "Automation"
+    children:
+      - title: "Jenkins"
+        url: /
+      - title: "NITA"
+        url: /
+     
+  - title: "Networking"
+    children:
+      - title: "EVPN-VXLAN"
+        url: /
+     
