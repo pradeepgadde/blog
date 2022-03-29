@@ -22,7 +22,7 @@ title: Pradeep Gadde
 email: gaddepradeep@gmail.com
 description: "Pradeep Gadde | NetDevOps Engineer + Tech Educator"
  
-baseurl: "/blogtest" # the subpath of your site, e.g. /blog
+baseurl: "/blog" # the subpath of your site, e.g. /blog
 url: "https://pradeepgadde.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: junivator
 github_username:  pradeepgadde
