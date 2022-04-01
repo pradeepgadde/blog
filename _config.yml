@@ -35,8 +35,8 @@ include: ["_pages"]
 
 # Build settings
 #theme: minimal-mistakes-jekyll
-#remote_theme: "mmistakes/minimal-mistakes"
-minimal_mistakes_skin: "air"
+remote_theme: "mmistakes/minimal-mistakes"
+
 
 plugins:
   - jekyll-paginate
