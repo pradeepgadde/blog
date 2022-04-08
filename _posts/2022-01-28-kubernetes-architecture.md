@@ -9,7 +9,7 @@ classes: wide
 toc: true
 show_date: true
 header:
-  overlay_image: /assets/images/kubernetes-std-app.png
+  overlay_image: /assets/images/kubernetes-logo.png
   og_image: /assets/images/kubernetes.png
   caption: "Photo credit: [**Kubernetes**](https://kubernetes.io)"
   actions:
