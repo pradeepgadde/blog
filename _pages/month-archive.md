@@ -1,7 +1,7 @@
 ---
 title: "Posts by Year"
 permalink: /month-archive/
-layout: posts
+layout: posts-monthly
 author_profile: true
 author:
   name     : "Pradeep"
