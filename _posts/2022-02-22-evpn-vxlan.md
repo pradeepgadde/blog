@@ -5,7 +5,7 @@ date:   2022-02-22 10:55:04 +0530
 categories: Networking
 tags: evpn vxlan Junos
 author: Pradeep Gadde
-classes: wide
+
 toc: true
 toc_sticky: true
 show_date: true
@@ -27,6 +27,7 @@ sidebar:
    
     text: "Checkout other topics"
     nav: my-sidebar
+
 
 ---
 
