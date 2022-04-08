@@ -1,5 +1,5 @@
 ---
-title: "Posts by Year"
+title: "Posts by Month"
 permalink: /month-archive/
 layout: posts-monthly
 author_profile: true
