@@ -28,7 +28,7 @@ sidebar:
     nav: my-sidebar
 ---
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/RedHatOpenShift.png)
+
 ## RedHat OpenShift
 Getting Started with OpenShift.
 
@@ -1886,4 +1886,4 @@ Pradeep
 
 
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/RedHatOpenShift.png)  
+ 
