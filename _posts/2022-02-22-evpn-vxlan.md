@@ -30,7 +30,6 @@ sidebar:
 
 ---
 
-[TOC]
 
 
 
