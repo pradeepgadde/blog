@@ -9,6 +9,13 @@ classes: wide
 toc: true
 show_date: true
 header:
+  overlay_image: /assets/images/kubernetes-std-app.png
+  og_image: /assets/images/kubernetes.png
+  caption: "Photo credit: [**Kubernetes**](https://kubernetes.io)"
+  actions:
+    - label: "Learn more"
+      url: "https://kubernetes.io"
+header:
   teaser: /assets/images/kubernetes-std-app.png
 author:
   name     : "Kubernetes"
@@ -50,8 +57,6 @@ For our examples we will use a single master configuration, but the master funct
 
 For our examples we will use the most common runtime, Docker. 
 
-
-)
 
 ### Kubernetes API Resources
 
@@ -125,7 +130,6 @@ As shown here, to deploy a standard application in Kubernetes, we might have to 
 https://github.com/kubernetes/community/blob/master/icons/examples/schemas/std-app.png 
 
 ![kubernetes-std-app]({{ site.url }}{{ site.baseurl }}/assets/images/kubernetes-std-app.png)
-{: .full}
 
 
 Reference  https://kubernetes.io/docs
