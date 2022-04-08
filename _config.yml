@@ -36,7 +36,7 @@ include: ["_pages"]
 # Build settings
 #theme: minimal-mistakes-jekyll
 remote_theme: "mmistakes/minimal-mistakes"
-minimal_mistakes_skin: dirt
+minimal_mistakes_skin: air
 
 
 plugins:
