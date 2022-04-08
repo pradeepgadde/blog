@@ -7,6 +7,7 @@ tags: evpn vxlan Junos
 author: Pradeep Gadde
 classes: wide
 toc: true
+toc_sticky: true
 show_date: true
 header:
   overlay_image: /assets/images/junos.png
