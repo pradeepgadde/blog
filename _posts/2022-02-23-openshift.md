@@ -8,8 +8,15 @@ author: "Pradeep Gadde"
 classes: wide
 toc: true
 show_date: true
+
 header:
+  overlay_image: /assets/images/openshift.png
+  og_image: /assets/images/openshift.png
+  caption: "Photo credit: [**Red Hat**](https://docs.openshift.com)"
   teaser: /assets/images/openshift.png
+  actions:
+    - label: "Learn more"
+      url: "https://docs.openshift.com"
 author:
   name     : "OpenShift"
   avatar   : "/assets/images/openshift.png"
@@ -21,7 +28,7 @@ sidebar:
     nav: my-sidebar
 ---
 
-![](/assets/images/RedHatOpenShift.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/RedHatOpenShift.png)
 ## RedHat OpenShift
 Getting Started with OpenShift.
 
@@ -235,40 +242,40 @@ You don't have any projects. You can try to create a new project, by running
 
 
 
-![/assets/images/OS-1](/assets/images/OS-1.png) 
+![/assets/images/OS-1]({{ site.url }}{{ site.baseurl }}/assets/images/OS-1.png) 
 
-![/assets/images/OS-2](/assets/images/OS-2.png)
+![/assets/images/OS-2]({{ site.url }}{{ site.baseurl }}/assets/images/OS-2.png)
 
-![/assets/images/OS-3](/assets/images/OS-3.png) 
+![/assets/images/OS-3]({{ site.url }}{{ site.baseurl }}/assets/images/OS-3.png) 
 
-![/assets/images/OS-4](/assets/images/OS-4.png) 
-
-
-![/assets/images/OS-1](/assets/images/OS-5.png) 
-
-![/assets/images/OS-2](/assets/images/OS-6.png)
-
-![/assets/images/OS-3](/assets/images/OS-7.png) 
-
-![/assets/images/OS-4](/assets/images/OS-8.png) 
+![/assets/images/OS-4]({{ site.url }}{{ site.baseurl }}/assets/images/OS-4.png) 
 
 
-![/assets/images/OS-1](/assets/images/OS-9.png) 
+![/assets/images/OS-1]({{ site.url }}{{ site.baseurl }}/assets/images/OS-5.png) 
 
-![/assets/images/OS-2](/assets/images/OS-10.png)
+![/assets/images/OS-2]({{ site.url }}{{ site.baseurl }}/assets/images/OS-6.png)
 
-![/assets/images/OS-3](/assets/images/OS-11.png) 
+![/assets/images/OS-3]({{ site.url }}{{ site.baseurl }}/assets/images/OS-7.png) 
 
-![/assets/images/OS-4](/assets/images/OS-12.png) 
+![/assets/images/OS-4]({{ site.url }}{{ site.baseurl }}/assets/images/OS-8.png) 
 
 
-![/assets/images/OS-1](/assets/images/OS-13.png) 
+![/assets/images/OS-1]({{ site.url }}{{ site.baseurl }}/assets/images/OS-9.png) 
 
-![/assets/images/OS-2](/assets/images/OS-14.png)
+![/assets/images/OS-2]({{ site.url }}{{ site.baseurl }}/assets/images/OS-10.png)
 
-![/assets/images/OS-3](/assets/images/OS-15.png) 
+![/assets/images/OS-3]({{ site.url }}{{ site.baseurl }}/assets/images/OS-11.png) 
 
-![/assets/images/OS-4](/assets/images/OS-16.png)  
+![/assets/images/OS-4]({{ site.url }}{{ site.baseurl }}/assets/images/OS-12.png) 
+
+
+![/assets/images/OS-1]({{ site.url }}{{ site.baseurl }}/assets/images/OS-13.png) 
+
+![/assets/images/OS-2]({{ site.url }}{{ site.baseurl }}/assets/images/OS-14.png)
+
+![/assets/images/OS-3]({{ site.url }}{{ site.baseurl }}/assets/images/OS-15.png) 
+
+![/assets/images/OS-4]({{ site.url }}{{ site.baseurl }}/assets/images/OS-16.png)  
 
 
 ```sh
@@ -313,15 +320,15 @@ route.route.openshift.io/pradeep-cake   pradeep-cake-pradeep-os-demo.apps-crc.te
 
 ## Switching to Administrator Persona
 
-![](/assets/images/OS-17.png) 
+![]({{ site.url }}{{ site.baseurl }}/assets/images/OS-17.png) 
 
-![/assets/images/OS-2](/assets/images/OS-18.png)
+![/assets/images/OS-2]({{ site.url }}{{ site.baseurl }}/assets/images/OS-18.png)
 
-![/assets/images/OS-3](/assets/images/OS-19.png) 
+![/assets/images/OS-3]{{ site.url }}{{ site.baseurl }}(/assets/images/OS-19.png) 
 
-![/assets/images/OS-4](/assets/images/OS-20.png) 
+![/assets/images/OS-4]({{ site.url }}{{ site.baseurl }}/assets/images/OS-20.png) 
 
-![/assets/images/OS-4](/assets/images/OS-21.png) 
+![/assets/images/OS-4]({{ site.url }}{{ site.baseurl }}/assets/images/OS-21.png) 
 
 After deleting the pod from failed build 
 
@@ -750,13 +757,13 @@ Log in to the web console and see the new application in Project: mysql > Overvi
 
 
 
-![/assets/images/OS-22](/assets/images/OS-22.png)
+![/assets/images/OS-22]({{ site.url }}{{ site.baseurl }}/assets/images/OS-22.png)
 
 
 
 
 
-![](/assets/images/OS-23.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/OS-23.png)
 
 
 
@@ -973,11 +980,11 @@ route.route.openshift.io/mysql-openshift   mysql-openshift-mysql.apps-crc.testin
 
 
 
-![/assets/images/OS-24](/assets/images/OS-24.png) 
+![/assets/images/OS-24]({{ site.url }}{{ site.baseurl }}/assets/images/OS-24.png) 
 
 Click on Open URL
 
-![/assets/images/OS-25](/assets/images/OS-25.png) 
+![/assets/images/OS-25]({{ site.url }}{{ site.baseurl }}/assets/images/OS-25.png) 
 
 
 
@@ -1644,7 +1651,7 @@ FIELDS:
 
 Let us switch to the web console and look at the `mysql` project and applications running currently inside it.
 
-![/assets/images/OS-26](/assets/images/OS-26.png)
+![/assets/images/OS-26]({{ site.url }}{{ site.baseurl }}/assets/images/OS-26.png)
 
 ```sh
 pradeep@learnOpenShift$ oc expose service simple1
@@ -1688,13 +1695,13 @@ route.route.openshift.io/mysql-openshift   mysql-openshift-mysql.apps-crc.testin
 route.route.openshift.io/simple1           simple1-mysql.apps-crc.testing                  simple1           8080-tcp                 None
 ```
 
-![](/assets/images/OS-27.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/OS-27.png)
 
 
 
-![](/assets/images/OS-28.png) 
+![]({{ site.url }}{{ site.baseurl }}/assets/images/OS-28.png) 
 
-![](/assets/images/OS-29.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/OS-29.png)
 
 
 
@@ -1777,7 +1784,7 @@ Events:
   Warning	FailedMount	15s (x2 over 15s)	kubelet			MountVolume.SetUp failed for volume "builder-dockercfg-n8v7b-pull" : object "mysql"/"builder-dockercfg-n8v7b" not registere
 ```
 
-![](/assets/images/OS-30.png) 
+![]({{ site.url }}{{ site.baseurl }}/assets/images/OS-30.png) 
 
 
 
@@ -1879,4 +1886,4 @@ Pradeep
 
 
 
-![](/assets/images/RedHatOpenShift.png)  
+![]({{ site.url }}{{ site.baseurl }}/assets/images/RedHatOpenShift.png)  
