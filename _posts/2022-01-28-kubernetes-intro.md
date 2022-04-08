@@ -8,8 +8,15 @@ author: "Pradeep Gadde"
 classes: wide
 
 show_date: true
+ 
 header:
+  overlay_image: /assets/images/kubernetes.png
+  og_image: /assets/images/kubernetes.png
+  caption: "Photo credit: [**Kubernetes**](https://kubernetes.io)"
   teaser: /assets/images/kubernetes.png
+  actions:
+    - label: "Learn more"
+      url: "https://kubernetes.io"
 author:
   name     : "Kubernetes"
   avatar   : "/assets/images/kubernetes.png"
@@ -29,9 +36,10 @@ Google has created a resource in the form of a comic to understand why Kubernete
 https://cloud.google.com/kubernetes-engine/kubernetes-comic
 
 And here is an extract:
-![Kubernetes-Comic](/assets/images/kubernetes-comic.png)
 
 
+
+![Kubernetes-Comic]({{ site.url }}{{ site.baseurl }}/assets/images/kubernetes-comic.png)
 
 ## Learning Resources
 While there are many resources out there, personally I have used these resources:
