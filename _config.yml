@@ -121,9 +121,15 @@ jekyll-archives:
   enabled:
     - categories
     - tags
+    - month
+    - year
   layouts:
     category: archive-taxonomy
     tag: archive-taxonomy
+    year: year-archive
+    month: month-archive
   permalinks:
     category: /categories/:name/
     tag: /tags/:name/
+    year: /:year/
+    month: /:year/:month/
