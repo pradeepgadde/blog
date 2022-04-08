@@ -31,8 +31,6 @@ sidebar:
 ---
 
 
-
-
 ## IP Fabric with EVPN-VXLAN
 
 To understand why EVPN-VXLAN, Juniper has created a simplified resource. You can watch the same here.
