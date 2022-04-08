@@ -9,7 +9,14 @@ classes: wide
 toc: true
 show_date: true
 header:
+  overlay_image: /assets/images/junos.png
+  og_image: /assets/images/junos.png
+  caption: "Photo credit: [**Juniper Networks**](https://www.juniper.net)"
   teaser: /assets/images/junos.png
+  actions:
+    - label: "Learn more"
+      url: "https://vlabs.juniper.net"
+
 author:
   name     : "Networking"
   avatar   : "/assets/images/junos.png"
@@ -26,21 +33,13 @@ sidebar:
 
 To understand why EVPN-VXLAN, Juniper has created a simplified resource. You can watch the same here.
 
-
-
-
-
-
-
 ## Lab Setup
 Juniper vLabs provides multiple sandboxes for exploring various features and products of Juniper.
 
 In this post, let us make use of the EVPN-VXLAN sandbox which is available at
 https://jlabs.juniper.net/vlabs/portal/ip-fabric-evpn-vxlan/
 
-![ipfabric-evpn-vxlan-toplogy](/assets/images/ipfabric-evpn-vxlan-toplogy.jpg) 
-
-[**:top:**](#toc)
+![ipfabric-evpn-vxlan-toplogy]({{ site.url }}{{ site.baseurl }}/assets/images/ipfabric-evpn-vxlan-toplogy.jpg) 
 
 ## Description
 
@@ -99,7 +98,7 @@ These are the broad steps in building the IP Fabric with EVPN-VXLAN.
 
 ## Build the Underlay
 
-![ipfabric-evpn-vxlan-underlay](/assets/images/ipfabric-evpn-vxlan-underlay.png) 
+![ipfabric-evpn-vxlan-underlay]({{ site.url }}{{ site.baseurl }}/assets/images/ipfabric-evpn-vxlan-underlay.png) 
 
 ### Underlay-Leaf1
 
@@ -604,7 +603,7 @@ policy-statement PFE-LB {
 
 ## Verify Underlay
 
-![ipfabric-evpn-vxlan-underlay](/assets/images/ipfabric-evpn-vxlan-underlay.png) 
+![ipfabric-evpn-vxlan-underlay]({{ site.url }}{{ site.baseurl }}/assets/images/ipfabric-evpn-vxlan-underlay.png) 
 
 ### Verify Underlay-Spine1
 
@@ -1289,7 +1288,7 @@ inet.0: 21 destinations, 35 routes (21 active, 0 holddown, 0 hidden)
 
 ## Build the Overlay
 
-![ipfabric-evpn-vxlan-overlay](/assets/images/ipfabric-evpn-vxlan-overlay.png) 
+![ipfabric-evpn-vxlan-overlay]({{ site.url }}{{ site.baseurl }}/assets/images/ipfabric-evpn-vxlan-overlay.png) 
 
 ### Overlay-Spine1
 
@@ -1613,7 +1612,7 @@ default {
 
 ## Verify the Overlay
 
-![ipfabric-evpn-vxlan-overlay](/assets/images/ipfabric-evpn-vxlan-overlay.png) 
+![ipfabric-evpn-vxlan-overlay]({{ site.url }}{{ site.baseurl }}/assets/images/ipfabric-evpn-vxlan-overlay.png) 
 
 ### Verify Overlay-Spine1
 
@@ -3618,7 +3617,7 @@ __default_evpn__.evpn.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidde
 
 ## Verify Connectivity
 
-![ipfabric-evpn-vxlan-virtual-networks](/assets/images/ipfabric-evpn-vxlan-virtual-networks.png) 
+![ipfabric-evpn-vxlan-virtual-networks]({{ site.url }}{{ site.baseurl }}/assets/images/ipfabric-evpn-vxlan-virtual-networks.png) 
 
 ### Host11
 
@@ -5378,7 +5377,7 @@ jcluser@DC2-Leaf1> show route table default-switch.evpn.0 match-prefix "5:*" det
 default-switch.evpn.0: 28 destinations, 44 routes (28 active, 0 holddown, 0 hidden)
 ```
 
-[**:top:**](#toc)
+
 
 ### Summary
 
@@ -5574,7 +5573,7 @@ default-switch.evpn.0: 28 destinations, 44 routes (28 active, 0 holddown, 0 hidd
 
 ```
 
-[**:top:**](#toc)
+
 
 #### Leaf1 default-switch.evpn.0 simplified
 
@@ -5620,7 +5619,7 @@ jcluser@DC2-Leaf1> show route table default-switch.evpn.0 | match IM
 jcluser@DC2-Leaf1> 
 ```
 
-[**:top:**](#toc)
+
 
 #### Leaf1 EVPN Routes in inet.0
 
@@ -5906,7 +5905,7 @@ inet.0: 17 destinations, 29 routes (17 active, 0 holddown, 0 hidden)
 
 In this simple setup, we have configured and verified an Edge-Routed Bridging (ERB) IP Fabric with EVPN-VXLAN.
 
-![ipfabric-evpn-vxlan-overlay](/assets/images/ipfabric-evpn-vxlan-overlay.png) 
+![ipfabric-evpn-vxlan-overlay]({{ site.url }}{{ site.baseurl }}/assets/images/ipfabric-evpn-vxlan-overlay.png) 
 
 Thank you for reading my notes.
 
