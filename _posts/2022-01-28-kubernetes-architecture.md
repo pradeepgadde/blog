@@ -124,7 +124,7 @@ As shown here, to deploy a standard application in Kubernetes, we might have to 
 
 https://github.com/kubernetes/community/blob/master/icons/examples/schemas/std-app.png 
 
-![kubernetes-std-app](/assets/images/kubernetes-std-app.png)  
+![kubernetes-std-app](/assets/images/kubernetes-std-app.png)
 
 Reference  https://kubernetes.io/docs
 
