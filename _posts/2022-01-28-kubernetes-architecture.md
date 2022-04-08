@@ -15,8 +15,7 @@ header:
   actions:
     - label: "Learn more"
       url: "https://kubernetes.io"
-header:
-  teaser: /assets/images/kubernetes-std-app.png
+
 author:
   name     : "Kubernetes"
   avatar   : "/assets/images/kubernetes.png"
