@@ -3,7 +3,10 @@ layout: single
 title:  "IP Fabric with EVPN-VXLAN"
 date:   2022-02-22 10:55:04 +0530
 categories: Networking
-tags: evpn vxlan Junos
+tags: 
+- evpn 
+- vxlan
+- Junos
 author: Pradeep Gadde
 
 toc: true
@@ -34,13 +37,13 @@ sidebar:
 
 ## IP Fabric with EVPN-VXLAN
 
-To understand why EVPN-VXLAN, Juniper has created a simplified resource. You can watch the same here.
+ To understand why EVPN-VXLAN, Juniper has created a simplified resource. You can watch the same here.
 
 ## Lab Setup
 Juniper vLabs provides multiple sandboxes for exploring various features and products of Juniper.
 
-In this post, let us make use of the EVPN-VXLAN sandbox which is available at
-https://jlabs.juniper.net/vlabs/portal/ip-fabric-evpn-vxlan/
+In this post, let us make use of the EVPN-VXLAN sandbox which is available at [https://jlabs.juniper.net/vlabs/portal/ip-fabric-evpn-vxlan/](https://jlabs.juniper.net/vlabs/portal/ip-fabric-evpn-vxlan/)
+
 
 ![ipfabric-evpn-vxlan-toplogy]({{ site.url }}{{ site.baseurl }}/assets/images/ipfabric-evpn-vxlan-toplogy.jpg) 
 
