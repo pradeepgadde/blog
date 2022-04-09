@@ -6,8 +6,7 @@ categories: Kubernetes
 tags: kubeadm minikube
 author: "Pradeep Gadde"
 toc: true
-sticky_toc: true
-
+toc_sticky: true
 show_date: true
 header:
   teaser: /assets/images/kubernetes.png
