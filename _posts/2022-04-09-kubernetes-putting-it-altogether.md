@@ -22,10 +22,6 @@ sidebar:
     nav: my-sidebar
 ---
 
-[TOC]
-
-
-
 # Putting Together All Resources
 
 So far we have seen multiple Kubernetes resources but mostly independently. I would like to summarize the concepts discussed so far by deploying one or two simple applications covering most the Kubernetes API resources.
