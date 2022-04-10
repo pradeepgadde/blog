@@ -23,7 +23,7 @@ sidebar:
 
 # Putting Together All Resources
 
-So far we have seen multiple Kubernetes resources but mostly independently. I would like to summarize the concepts discussed so far by deploying one or two simple applications covering most the Kubernetes API resources.
+So far we have seen multiple Kubernetes resources but mostly independently. I would like to summarize the concepts discussed so far by deploying one or two simple applications covering most of the Kubernetes API resources.
 
 So, I was searching for some cool demo apps and found these two game apps which I thought are very cool!
 
@@ -35,12 +35,11 @@ First we will deploy them independently in their respective namespaces and final
 
 ##  Standard Kubernetes Application
 
-As shown in [https://github.com/kubernetes/community/blob/master/icons/examples/schemas/std-app.png](https://github.com/kubernetes/community/blob/master/icons/examples/schemas/std-app.png), to deploy a standard application in Kubernetes, we might have to deploy a lot of these API resources.
+As shown in [Kubernetes GitHub repository](https://github.com/kubernetes/community/blob/master/icons/examples/schemas/std-app.png), to deploy a standard application in Kubernetes, we might have to deploy a lot of these API resources.
 
 ![kubernetes-std-app]({{ site.url }}{{ site.baseurl }}/assets/images/kubernetes-std-app.png)
 
-
-Reference  https://kubernetes.io/docs
+Reference [https://kubernetes.io/docs](https://kubernetes.io/docs) 
 
 ## Pac-Man Kubernetes App
 As shown at the VMware website, here is the topology of the Pac-Man Kubernetes application representing the corresponding resources.
