@@ -6,6 +6,7 @@ categories: Kubernetes
 tags: kubeadm minikube
 author: "Pradeep Gadde"
 show_date: true
+classes: wide
 header:
   teaser: /assets/images/kubernetes.png
 author:
