@@ -1,6 +1,7 @@
 ---
 layout: single
 title:  "About"
+permalink: /about/
 date:   2022-01-02 10:55:04 +0530
 categories: about
 author:
