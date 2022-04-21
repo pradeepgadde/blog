@@ -13,8 +13,7 @@ header:
 author:
   name     : "Kubernetes"
   avatar   : "/assets/images/kubernetes.png"
-  bio      : "My awesome biography constrained to a sentence or two goes here."
-  location : "Somewhere, USA"
+  
 sidebar:
   - title: "Blog"
     text: "Checkout other topics"

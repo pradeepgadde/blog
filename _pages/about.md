@@ -3,16 +3,10 @@ layout: single
 title:  "About"
 date:   2022-01-02 10:55:04 +0530
 categories: about
-author: Pradeep Gadde
 author:
   name     : "Pradeep"
   avatar   : "/assets/images/bio.jpg"
-link: https://www.pradeepgadde.com
-sidebar:
-  - title: "Blog"
-    
-    text: "Checkout other topics"
-    nav: my-sidebar
+
 classes: wide
 permalink: /about/
 ---

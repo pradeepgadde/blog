@@ -11,29 +11,14 @@ main:
     url: /tags/
 my-sidebar:
   - title: "Kubernetes"
-    children:
-      - title: "Kubernetes Core Concepts"
-        url: /
-      - title: "Kubernetes Scheduling"
-        url: /
-      - title: "Kubernetes Application Life Cycle Management"
-        url: /
-      - title: "Kubernetes Storage"
-        url: /
+    url: https://pradeepgadde.com/blog/categories/#kubernetes
+    
   - title: "OpenShift"
-    children:
-      - title: "CodeReadyContainers"
-        url: /
+    url: https://pradeepgadde.com/blog/categories/#openshift
      
   - title: "Automation"
-    children:
-      - title: "Jenkins"
-        url: /
-      - title: "NITA"
-        url: /
+    url: https://pradeepgadde.com/blog/categories/#automation
      
   - title: "Networking"
-    children:
-      - title: "EVPN-VXLAN"
-        url: /
+    url: https://pradeepgadde.com/blog/categories/#networking
      

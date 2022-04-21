@@ -3,6 +3,7 @@ title: "Posts by Category"
 layout: categories
 permalink: /categories/
 author_profile: true
+classes: wide
 author:
   name     : "Pradeep"
   avatar   : "/assets/images/bio.jpg"
@@ -18,9 +19,4 @@ author:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/junivator"
-sidebar:
-  - title: "Blog"
-   
-    text: "Checkout other topics"
-    nav: my-sidebar
 ---

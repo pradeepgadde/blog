@@ -287,7 +287,7 @@ Create a pod using `kodekloud/webapp-color:v3` but pass the --color argument to 
 
 This can also be confirmed by looking at the Dockerfile definition.
 
-![](/assets/images/kodekloud-webapp-color.png) 
+![kodekloud-webapp-color]({{ site.url }}{{ site.baseurl }}/assets/images/kodekloud-webapp-color.png)
 
 ```shell
 pradeep@learnk8s$ kubectl run kodekloud-change-color --image=kodekloud/webapp-color:v3 --dry-run=client -o yaml -- "--color" "blue" > pod-change-color.yaml

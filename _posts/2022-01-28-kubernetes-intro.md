@@ -1,7 +1,7 @@
 ---
 layout: single
 title:  "Welcome to Kubernetes"
-date:   2022-01-28 10:55:04 +0530
+date:   2022-01-28 8:55:04 +0530
 categories: Kubernetes
 tags: minikube
 author: "Pradeep Gadde"
