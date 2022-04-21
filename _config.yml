@@ -39,7 +39,8 @@ include: ["_pages"]
 remote_theme: "mmistakes/minimal-mistakes"
 minimal_mistakes_skin: air
 
-
+atom_feed:
+  hide: true
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
