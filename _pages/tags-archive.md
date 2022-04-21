@@ -4,6 +4,7 @@ permalink: /tags/
 layout: tags
 author_profile: true
 classes: wide
+entries_layout: grid
 author:
   name     : "Pradeep"
   avatar   : "/assets/images/bio.jpg"
