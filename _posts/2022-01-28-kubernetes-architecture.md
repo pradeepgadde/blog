@@ -10,6 +10,7 @@ show_date: true
 header:
   overlay_image: /assets/images/kubernetes.png
   og_image: /assets/images/kubernetes.png
+  teaser: /assets/images/kubernetes.png
   caption: "Photo credit: [**Kubernetes**](https://kubernetes.io)"
   actions:
     - label: "Learn more"
