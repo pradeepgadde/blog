@@ -35,7 +35,7 @@ According to Kubernetes Documentation, when Kubernetes creates a Pod it assigns 
 
   | QoS Class  | Condition                                                    |
   | ---------- | ------------------------------------------------------------ |
-  | Guaranteed | Every Container in the Pod must have a memory, CPU limit and a memory, CPU request, also the limit must be equal to the limit value |
+  | Guaranteed | Every Container in the Pod must have a memory, CPU limit and a memory, CPU request, also the limit must be equal to the request value |
   | Burstable  | The Pod does not meet the criteria for QoS class Guaranteed and at least one Container in the Pod has a memory or CPU request. |
   | BestEffort | The Containers in the Pod must not have any memory or CPU limits or requests. |
 
