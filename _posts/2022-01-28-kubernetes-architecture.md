@@ -6,7 +6,6 @@ categories: Kubernetes
 tags: minikube
 author: "Pradeep Gadde"
 classes: wide
-toc: true
 show_date: true
 header:
   overlay_image: /assets/images/kubernetes.png

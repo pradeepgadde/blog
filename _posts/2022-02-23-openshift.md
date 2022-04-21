@@ -5,7 +5,7 @@ date:   2022-02-23 10:55:04 +0530e
 categories: OpenShift  Automation
 tags: redhat  codereadycontainers
 author: "Pradeep Gadde"
-classes: wide
+toc_sticky: true
 toc: true
 show_date: true
 
@@ -1885,5 +1885,3 @@ Pradeep
 
 
 
-
- 
