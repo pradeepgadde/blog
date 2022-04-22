@@ -12,7 +12,7 @@ toc_label: "Table of Contents"
 toc_icon: "cog"
 show_date: true
 header:
-  teaser: /assets/images/kubernetes.png
+  teaser: /assets/images/sc-128.png
 author:
   name     : "Kubernetes"
   avatar   : "/assets/images/kubernetes.png"

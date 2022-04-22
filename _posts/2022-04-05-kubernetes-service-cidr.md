@@ -9,7 +9,7 @@ classes: wide
 
 show_date: true
 header:
-  teaser: /assets/images/kubeadm.png
+  teaser: /assets/images/svc-128.png
 author:
   name     : "Kubernetes"
   avatar   : "/assets/images/kubernetes.png"

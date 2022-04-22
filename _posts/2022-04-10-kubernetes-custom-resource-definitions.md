@@ -8,7 +8,7 @@ author: "Pradeep Gadde"
 show_date: true
 classes: wide
 header:
-  teaser: /assets/images/kubernetes.png
+  teaser: /assets/images/crd-128.png
 author:
   name     : "Kubernetes"
   avatar   : "/assets/images/kubernetes.png"

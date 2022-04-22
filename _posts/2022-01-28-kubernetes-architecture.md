@@ -8,7 +8,7 @@ author: "Pradeep Gadde"
 classes: wide
 show_date: true
 header:
-  overlay_image: /assets/images/kubernetes.png
+  overlay_image: /assets/images/master-128.png
   og_image: /assets/images/kubernetes.png
   teaser: /assets/images/kubernetes.png
   caption: "Photo credit: [**Kubernetes**](https://kubernetes.io)"
