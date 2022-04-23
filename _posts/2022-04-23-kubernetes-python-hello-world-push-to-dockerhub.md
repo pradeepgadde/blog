@@ -32,12 +32,12 @@ For this, we have to login to docker Hub using our own credentials.
 Before attempting login, let us check that docker config file in the home directory.
 
 ```sh
-pradeep@Pradeeps-MacBook-Air blog % cat ~/.docker/config.json 
+pradeep@learnk8s$ cat ~/.docker/config.json 
 {"auths":{},"credsStore":"desktop"}%
 ```
 
 ```sh
-pradeep@Pradeeps-MacBook-Air blog % docker login             
+pradeep@learnk8s$ docker login             
 Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
 Username: gaddepradeep
 Password: 
@@ -49,7 +49,7 @@ For better security, log in with a limited-privilege personal access token. Lear
 Look at the docker config file and note the changes. During `docker login` this file gets updated.
 
 ```sh
-pradeep@Pradeeps-MacBook-Air blog % cat ~/.docker/config.json
+pradeep@learnk8s$ cat ~/.docker/config.json
 {
 	"auths": {
 		"https://index.docker.io/v1/": {}
@@ -57,20 +57,20 @@ pradeep@Pradeeps-MacBook-Air blog % cat ~/.docker/config.json
 	"credsStore": "desktop"
 }
 
-pradeep@Pradeeps-MacBook-Air blog % 
+pradeep@learnk8s$ 
 ```
 
 Verify our previously created image.
 
 ```sh
-pradeep@Pradeeps-MacBook-Air ~ % docker images
+pradeep@learnk8s$ docker images
 REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
 hello-world   latest    c7cbee691370   38 hours ago   918MB
 ```
 
 Try to push to Docker Hub with the `docker push` command.
 ```sh
-pradeep@Pradeeps-MacBook-Air ~ % docker push hello-world:latest
+pradeep@learnk8s$ docker push hello-world:latest
 The push refers to repository [docker.io/library/hello-world]
 e1486a748855: Preparing 
 cd1ff0d7c1f9: Preparing 
@@ -92,32 +92,32 @@ The push failed because we dont have permission. Look at the URL of the reposito
 Our repository name is `gaddepradeep` so let us try again.
 
 ```sh
-pradeep@Pradeeps-MacBook-Air ~ % docker push gaddepradeep/hello-world:latest
+pradeep@learnk8s$ docker push gaddepradeep/hello-world:latest
 The push refers to repository [docker.io/gaddepradeep/hello-world]
 An image does not exist locally with the tag: gaddepradeep/hello-world
-pradeep@Pradeeps-MacBook-Air ~ %
+pradeep@learnk8s$
 ```
-
-Now it is a different error. This time it says, An image does not exist locally with the tag: gaddepradeep/hello-world.
+Look at the new repository name: `docker.io/gaddepradeep/hello-world`.
+But still, there is a different error. This time it says, An image does not exist locally with the tag: gaddepradeep/hello-world.
 
 So, let us use `docker tag` command to re-tag our existing `hello-world` image.
 
 ```sh
-pradeep@Pradeeps-MacBook-Air ~ % docker tag hello-world:latest gaddepradeep/hello-world:latest
+pradeep@learnk8s$ docker tag hello-world:latest gaddepradeep/hello-world:latest
 ```
 Verify the available images again.
 ```sh
-pradeep@Pradeeps-MacBook-Air ~ % docker images                                   
+pradeep@learnk8s$ docker images                                   
 REPOSITORY                 TAG       IMAGE ID       CREATED        SIZE
 gaddepradeep/hello-world   latest    c7cbee691370   38 hours ago   918MB
 hello-world                latest    c7cbee691370   38 hours ago   918MB
-pradeep@Pradeeps-MacBook-Air ~ % 
+pradeep@learnk8s$ 
 ```
 We can see two images with the same `IMAGE ID` of `c7cbee691370` and same size but the `REPOSITORY` name is different for each of them.
 
 Now that tagging is done, attemt to push again.
 ```sh
-pradeep@Pradeeps-MacBook-Air ~ % docker push gaddepradeep/hello-world:latest     
+pradeep@learnk8s$ docker push gaddepradeep/hello-world:latest     
 The push refers to repository [docker.io/gaddepradeep/hello-world]
 e1486a748855: Pushed 
 cd1ff0d7c1f9: Pushed 
@@ -133,7 +133,7 @@ a037458de4e0: Pushed
 bafdbe68e4ae: Pushed 
 a13c519c6361: Pushed 
 latest: digest: sha256:d123b2e8225937522f8fc6dda3c3c70160fe33e0ed0fdc0df8aedf07db076a3c size: 3049
-pradeep@Pradeeps-MacBook-Air ~ % 
+pradeep@learnk8s$ 
 ```
 With this we have successfully uploaded our little Python hello-world app into Docker Hub and  anyone can use this public image now.
 
@@ -145,19 +145,19 @@ We can see our newly uploaded image (`gaddepradeep/hello-world`).
 
 Create a new deployment called `hello` using this new image.
 ```sh
-pradeep@Pradeeps-MacBook-Air ~ % kubectl create deployment hello --image=gaddepradeep/hello-world
+pradeep@learnk8s$ kubectl create deployment hello --image=gaddepradeep/hello-world
 deployment.apps/hello created
 ```
 
 Verify the deployment and pod status.
 ```sh
-pradeep@Pradeeps-MacBook-Air ~ % kubectl get pods  
+pradeep@learnk8s$ kubectl get pods  
 NAME                     READY   STATUS    RESTARTS   AGE
 hello-65b45d9f99-7nfl2   1/1     Running   0          8s
-pradeep@Pradeeps-MacBook-Air ~ % kubectl get pods -o wide
+pradeep@learnk8s$ kubectl get pods -o wide
 NAME                     READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
 hello-65b45d9f99-7nfl2   1/1     Running   0          13s   172.17.0.3   minikube   <none>           <none>
-pradeep@Pradeeps-MacBook-Air ~ % kubectl get deploy      
+pradeep@learnk8s$ kubectl get deploy      
 NAME    READY   UP-TO-DATE   AVAILABLE   AGE
 hello   1/1     1            1           17s
 ```
@@ -165,7 +165,7 @@ We can see our Deployment is successful and the Pod is running.
 We can test our app using the Pod IP, `172.17.0.3` in this case, and we know that our Python Flask application was running on the port `5000`.
 
 ```sh
-pradeep@Pradeeps-MacBook-Air ~ % minikube ssh
+pradeep@learnk8s$ minikube ssh
                          _             _            
             _         _ ( )           ( )           
   ___ ___  (_)  ___  (_)| |/')  _   _ | |_      __  
@@ -177,14 +177,14 @@ $ curl 172.17.0.3:5000
 Hello World!$ 
 $ exit
 logout
-pradeep@Pradeeps-MacBook-Air ~ % 
+pradeep@learnk8s$ 
 ```
 
 Let us expose our deployment as a LoadBalancer,
 ```sh
-pradeep@Pradeeps-MacBook-Air ~ % kubectl expose deployment hello --type=LoadBalancer --port=7000 --target-port=5000 --name=hello
+pradeep@learnk8s$ kubectl expose deployment hello --type=LoadBalancer --port=7000 --target-port=5000 --name=hello
 service/hello exposed
-pradeep@Pradeeps-MacBook-Air ~ % kubectl get svc
+pradeep@learnk8s$ kubectl get svc
 NAME         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
 hello        LoadBalancer   10.107.121.32   <pending>     7000:32711/TCP   4s
 kubernetes   ClusterIP      10.96.0.1       <none>        443/TCP          6h22m
@@ -192,7 +192,7 @@ kubernetes   ClusterIP      10.96.0.1       <none>        443/TCP          6h22m
 
 In our minikube deployment, we have to use `minikube tunnel` to get an EXTERNAL-IP
 ```sh
-pradeep@Pradeeps-MacBook-Air ~ % minikube tunnel
+pradeep@learnk8s$ minikube tunnel
 Password:
 Status:	
 	machine: minikube
@@ -208,7 +208,7 @@ Status:
 ```
 
 ```sh
-pradeep@Pradeeps-MacBook-Air ~ % kubectl get svc
+pradeep@learnk8s$ kubectl get svc
 NAME         TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)          AGE
 hello        LoadBalancer   10.107.121.32   10.107.121.32   7000:32711/TCP   4m8s
 kubernetes   ClusterIP      10.96.0.1       <none>          443/TCP          6h26m
@@ -216,12 +216,19 @@ kubernetes   ClusterIP      10.96.0.1       <none>          443/TCP          6h2
 Our service `hello` has got an External IP now.
 
 ```sh
-pradeep@Pradeeps-MacBook-Air ~ % minikube service hello --url
+pradeep@learnk8s$ minikube service hello --url
 http://172.16.30.9:32711
 ```
 We can access our App now, using this URL
 
 ![DockerHub]({{ site.url }}{{ site.baseurl }}/assets/images/dockerhub-python-hello-test.png)
 
+Ok, it is working fine.
+Let us describe the Pod to confirm the Image used 
+```sh
+pradeep@learnk8s$ kubectl describe pod hello-65b45d9f99-7nfl2 | grep Image
+    Image:          gaddepradeep/hello-world
+    Image ID:       docker-pullable://gaddepradeep/hello-world@sha256:d123b2e8225937522f8fc6dda3c3c70160fe33e0ed0fdc0df8aedf07db076a3c
+```
 This concludes our testing with Docker Hub push and using the newly published image in Kubernetes.
 
