@@ -5,8 +5,8 @@ date:   2022-02-28 10:55:04 +0530
 categories: Kubernetes
 tags: minikube
 author: "Pradeep Gadde"
-classes: wide
 
+toc_sticky: true
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "cog"
