@@ -8,7 +8,7 @@ toc: true
 toc_sticky: true
 show_date: true
 header:
-  teaser: /assets/images/go.png
+  teaser: /assets/images/go-motorcycle.svg
 author:
   name     : "Go"
   avatar   : "/assets/images/go-black.png"
@@ -361,6 +361,7 @@ func main() {
 
 	fmt.Println("done")
 }
+```
 
 ```go
 pradeep@LearnGo example % go run defer-multi.go 
