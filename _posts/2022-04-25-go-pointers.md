@@ -5,6 +5,7 @@ date:   2022-04-25 00:56:04 +0530
 categories: Go
 tags: programming
 show_date: true
+classes: wide
 header:
   teaser: /assets/images/go.png
 author:
