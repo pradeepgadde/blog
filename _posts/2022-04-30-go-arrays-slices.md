@@ -69,13 +69,17 @@ The type `[]T` is a slice with elements of type `T`.
 
 A slice is formed by specifying two indices, a low and high bound, separated by a colon:
 
-`a[low : high]`
+```go
+a[low : high]
+```
 
 This selects a half-open range which includes the first element, but excludes the last one.
 
-The following expression creates a slice which includes elements 1 through 3 of `a`:
+The following expression creates a slice which includes elements 1 through 3 of  `a`:
 
-`a[1:4]`
+```go
+a[1:4]
+```
 
 ```go
 pradeep:~$cat slices.go 
