@@ -1,13 +1,13 @@
 ---
 layout: single
-title:  "Go Funcation Values"
+title:  "Go Function Values"
 date:   2022-04-30 04:56:04 +0530
 categories: Go
 tags: programming
 show_date: true
 classes: wide
 header:
-  teaser: /assets/images/go.png
+  teaser: /assets/images/go-red.png
 author:
   name     : "Go"
   avatar   : "/assets/images/golang.png"
