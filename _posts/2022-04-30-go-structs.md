@@ -10,7 +10,7 @@ header:
   teaser: /assets/images/golang.png
 author:
   name     : "Go"
-  avatar   : "/assets/images/go-red.png"
+  avatar   : "/assets/images/golang.png"
 
 sidebar:
   - title: "Blog"

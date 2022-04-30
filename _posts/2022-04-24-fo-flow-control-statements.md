@@ -11,7 +11,7 @@ header:
   teaser: /assets/images/go-motorcycle.svg
 author:
   name     : "Go"
-  avatar   : "/assets/images/go-black.png"
+  avatar   : "/assets/images/golang.png"
 
 sidebar:
   - title: "Blog"

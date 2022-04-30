@@ -8,10 +8,10 @@ toc: true
 toc_sticky: true
 show_date: true
 header:
-  teaser: /assets/images/go.png
+  teaser: /assets/images/go-red.png
 author:
   name     : "Go"
-  avatar   : "/assets/images/go-black.png"
+  avatar   : "/assets/images/golang.png"
 
 sidebar:
   - title: "Blog"
