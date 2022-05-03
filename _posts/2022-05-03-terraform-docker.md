@@ -3,7 +3,7 @@ layout: single
 title:  "Getting Started with Terraform"
 date:   2022-05-03 04:56:04 +0530
 categories: Automation
-tags: terraform
+tags: Terraform
 show_date: true
 toc: true
 toc_sticky: true
@@ -654,7 +654,7 @@ pradeep:~$
 
 ```
 
-### Manually Managing State
+## Manually Managing State
 
 Terraform has a built-in command called `terraform state` for advanced state management. Use the `list`subcommand to list of the resources in your project's state.
 
