@@ -8,10 +8,10 @@ show_date: true
 toc: true
 toc_sticky: true
 header:
-  teaser: /assets/images/terraform.svg
+  teaser: /assets/images/terraform.png
 author:
   name     : "Terraform"
-  avatar   : "/assets/images/terraform.svg"
+  avatar   : "/assets/images/terraform.png"
 
 sidebar:
   - title: "Blog"
