@@ -373,9 +373,7 @@ pradeep@learnk8s$ minikube start --container-runtime=containerd
 
 ```
 
-![kubernetes-logo](/assets/images/kubernetes-logo.png)
-
-
+![kubernetes-logo]({{ site.url }}{{ site.baseurl }}/assets/images/kubernetes-logo.png)
 
 
 
