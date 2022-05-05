@@ -5,8 +5,7 @@ date:   2022-05-05 04:58:04 +0530
 categories: Automation
 tags: Vagrant
 show_date: true
-toc: true
-toc_sticky: true
+classes: wide
 header:
   teaser: /assets/images/vagrant.png
 author:
