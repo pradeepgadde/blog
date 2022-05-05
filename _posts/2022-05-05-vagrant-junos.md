@@ -21,16 +21,12 @@ sidebar:
 ---
 
 # Vagrant + Junos
-
 Few years ago, Juniper made available some of its products as Vagrant boxes, which can be found [here](https://app.vagrantup.com/juniper)
+![Vagrant Juniper]({{ site.url }}{{ site.baseurl }}/assets/images/vagrant-juniper.png)
 
 Let us make use of this box to setup a simple lab and practice Junos.
 
 This demo consists of two VMs connected by a link.
-
-
-
-
 ```sh
 pradeep:~$cat Vagrantfile 
 Vagrant.configure(2) do |config|
