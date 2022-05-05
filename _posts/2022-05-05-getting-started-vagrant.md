@@ -10,7 +10,7 @@ toc_sticky: true
 header:
   teaser: /assets/images/vagrant.png
 author:
-  name     : "Terraform"
+  name     : "Vagrant"
   avatar   : "/assets/images/vagrant.png"
 
 sidebar:
