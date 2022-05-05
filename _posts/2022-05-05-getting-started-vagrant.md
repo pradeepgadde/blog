@@ -158,7 +158,7 @@ the comments in the Vagrantfile as well as documentation on
 pradeep:~$
 ```
 ## Vagrantfile
-```v
+```sh
 pradeep:~$cat Vagrantfile 
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
@@ -310,7 +310,7 @@ the comments in the Vagrantfile as well as documentation on
 pradeep:~$
 ```
 
-```v
+```sh
 pradeep:~$cat Vagrantfile 
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
