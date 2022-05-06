@@ -21,8 +21,12 @@ sidebar:
 ---
 
 # Vagrant + Junos
-Few years ago, Juniper made available some of its products as Vagrant boxes, which can be found [here](https://app.vagrantup.com/juniper)
+Few years ago, Juniper made available some of its products as Vagrant boxes, which can be found [here](https://app.vagrantup.com/juniper).
 ![Vagrant Juniper]({{ site.url }}{{ site.baseurl }}/assets/images/vagrant-juniper.png)
+
+I have used it extensively for my lab practice in the past. Here is a screenshot of my lab with 10 vSRX devices running inside my  laptop.
+
+![Vagrant Juniper]({{ site.url }}{{ site.baseurl }}/assets/images/vagrant-lab.jpeg)
 
 Let us make use of this box to setup a simple lab and practice Junos.
 

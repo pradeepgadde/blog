@@ -1031,7 +1031,7 @@ Pac-Man URL
 
 ![pacman-ingress-url]({{ site.url }}{{ site.baseurl }}/assets/images/pacman-ingress-url.jpeg)
 
-> Note that the Pac-Man app still have some issues with loading the images (missing information) and also notice the `/` at the end, without which the rendering is still bad. I guess these are related to the way actual applications are defined and URL rewriting. But we get the idea (of using Ingress) to meet our final goal.
+> Note that the `wordsmith` app still has some issues with loading the images (missing information) and also notice the `/` at the end, without which the rendering is still bad. I guess these are related to the way actual applications are defined and URL rewriting. But we get the idea (of using Ingress) to meet our final goal.
 
 
 
