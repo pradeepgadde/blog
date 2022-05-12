@@ -7,7 +7,7 @@ tags: Azure
 show_date: true
 classes: wide
 header:
-  teaser: /assets/images/azure.png
+  teaser: /assets/images/microsoft-certified-fundamentals-badge.svg
 author:
   name     : "Microsoft"
   avatar   : "/assets/images/azure.png"
@@ -27,9 +27,9 @@ Few months ago, I wanted to learn the Cloud in a structured way and started with
 I have not taken the official certification yet, but I am planning to take it as soon as possible.
 In preparation to achieving the Microsoft Certified Badge , I have started this notes preparation.
 
-![Microsoft Badge]({{ site.url }}{{ site.baseurl }}/assets/images/microsoft-certified-fundamentals-badge.svg)
 
-I have also enrolled in the [Microsoft Build Cloud Skills Challenge | May 2022](https://www.microsoft.com/en-US/cloudskillschallenge/build/thankyou/2022).
+
+I have also enrolled in the [Microsoft Build Cloud Skills Challenge May 2022](https://www.microsoft.com/en-US/cloudskillschallenge/build/thankyou/2022).
 
 This is the first post in this series on Microsoft Azure Fundamentals.
 
