@@ -3,7 +3,7 @@ layout: single
 title:  "Microsoft Azure Fundamentals"
 date:   2022-05-012 06:59:04 +0530
 categories: Cloud
-tags: Azure Microsoft
+tags: Azure
 show_date: true
 classes: wide
 header:
