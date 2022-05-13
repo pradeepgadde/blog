@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "How does Azure Work?"
+title:  "Introduction to Azure"
 date:   2022-05-13 06:59:04 +0530
 categories: Cloud
 tags: Azure
@@ -53,17 +53,14 @@ The home page of  [Azure Portal](https://portal.azure.com/#home) looks like this
 
 ![Azure Portal]({{ site.url }}{{ site.baseurl }}/assets/images/azure-portal.png)
 
-
-
 ## Azure Marketplace
 Azure Marketplace which can be accssed at [https://azuremarketplace.microsoft.com/en-IN/](https://azuremarketplace.microsoft.com/en-IN/) contains solutions from Microsoft Partners, other vendors, which are optimized to run on Azure.
 
 Here is a screenshot of Azure compatible solutions offered by Juniper Networks, for example.
+
 ![Azure Marketplace]({{ site.url }}{{ site.baseurl }}/assets/images/azure-mp-jnpr.png)
 
 The catalog spans sever categories like containers, virtual machine images, databases etc.
-
-
 
 That's a brief intro on Azure.
 
