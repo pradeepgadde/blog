@@ -21,8 +21,19 @@ sidebar:
 ---
 
 # Microsoft Azure Fundamentals
-I had some experience with the AWS cloud, logged in to the console and created some resources and got some overall idea of how it would be to work in a cloud environment.
-Few months ago, I wanted to learn the Cloud in a structured way and started with [Microsoft Azure Cloud Fundamentals course](https://docs.microsoft.com/en-us/learn/certifications/azure-fundamentals/).
+In the past, I had some experience with the AWS and Azure cloud platforms. I logged in to the console and created some resources and got some overall idea of how it would be to work in a cloud environment. But, this was not part of my day-to-day job responsibilities. 
+
+
+
+First time, I remember using a Cloud Platform to create virtual resources was in 2015!
+
+I attended a workshop on Cloud, it was called A2Z Cloud Workshop (Hands-on)!!
+
+![Cloud Workshop]({{ site.url }}{{ site.baseurl }}/assets/images/cloud-workshop-2015.jpeg)
+
+
+
+So, few months ago, I wanted to learn the Cloud in a structured way and started with [Microsoft Azure Cloud Fundamentals course](https://docs.microsoft.com/en-us/learn/certifications/azure-fundamentals/).
 
 I have not taken the official certification yet, but I am planning to take it as soon as possible.
 In preparation to achieving the Microsoft Certified Badge , I have started this notes preparation.
@@ -59,13 +70,8 @@ Here is the complete list of all [Azure Certifications](https://docs.microsoft.c
 
 ![Azure Certs]({{ site.url }}{{ site.baseurl }}/assets/images/azure-certs.png)
 
-
-
 Let us begin our Cloud journey (officially!).
 
-
-
 Best regards,
-
 Pradeep
 
