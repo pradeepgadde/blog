@@ -32,7 +32,7 @@ In an earlier post on [Azure Accounts]() we looked into subscriptions and resour
 
 Resources are created in regions, which are different geographical locations around the globe that contain Azure datacenters. When you deploy a resource in Azure, you'll often need to choose the region where you want your resource deployed. Regions are what you use to identify the location for your resources. 
 
-We can look into the Azure Global Infrastructure map here [https://infrastructuremap.microsoft.com/]https://infrastructuremap.microsoft.com/
+We can look into the Azure Global Infrastructure map here [https://infrastructuremap.microsoft.com/](https://infrastructuremap.microsoft.com/).
 
 Here is a screenshot of the same.
 
@@ -40,8 +40,8 @@ Here is a screenshot of the same.
 
 There are some special Azure Regions like
 
-- **US DoD Central**
-- **China East**
+- US DoD Central
+- China East
 
 for compliance or legal purposes.
 
