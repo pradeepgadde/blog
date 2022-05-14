@@ -59,3 +59,4 @@ Here is a screenshot of available compute services from the Azure Portal.
 
 One nice thing that I noticed in this poratl is that, just next to each resource, there is a link to appropriate learning material.
 
+Also, seen is a listing of various resources from the Marketplace.
