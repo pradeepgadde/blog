@@ -26,6 +26,7 @@ In this post, let us take a look at how does Azure work, and Azure Portal, Azure
 ## How Does Azure Work?
 First of all what is Azure? Azure is a Cloud Computing Platform which facilitates build, deploy and management of compute, network, and storage resources.
 
+Cloud is not a nebulous magic! 
 Cloud is nothing but someone else's computer resources, in this case Microsoft's. The underlying technology for any Cloud platform is Virtualization. 
 
 Virtualization makes use of hypervisor to decouple hardware and software. On a single machine, multiple virtual machines can be run with different compatible operating systems.

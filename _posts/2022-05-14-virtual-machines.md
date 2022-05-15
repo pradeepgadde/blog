@@ -71,5 +71,5 @@ Some more mandatory inputs while creating a VM are
 
 ![Azure VM]({{ site.url }}{{ site.baseurl }}/assets/images/azure-create-vm-2.png)
 
-These are just from the `Basic` tab, let us go through the other tabs like `Disks`, `Networking` in other posts.
+These are just from the `Basics` tab, let us go through the other tabs like `Disks`, `Networking` in other posts.
 
