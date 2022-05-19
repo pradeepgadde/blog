@@ -64,7 +64,7 @@ Here is a screenshot of creating Container resources in Azure.
 
 ![Azure Containers]({{ site.url }}{{ site.baseurl }}/assets/images/azure-containers.png)
 
-![ACI]({{ site.url }}{{ site.baseurl }}/assets/images/azure-containe-instance.png)
+![ACI]({{ site.url }}{{ site.baseurl }}/assets/images/azure-container-instance.png)
 
 
 
