@@ -21,8 +21,6 @@ sidebar:
 
 ---
 
-# Azure Container Instances and Azure Kubernetes Service
-
 If you want to run multiple instances of an application on a single host machine, containers are an excellent choice.
 
 Unlike virtual machines, you don't manage the operating system for a container. Virtual machines appear to be an instance of an operating system that you can connect to and manage, but containers are lightweight and designed to be created, scaled out, and stopped dynamically. 
@@ -38,7 +36,6 @@ Fastest and simplest way to run a container in Azure.
 It's a platform as a service (PaaS) offering that allows you to upload your containers, which it runs for you.
 
 Azure Container Instances (ACI) allows you to quickly and easily run containers on Azure without managing servers or having to learn new tools. ACI offers per-second billing to minimize the cost of running containers on the cloud.
-
 
 ## Azure Kubernetes Service
 Azure Kubernetes Service is a complete orchestration service for containers with distributed architectures and large volumes of containers.
@@ -58,15 +55,11 @@ For example, you might split a website into
 
 This split allows you to separate portions of your app into logical sections that can be maintained, scaled, or updated independently.
 
-
-
 Here is a screenshot of creating Container resources in Azure.
 
 ![Azure Containers]({{ site.url }}{{ site.baseurl }}/assets/images/azure-containers.png)
 
 ![ACI]({{ site.url }}{{ site.baseurl }}/assets/images/azure-container-instance.png)
-
-
 
 and here is how we create AKS (Kubernetes Clusters)
 
