@@ -111,7 +111,8 @@ Here is a template for automating Virtual Network Creation.
 }
 ```
 
-> tempate.json
+> template.json
+
 ```json
 {
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
