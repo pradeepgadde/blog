@@ -37,7 +37,7 @@ Earlier we have seen how to create compute resources like virtual machines, but 
 
 Here is revisiting that with focus on Disks.
 
-![Azure Disks]({{ site.url }}{{ site.baseurl }}/assets/images/azure-disks-1.png)
+![Azure Disks]({{ site.url }}{{ site.baseurl }}/assets/images/azure-disk-1.png)
 
 
-![Azure Disks]({{ site.url }}{{ site.baseurl }}/assets/images/azure-disks-2.png)
+![Azure Disks]({{ site.url }}{{ site.baseurl }}/assets/images/azure-disk-2.png)
