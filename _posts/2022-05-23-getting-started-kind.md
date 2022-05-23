@@ -6,7 +6,6 @@ categories: Kubernetes
 tags: kind
 author: "Pradeep Gadde"
 classes: wide
-toc: true
 show_date: true
 header:
   teaser: /assets/images/kind.png
@@ -20,7 +19,7 @@ sidebar:
     nav: my-sidebar
 ---
 
-In this post, let us look at another option to try and learn Kubernetes locally, an alternative to minikube. It is called `kube`.
+In this post, let us look at another option to try and learn Kubernetes locally, an alternative to minikube. It is called `kind` which stands for `Kubernetes in Docker`.
 
 kind is a tool for running local Kubernetes clusters using Docker container “nodes”.
 kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
@@ -147,5 +146,4 @@ Global Flags:
 Use "kind create [command] --help" for more information about a command.
 pradeep:~$
 ```
-
 
