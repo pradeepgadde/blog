@@ -40,4 +40,14 @@ You store blobs in containers, which helps you organize your blobs depending on 
 
 ![Azure Blob]({{ site.url }}{{ site.baseurl }}/assets/images/azure-blob-storage.png)
 
+Data stored in the cloud can be different based on how it's generated, processed, and accessed over its lifetime.
 
+Azure Storage offers different access tiers for your blob storage, helping you store object data in the most cost-effective manner. The available access tiers include:
+
+Hot access tier: Optimized for storing data that is accessed frequently (for example, images for your website).
+
+Cool access tier: Optimized for data that is infrequently accessed and stored for at least 30 days (for example, invoices for your customers).
+
+Archive access tier: Appropriate for data that is rarely accessed and stored for at least 180 days, with flexible latency requirements (for example, long-term backups).
+
+![Azure Blob]({{ site.url }}{{ site.baseurl }}/assets/images/azure-blob-access-tiers.png)
