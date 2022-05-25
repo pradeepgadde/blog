@@ -21,7 +21,7 @@ sidebar:
 
 ---
 
-In this post. let us look at how to deploy a basic HTML+CSS site to Azure App Service by using the Azure CLI `az webapp up` command. We will then update the code and redeploy it by using the same command.
+In this post, let us look at how to deploy a basic HTML+CSS site to Azure App Service by using the Azure CLI `az webapp up` command. We will then update the code and redeploy it by using the same command. This is the first one in the Build: Azure Developer Challenge.
 
 The `az webapp up` command makes it easy to create and update web apps. When executed it performs the following actions:
 Create a default resource group.
@@ -173,5 +173,109 @@ To find all possible outbound IP addresses for your app, regardless of pricing t
 ```sh
 pradeep@Azure:~/htmlapp/html-docs-hello-world$ az webapp show --resource-group gaddepradeep_rg_1844 --name pradeep-webapp  --query possibleOutboundIpAddresses --output tsv
 104.211.225.167,104.211.228.24,104.211.224.166,104.211.223.200,104.211.227.251,104.211.231.155,104.211.227.42,104.211.217.144
+pradeep@Azure:~/htmlapp/html-docs-hello-world$ 
+```
+
+If you no longer need the resources you created in this exercise you can delete the resource group using the `az group delete` command below. 
+
+```sh
+
+pradeep@Azure:~/htmlapp/html-docs-hello-world$ az group list
+[
+  {
+    "id": "/subscriptions/f3f98f91-9191-4dd5-a561-cc5b31d0c201/resourceGroups/gaddepradeep_rg_Linux_southcentralus",
+    "location": "southcentralus",
+    "managedBy": null,
+    "name": "gaddepradeep_rg_Linux_southcentralus",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/f3f98f91-9191-4dd5-a561-cc5b31d0c201/resourceGroups/cloud-shell-storage-centralindia",
+    "location": "centralindia",
+    "managedBy": null,
+    "name": "cloud-shell-storage-centralindia",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/f3f98f91-9191-4dd5-a561-cc5b31d0c201/resourceGroups/DefaultResourceGroup-CUS",
+    "location": "centralus",
+    "managedBy": null,
+    "name": "DefaultResourceGroup-CUS",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/f3f98f91-9191-4dd5-a561-cc5b31d0c201/resourceGroups/webapp",
+    "location": "centralus",
+    "managedBy": null,
+    "name": "webapp",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/f3f98f91-9191-4dd5-a561-cc5b31d0c201/resourceGroups/NetworkWatcherRG",
+    "location": "eastus",
+    "managedBy": null,
+    "name": "NetworkWatcherRG",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/f3f98f91-9191-4dd5-a561-cc5b31d0c201/resourceGroups/Pradeep-VN",
+    "location": "southeastasia",
+    "managedBy": null,
+    "name": "Pradeep-VN",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/f3f98f91-9191-4dd5-a561-cc5b31d0c201/resourceGroups/DefaultResourceGroup-null",
+    "location": "southindia",
+    "managedBy": null,
+    "name": "DefaultResourceGroup-null",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  },
+  {
+    "id": "/subscriptions/f3f98f91-9191-4dd5-a561-cc5b31d0c201/resourceGroups/gaddepradeep_rg_1844",
+    "location": "southindia",
+    "managedBy": null,
+    "name": "gaddepradeep_rg_1844",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": null,
+    "type": "Microsoft.Resources/resourceGroups"
+  }
+]
+pradeep@Azure:~/htmlapp/html-docs-hello-world$
+```
+
+```sh
+pradeep@Azure:~/htmlapp/html-docs-hello-world$ az group delete --resource-group gaddepradeep_rg_1844 --no-wait 
+Are you sure you want to perform this operation? (y/n): y
 pradeep@Azure:~/htmlapp/html-docs-hello-world$ 
 ```
