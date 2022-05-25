@@ -2,7 +2,7 @@
 
 layout: single
 title:  "Azure IoT Services"
-date:   2022-05-2507:59:04 +0530
+date:   2022-05-25 07:59:04 +0530
 categories: Cloud
 tags: Azure
 show_date: true
@@ -62,7 +62,6 @@ An IoT hub communicates to IoT devices by sending and receiving messages.
 
 
 ![Azure IoT]({{ site.url }}{{ site.baseurl }}/assets/images/azure-iot.png)
-
 
 
 
