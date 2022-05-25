@@ -1,7 +1,7 @@
 ---
 
 layout: single
-title:  "Azure Databse and Analytics Services"
+title:  "Azure Database and Analytics Services"
 date:   2022-05-23 04:59:04 +0530
 categories: Cloud
 tags: Azure
