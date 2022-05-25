@@ -21,7 +21,7 @@ sidebar:
 
 ---
 
-In this post, let us look at how to deploy a basic HTML+CSS site to Azure App Service by using the Azure CLI `az webapp up` command. We will then update the code and redeploy it by using the same command. This is the first one in the Build: Azure Developer Challenge.
+In this post, let us look at how to deploy a basic HTML+CSS site to Azure App Service by using the Azure CLI `az webapp up` command. We will then update the code and redeploy it by using the same command.
 
 The `az webapp up` command makes it easy to create and update web apps. When executed it performs the following actions:
 Create a default resource group.
@@ -99,7 +99,7 @@ Setting 'az webapp up' default arguments for current directory. Manage defaults 
 pradeep@Azure:~/htmlapp/html-docs-hello-world$ 
 ```
 
-Open a browser and navigate to the app URL (http://http://pradeep-webapp.azurewebsites.net) and verify the app is running - take note of the title at the top of the page. Leave the browser open on the app for the next section.
+Open a browser and navigate to the app URL [http://pradeep-webapp.azurewebsites.net](http://pradeep-webapp.azurewebsites.net) and verify the app is running - take note of the title at the top of the page. Leave the browser open on the app for the next section.
 
 ![Azure Web App]({{ site.url }}{{ site.baseurl }}/assets/images/azure-webapp-1.png)
 

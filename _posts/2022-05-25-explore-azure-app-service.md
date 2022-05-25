@@ -20,6 +20,8 @@ sidebar:
     nav: my-sidebar
 
 ---
+This is the first one in the Build: Azure Developer Challenge.
+
 In this post, let us learn about
 
 Azure App Service key components and value.
@@ -251,11 +253,8 @@ When you create an App Service plan in a certain region (for example, West Europ
 The *pricing tier* of an App Service plan determines what App Service features you get and how much you pay for the plan. There are a few categories of pricing tiers:
 
 Shared compute
-
 Dedicated compute
-
 Isolated
-
 Consumption
 
 In the **Free** and **Shared** tiers, an app receives CPU minutes on a shared VM instance and can't scale out. 
@@ -272,8 +271,6 @@ Azure supports automated deployment directly from several sources. The following
 - **GitHub**: Azure supports automated deployment directly from GitHub. When you connect your GitHub repository to Azure for automated deployment, any changes you push to your production branch on GitHub will be automatically deployed for you.
 - **Bitbucket**: With its similarities to GitHub, you can configure an automated deployment with Bitbucket.
 
-
-
 ## Manual deployment
 
 There are a few options that you can use to manually push your code to Azure:
@@ -283,22 +280,14 @@ There are a few options that you can use to manually push your code to Azure:
 - **Zip deploy**: Use `curl` or a similar HTTP utility to send a ZIP of your application files to App Service.
 - **FTP/S**: FTP or FTPS is a traditional way of pushing your code to many hosting environments, including App Service.
 
-
-
 Azure App Service provides built-in authentication and authorization support, so you can sign in users and access data by writing minimal or no code in your web app, API, and mobile back end, and also Azure Functions.
-
-
 
 App Service uses federated identity, in which a third-party identity provider manages the user identities and authentication flow for you. The following identity providers are available by default:
 
 Microsoft Identity Platform
-
 Facebook
-
 Google
-
 Twitter
-
 Any OpenID Connect provider
 
 The authentication and authorization module runs in the same sandbox as your application code. When it's enabled, every incoming HTTP request passes through it before being handled by your application code.
