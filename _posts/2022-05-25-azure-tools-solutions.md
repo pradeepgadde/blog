@@ -46,19 +46,17 @@ Azure Sphere comes in three parts:
 
 Following are some example scenarios where each of these three best fit:
 
-A company wants to build a new voting kiosk for sales to governments around the world. Which IoT technologies should the company choose to ensure the highest degree of security?
-Azure Sphere
-Azure Sphere provides the highest degree of security to ensure the device has not been tampered with.
+1. A company wants to build a new voting kiosk for sales to governments around the world. Which IoT technologies should the company choose to ensure the highest degree of security?
+   Azure Sphere
+   Azure Sphere provides the highest degree of security to ensure the device has not been tampered with.
 
 2. A company wants to quickly manage its individual IoT devices by using a web-based user interface. Which IoT technology should it choose?
-
-IoT Central
-IoT Central quickly creates a web-based management portal to enable reporting and communication with IoT devices.
+   IoT Central
+   IoT Central quickly creates a web-based management portal to enable reporting and communication with IoT devices.
 
 3. You want to send messages from the IoT device to the cloud and vice versa. Which IoT technology can send and receive messages?
-
-IoT Hub
-An IoT hub communicates to IoT devices by sending and receiving messages.
+   IoT Hub
+   An IoT hub communicates to IoT devices by sending and receiving messages.
 
 
 ![Azure IoT]({{ site.url }}{{ site.baseurl }}/assets/images/azure-iot.png)
