@@ -2,7 +2,7 @@
 
 layout: single
 title:  "Create and deploy Azure Resource Manager templates"
-date:   2022-05-26 05:59:04 +0530
+date:   2022-05-26 08:59:04 +0530
 categories: Cloud
 tags: Azure
 show_date: true
@@ -367,7 +367,10 @@ Finally, we can confirm that our storage account got created successfully from t
 
 ![Azure App]({{ site.url }}{{ site.baseurl }}/assets/images/azure-app-arm.jpeg)
 
-Clean up resources
+We can see that our new Storage Account and Resource Group are listed at the bottom, confirming that we have successfully completed the task!
+
+Let us clean up resources now.
+
 When the Azure resources are no longer needed use the Azure CLI command below to delete the resource group.
 
 ```sh
