@@ -21,7 +21,8 @@ sidebar:
 
 ---
 
-ARM Template file
+It is Day#2 of Microsoft Build Cloud Skills Challenge. In this post, let us learn about creating  ARM Template files.
+
 Within your template, you can write template expressions that extend the capabilities of JSON. These expressions make use of the functions provided by Resource Manager.
 
 The template has the following sections:
@@ -67,9 +68,13 @@ I already have Visual Studio Code but not the Azure Resource Manager Tools insta
 
 Create an Azure Resource Manager template
 Create and open a new file named `azuredeploy.json` with Visual Studio Code.
-Enter arm in the `azuredeploy.json` file and select arm! from the autocomplete options. This will insert a snippet with the basic building blocks for an Azure resource group deployment.
+Enter `arm` in the `azuredeploy.json` file and select `arm!` from the autocomplete options. This will insert a snippet with the basic building blocks for an Azure resource group deployment.
 
+![Azure ARM VS Code]({{ site.url }}{{ site.baseurl }}/assets/images/arm-vscode-1.png)
+![Azure ARM VS Code]({{ site.url }}{{ site.baseurl }}/assets/images/arm-vscode-2.png)
+![Azure ARM VS Code]({{ site.url }}{{ site.baseurl }}/assets/images/arm-vscode-3.png)
 In this section you will add a snippet to support the creation of an Azure storage account to the template.
+
 Place the cursor in the template resources block, type in storage, and select the `arm-storage` snippet.
 
 Add parameters to the template
@@ -86,6 +91,9 @@ In the resources block, delete the current default name which is storageaccount1
 Enter a square bracket [, which produces a list of Azure Resource Manager template functions. Select parameters from the list.
 Add () at the end of parameters and select storageAccountName from the pop-up. If the list of parameters does not show up automatically you can enter a single quote ' inside of the round brackets to display the list.
 
+![Azure ARM VS Code]({{ site.url }}{{ site.baseurl }}/assets/images/arm-vscode-4.png)
+![Azure ARM VS Code]({{ site.url }}{{ site.baseurl }}/assets/images/arm-vscode-5.png)
+
 Create a parameter file
 
 An Azure Resource Manager template parameter file allows you to store environment-specific parameter values and pass these values in as a group at deployment time. This is useful if you want to have values specific to a test or production environment, for example. The extension makes it easy to create a parameter file that is mapped to your existing template. Follow the steps below to create a parameter file.
@@ -97,6 +105,9 @@ In the Command Palette enter "parameter" in the search bar and select Azure Reso
 A new dialog box will open at the top of the editor. From those options select New, then select All Parameters. Accept the default name for the new file.
 
 Edit the value parameter and type in a name that meets the naming requirements.
+
+![Azure ARM VS Code]({{ site.url }}{{ site.baseurl }}/assets/images/arm-vscode-6.png)
+![Azure ARM VS Code]({{ site.url }}{{ site.baseurl }}/assets/images/arm-vscode-7.png)
 
 Deploy the template
 It's time to deploy the template. Follow the steps below, in the VS Code terminal, to connect to Azure and deploy the new storage account resource.
