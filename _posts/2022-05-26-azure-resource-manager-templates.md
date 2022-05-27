@@ -72,14 +72,17 @@ Enter `arm` in the `azuredeploy.json` file and select `arm!` from the autocomple
 
 ![Azure ARM VS Code]({{ site.url }}{{ site.baseurl }}/assets/images/arm-vscode-1.png)
 ![Azure ARM VS Code]({{ site.url }}{{ site.baseurl }}/assets/images/arm-vscode-2.png)
-![Azure ARM VS Code]({{ site.url }}{{ site.baseurl }}/assets/images/arm-vscode-3.png)
+
 In this section you will add a snippet to support the creation of an Azure storage account to the template.
 
 Place the cursor in the template resources block, type in storage, and select the `arm-storage` snippet.
+![Azure ARM VS Code]({{ site.url }}{{ site.baseurl }}/assets/images/arm-vscode-3.png)
 
 Add parameters to the template
 Now you will create and use a parameter to specify the storage account name.
 Place your cursor in the parameters block, add a carriage return, type ", and then select the `new-parameter` snippet. This action adds a generic parameter to the template.
+
+![Azure ARM VS Code]({{ site.url }}{{ site.baseurl }}/assets/images/arm-vscode-4.png)
 
 Make the following changes to the new parameter you just added:
 Update the name of the parameter to storageAccountName and the description to Storage Account Name.
@@ -91,8 +94,9 @@ In the resources block, delete the current default name which is storageaccount1
 Enter a square bracket [, which produces a list of Azure Resource Manager template functions. Select parameters from the list.
 Add () at the end of parameters and select storageAccountName from the pop-up. If the list of parameters does not show up automatically you can enter a single quote ' inside of the round brackets to display the list.
 
-![Azure ARM VS Code]({{ site.url }}{{ site.baseurl }}/assets/images/arm-vscode-4.png)
+
 ![Azure ARM VS Code]({{ site.url }}{{ site.baseurl }}/assets/images/arm-vscode-5.png)
+![Azure ARM VS Code]({{ site.url }}{{ site.baseurl }}/assets/images/arm-vscode-6.png)
 
 Create a parameter file
 
@@ -106,7 +110,6 @@ A new dialog box will open at the top of the editor. From those options select N
 
 Edit the value parameter and type in a name that meets the naming requirements.
 
-![Azure ARM VS Code]({{ site.url }}{{ site.baseurl }}/assets/images/arm-vscode-6.png)
 ![Azure ARM VS Code]({{ site.url }}{{ site.baseurl }}/assets/images/arm-vscode-7.png)
 
 Deploy the template
