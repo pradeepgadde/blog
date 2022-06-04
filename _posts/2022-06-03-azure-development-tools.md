@@ -25,7 +25,6 @@ Microsoft tools enable source-code management, continuous integration and contin
 There are three primary offerings:
 
 ## Azure DevOps Services
-
 Azure DevOps Services is a suite of services that address every stage of the software development lifecycle.
 
 - Azure Repos—a centralized source-code repository 
