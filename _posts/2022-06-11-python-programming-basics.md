@@ -372,10 +372,6 @@ Other way to update, in single step ,instead of two steps.  Search for Functiona
 >>> 
 ```
 
-
-
-
-
 ## IDE
 
 Integrated Development Environment
@@ -389,8 +385,6 @@ Use `Shift + tab` to show the help options
 ## Strings
 
 Strings also work like `list`.  A list of characters.
-
-
 
 ```python
 >>> s="Juniper Networks"
@@ -483,8 +477,6 @@ Start, end, jump step size
 
 ```
 
-
-
 Another example, without specifying the start, end but the step size, to get every alternate item
 
 ```python
@@ -493,19 +485,13 @@ Another example, without specifying the start, end but the step size, to get eve
 >>> 
 ```
 
-
-
 To reverse the list, start from beginning, go till end, but  step size of `-1` to start from reverse
-
-
 
 ```python
 >>> emails[::-1]
 ['xyz@abc.com', 'jkl@mno.com', 'ghi@gmail.com', 'def@ghi.com', 'abc@xyz.com']
 >>> 
 ```
-
-
 
 ```python
 >>> x[::-1]
@@ -515,13 +501,12 @@ To reverse the list, start from beginning, go till end, but  step size of `-1` t
 
 This is because, last item index number is `-1`.
 
-0+ -1 = -1
-
+````sh
+0 + -1 = -1
 -1 + -1 = -2
-
 -2 + -1 = -3
-
-and so on
+and so on.
+````
 
 
 
@@ -556,6 +541,195 @@ There is a `reverse` method as well, but this actually changes the data. Items a
 >>> emails.reverse()
 >>> emails
 ['xyz@abc.com', 'jkl@mno.com', 'ghi@gmail.com', 'def@ghi.com', 'abc@xyz.com']
+>>> 
+
+```
+
+This reverse function is not available for `string` variables. Its available only for `lists`.
+
+## In (Containment)
+
+```python
+>>> s="Juniper Networks is Awesome!"
+>>> s
+'Juniper Networks is Awesome!'
+>>> "Awesome" in s
+True
+>>> "Downtime" in s
+False
+>>> 
+
+```
+
+```python
+>>> find="Awesome" in s
+>>> type(find)
+<class 'bool'>
+>>> 
+```
+
+## Swapping
+
+In other programming languages, we might need a temporary third variable.
+
+```python
+>>> x=5
+>>> y=10
+>>> z=y
+>>> y=x
+>>> x=z
+>>> x
+10
+>>> y
+5
+>>> 
+
+```
+
+We can print multiple variables like this 
+
+```python
+>>> x,y
+(10, 5)
+>>> 
+```
+
+To swap, in a single line , very intuitive way, in Python. We dont need the third variable
+
+```python
+>>> x,y=y,x
+>>> x,y
+(5, 10)
+>>> 
+
+```
+
+Multiple variable assignment in a single line 
+
+```python
+>>> i=2
+>>> j=3
+>>> k=4
+>>> i,j,k
+(2, 3, 4)
+>>> i,j,k=6,7,8 # Single line method
+>>> i,j,k
+(6, 7, 8)
+>>> 
+
+```
+
+```python
+>>> print(i,j,k)
+6 7 8
+>>> 
+```
+
+### List Unpacking
+
+Assigning each item of the list to a different variable
+
+```python
+>>> mylist=[2,3,4,5]
+>>> i,j,k,l=mylist # Unpacking
+>>> print(i,j,k,l)
+2 3 4 5
+>>> 
+```
+
+## Underscore (`_`) Variable 
+
+To store the last output
+
+```python
+>>> x = 5+7
+>>> x
+12
+>>> _
+12
+>>> 
+```
+
+```python
+>>> x=8*9
+>>> x
+72
+>>> _
+72
+>>> 
+```
+We can use other operators with the `_` variable name
+```python
+>>> _
+72
+>>> _+2
+74
+>>> 
+
+```
+
+## Multiplication and Power
+
+```python
+>>> 9 * 2
+18
+>>> 9**2
+81
+>>> 
+```
+
+## ValueError while Unpacking
+```python
+>>> mylist
+[2, 3, 4, 5]
+>>> i,j,k=mylist
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: too many values to unpack (expected 3)
+>>> 
+
+```
+
+## One more use case of Underscore
+
+If you don't want all variables while unpacking, For example, out of the four items, let us say, we dont need to save the first item in a variable, we can use the `_` while unpacking. 
+
+```python
+>>> _,i,j,k=mylist
+>>> i
+3
+>>> j
+4
+>>> k
+5
+>>> 
+>>> _
+2
+>>> 
+```
+
+We can use it multiple times also,
+
+```python
+>>> _,i,_,j=mylist
+>>> i
+3
+>>> j
+5
+>>> _
+4
+>>> 
+
+```
+
+## Repetition
+Two methods:  Iteration or Recursion
+Iteration: For, while etc
+Recursion: Calling the same function within a function
+
+```python
+>>> print("Hi"*10)
+HiHiHiHiHiHiHiHiHiHi
 >>> 
 
 ```
