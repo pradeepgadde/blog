@@ -246,7 +246,7 @@ IndexError: list index out of range
 >>> 
 ```
 
-Slices
+Slicing 
 
 ```python
 >>> x=["pradeep","suma","dakshita","sripragnya","gadde"]
@@ -297,7 +297,266 @@ Methods or Functions available with this data type, `list`; these are pre-create
 
 ```
 
-Abstract Data types also possible in Python. We will see them later.
+Abstract Data Types (ADT) also possible in Python. We will see them later.
+
+CRUD
+
+Create
+
+Update
+
+Delete
+
+Read
+
+```python
+>>> x.append("spdsp")
+>>> x.append("linux")
+>>> x
+['pradeep', 'suma', 'dakshita', 'sripragnya', 'gadde', 'spdsp', 'linux']
+>>> 
+
+```
+
+```python
+>>> x[2:]
+['dakshita', 'sripragnya', 'gadde', 'spdsp', 'linux']
+>>> 
+```
+
+To know how to use a function, use the `help`
+
+```python
+>>> help(x.index)
+
+Help on built-in function index:
+
+index(value, start=0, stop=9223372036854775807, /) method of builtins.list instance
+    Return first index of value.
+    
+    Raises ValueError if the value is not present.
+```
+
+```python
+>>> x.index("spdsp")
+5
+>>> 
+```
+
+```python
+>>> x[5]
+'spdsp'
+>>> 
+
+```
+
+It is possible to update entries in the list
+
+```python
+>>> x[6]="python"
+>>> x
+['pradeep', 'suma', 'dakshita', 'sripragnya', 'gadde', 'spdsp', 'python']
+>>> 
+```
+
+Index works like a Linear Search algorithm.
+
+## Inline Programming Example
+
+Other way to update, in single step ,instead of two steps.  Search for Functional programming! Use shorter code, or inline programming. Inner code is executed first.
+
+```python
+>>> x[x.index("python")]="awesome"
+>>> x
+['pradeep', 'suma', 'dakshita', 'sripragnya', 'gadde', 'spdsp', 'awesome']
+>>> 
+```
 
 
+
+
+
+## IDE
+
+Integrated Development Environment
+
+Anaconda IDE: `Jupiter`
+
+In Jupyter notesbooks, we dont have to use `dir` , instead we can use the dot (`.`) after variable name, to show the available methods.
+
+Use `Shift + tab` to show the help options
+
+## Strings
+
+Strings also work like `list`.  A list of characters.
+
+
+
+```python
+>>> s="Juniper Networks"
+>>> s[0]
+'J'
+>>> dir(s)
+['__add__', '__class__', '__contains__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getnewargs__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__mod__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__rmod__', '__rmul__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'capitalize', 'casefold', 'center', 'count', 'encode', 'endswith', 'expandtabs', 'find', 'format', 'format_map', 'index', 'isalnum', 'isalpha', 'isascii', 'isdecimal', 'isdigit', 'isidentifier', 'islower', 'isnumeric', 'isprintable', 'isspace', 'istitle', 'isupper', 'join', 'ljust', 'lower', 'lstrip', 'maketrans', 'partition', 'removeprefix', 'removesuffix', 'replace', 'rfind', 'rindex', 'rjust', 'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith', 'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']
+>>> 
+
+```
+
+```python
+>>> help(s.capitalize)
+
+Help on built-in function capitalize:
+
+capitalize() method of builtins.str instance
+    Return a capitalized version of the string.
+    
+    More specifically, make the first character have upper case and the rest lower
+    case.
+(END)
+
+```
+
+```python
+>>> s.capitalize()
+'Juniper networks'
+>>> 
+```
+
+
+
+```python
+>>> s.endswith("d")
+False
+>>> s.endswith("s")
+True
+>>> 
+```
+
+An example to demonstrate string methods:
+
+```python
+>>> emails=["abc@xyz.com", "def@ghi.com", "ghi@gmail.com"]
+>>> emails[0]
+'abc@xyz.com'
+>>> emails[0].endswith("gmail.com") ## Single line method
+False
+>>> emails[0].endswith("xyz.com")
+True
+>>> 
+
+```
+
+```python
+>>> emails.append("jkl@mno.com")
+>>> emails.append("xyz@abc.com")
+
+>>> emails
+['abc@xyz.com', 'def@ghi.com', 'ghi@gmail.com', 'jkl@mno.com', 'xyz@abc.com']
+>>> 
+
+```
+
+```python
+>>> emails[:5]
+['abc@xyz.com', 'def@ghi.com', 'ghi@gmail.com', 'jkl@mno.com', 'xyz@abc.com']
+>>> emails[2:4]
+['ghi@gmail.com', 'jkl@mno.com']
+>>> 
+```
+
+This usage is same as the name of the list itself, starts from 0, go till the end, in steps of 1 by default.
+
+Start, end, jump step size
+
+```python
+>>> emails[:]
+['abc@xyz.com', 'def@ghi.com', 'ghi@gmail.com', 'jkl@mno.com', 'xyz@abc.com']
+>>> 
+```
+
+
+
+```python
+>>> emails[1:5:2]
+['def@ghi.com', 'jkl@mno.com']
+>>> 
+
+```
+
+
+
+Another example, without specifying the start, end but the step size, to get every alternate item
+
+```python
+>>> emails[::2]
+['abc@xyz.com', 'ghi@gmail.com', 'xyz@abc.com']
+>>> 
+```
+
+
+
+To reverse the list, start from beginning, go till end, but  step size of `-1` to start from reverse
+
+
+
+```python
+>>> emails[::-1]
+['xyz@abc.com', 'jkl@mno.com', 'ghi@gmail.com', 'def@ghi.com', 'abc@xyz.com']
+>>> 
+```
+
+
+
+```python
+>>> x[::-1]
+['linux', 'spdsp', 'gadde', 'sripragnya', 'dakshita', 'suma', 'pradeep']
+>>> 
+```
+
+This is because, last item index number is `-1`.
+
+0+ -1 = -1
+
+-1 + -1 = -2
+
+-2 + -1 = -3
+
+and so on
+
+
+
+```python
+>>> emails[-1]
+'xyz@abc.com'
+>>> 
+```
+
+```python
+>>> emails[-3:]
+['ghi@gmail.com', 'jkl@mno.com', 'xyz@abc.com']
+>>> 
+
+```
+
+```python
+>>> """example multi line 
+... comments 
+... in python
+... """
+'example multi line \ncomments \nin python\n'
+>>> 
+
+```
+
+There is a `reverse` method as well, but this actually changes the data. Items are updated in the real list.
+
+```python
+>>> emails
+['abc@xyz.com', 'def@ghi.com', 'ghi@gmail.com', 'jkl@mno.com', 'xyz@abc.com']
+>>> emails.reverse()
+>>> emails
+['xyz@abc.com', 'jkl@mno.com', 'ghi@gmail.com', 'def@ghi.com', 'abc@xyz.com']
+>>> 
+
+```
 
