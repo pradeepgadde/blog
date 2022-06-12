@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "Python Programming Basics"
+title:  "Python Programming Basics Day#1"
 date:   2022-06-11 18:56:04 +0530
 categories: Programming
 tags: Python
