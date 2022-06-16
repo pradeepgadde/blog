@@ -653,8 +653,6 @@ We can use `*` along with the argument name, then it becomes a tuple. With this 
 >>> 
 ```
 
-
-
 We can confirm the type of the argument with the `type`.
 
 ```python
@@ -683,8 +681,6 @@ We can confirm the type of the argument with the `type`.
 
 ```
 
-
-
 DRY principle: Don't Repeat Yourself!
 
 ```python
@@ -701,5 +697,407 @@ DRY principle: Don't Repeat Yourself!
 >>> mypower(1,3,2)
 [1, 4]
 >>> 
+```
+
+A Function can return multiple values as well.
+
+```python
+>>> def test(i,j):
+...     return[ i+j, i-j, i*j]
+... 
+>>> test(2,3)
+[5, -1, 6]
+>>> test(5,3)
+[8, 2, 15]
+>>> a=test(5,3)
+>>> a
+[8, 2, 15]
+>>> type(a)
+<class 'list'>
+>>> 
+
+```
+
+The return statement must be the last statement in a function. Any statements below the return statement are not executed.
+
+```python
+>>> def test(i,j):
+...     return[i+j,i+j,i*j]
+...     print("Testing...") ## will not be executed
+... 
+>>> test(2,3)
+[5, 5, 6]
+>>> 
+
+```
+
+A function can also return a tuple, instead of a list.
+
+```python
+>>> def test(i,j):
+...     return(i+j,i+j,i*j)
+... 
+>>> test(4,5)
+(9, 9, 20)
+>>> a=test(4,5)
+>>> type(a)
+<class 'tuple'>
+>>> a
+(9, 9, 20)
+>>> 
+
+```
+
+What if we forget the signature of a function and pass the arguments in a wrong order?
+
+```python
+>>> def mydata(i,j,k):
+...     print("name:"+i)
+...     print("city:"+j)
+...     print("country:"+k)
+... 
+>>> mydata("pradeep","Bangalore","India")
+name:pradeep
+city:Bangalore
+country:India
+>>> mydata("Bangalore","India","Pradeep")
+name:Bangalore
+city:India
+country:Pradeep
+>>> 
+```
+
+if you forget Positional arguments, use help. Also use proper names to the variables.
+
+```python
+
+>>> help(mydata)
+
+Help on function mydata in module __main__:
+
+mydata(i, j, k)
+(END)
+
+```
+
+```python
+>>> def mydata(name,city,country):
+...     print("name:"+name)
+...     print("city:"+city)
+...     print("country:"+country)
+... 
+>>> help(mydata)
+
+Help on function mydata in module __main__:
+
+mydata(name, city, country)
+(END)
+```
+
+While passing variables, use the name, then the order does not matter.
+
+```python
+>>> mydata("pradeep","India","Bangalore") ## Problem with Postional Arguments
+name:pradeep
+city:India
+country:Bangalore
+>>> mydata(name="pradeep",country="India",city="Bangalore") ## Solution, named arguments!
+name:pradeep
+city:Bangalore
+country:India
+>>> 
+
+```
+
+Default arguments
+
+```python
+>>> mydata(name="pradeep",city="Bangalore")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: mydata() missing 1 required positional argument: 'country'
+>>> 
+```
+
+
+
+```python
+>>> def mydata(name,city,country="India"):
+...     print("name:"+name)
+...     print("city:"+city)
+...     print("country:"+country)
+... 
+>>> mydata(name="pradeep",city="Bangalore")
+name:pradeep
+city:Bangalore
+country:India
+>>> 
+
+```
+If we pass, it will overwrite the default value.
+```python
+>>> mydata(name="pradeep",city="Bangalore",country="US")
+name:pradeep
+city:Bangalore
+country:US
+>>> 
+```
+
+We can see how these are used in the most common `print` function.
+```python
+>>> help(print)
+
+Help on built-in function print in module builtins:
+
+print(...)
+    print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False)
+    
+    Prints the values to a stream, or to sys.stdout by default.
+    Optional keyword arguments:
+    file:  a file-like object (stream); defaults to the current sys.stdout.
+    sep:   string inserted between values, default a space.
+    end:   string appended after the last value, default a newline.
+    flush: whether to forcibly flush the stream.
+```
+
+```python
+>>> print("Juniper","Networks")
+Juniper Networks
+>>> print("Juniper","Networks",sep='+')
+Juniper+Networks
+>>> 
+```
+A simple demo of this 
+```python
+>>> db
+['pradeep', 'suma', 'dakshita']
+>>> for n in db:
+...     print(n,"gmail.com",sep='@')
+... 
+pradeep@gmail.com
+suma@gmail.com
+dakshita@gmail.com
+>>> 
+
+```
+
+Entire block of code is stored somewhere in the memory.
+
+```python
+>>> id(mydata)
+140351512275552
+
+>>> help(mydata)
+
+Help on function mydata in module __main__:
+
+mydata(name, city, country='India')
+(END)
+```
+
+```python
+>>> another_data=mydata ## assignment
+>>> id(another_data)
+140351512275552
+>>> 
+
+```
+
+```python
+>>> another_data()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: mydata() missing 2 required positional arguments: 'name' and 'city'
+>>> 
+```
+
+
+
+```python
+>>> def manager():
+...     return("Manager")
+... 
+>>> def engineer():
+...     return("Engineer")
+... 
+>>> salary=5
+>>> title=manager() if salary>4 else engineer()
+>>> title
+'Manager'
+>>> 
+```
+
+## Text to Speech
+
+TTS: Text to Speech
+
+Install the `pyttsx3` module
+
+```python
+(base) pradeep:~$pip install pyttsx3
+Collecting pyttsx3
+  Downloading pyttsx3-2.90-py3-none-any.whl (39 kB)
+Requirement already satisfied: pyobjc>=2.4 in ./opt/anaconda3/lib/python3.9/site-packages (from pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-AudioVideoBridging==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-InstallerPlugins==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-ShazamKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-FileProvider==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CoreMedia==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-AVFoundation==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-NaturalLanguage==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-MediaLibrary==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-LaunchServices==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-UserNotifications==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CoreWLAN==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-MetalPerformanceShaders==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CoreData==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-ExternalAccessory==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CFNetwork==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-LocalAuthentication==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-MediaPlayer==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-ApplicationServices==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-PushKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-Social==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-SecurityFoundation==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CallKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-MetalKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-GameController==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-Collaboration==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-PreferencePanes==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-OSAKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-DictionaryServices==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-LocalAuthenticationEmbeddedUI==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CalendarStore==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CoreAudio==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CloudKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CoreMotion==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CoreMIDI==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-MediaToolbox==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-NotificationCenter==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-GameCenter==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-WebKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-Cocoa==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-LatentSemanticMapping==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-MetalPerformanceShadersGraph==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-InputMethodKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-DataDetection==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CoreSpotlight==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-EventKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-AppleScriptObjC==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CoreText==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CoreBluetooth==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-Intents==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-ExecutionPolicy==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-SpriteKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-DeviceCheck==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-MLCompute==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-SystemConfiguration==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-ClassKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-core==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-FileProviderUI==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-Virtualization==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-SyncServices==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-DiskArbitration==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-NetFS==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-VideoSubscriberAccount==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-DiscRecording==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CoreHaptics==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-Metal==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-Contacts==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-MultipeerConnectivity==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-GameplayKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-Accessibility==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CoreMediaIO==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-VideoToolbox==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-ExceptionHandling==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-SceneKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-AdServices==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-AVKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-MapKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-MailKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-BusinessChat==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-Photos==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-IntentsUI==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-KernelManagement==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-PhotosUI==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-Speech==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-PassKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-PencilKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-UniformTypeIdentifiers==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-DiscRecordingUI==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-iTunesLibrary==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-SearchKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-SystemExtensions==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-Network==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-MetricKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-AuthenticationServices==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-DVDPlayback==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-StoreKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-AddressBook==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-libdispatch==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-FinderSync==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CryptoTokenKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-Vision==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-OpenDirectory==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-ImageCaptureCore==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-AppleScriptKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-AppTrackingTransparency==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-ScreenTime==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-IMServicePlugIn==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-QuickLookThumbnailing==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CoreML==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-GameKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-ModelIO==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-LinkPresentation==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-ScriptingBridge==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-Quartz==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-IOSurface==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-Accounts==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-ServiceManagement==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-SecurityInterface==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-ColorSync==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-SafariServices==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-ScreenSaver==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-OSLog==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-Security==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-Automator==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-AutomaticAssessmentConfiguration==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CoreLocation==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CoreAudioKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-ContactsUI==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-FSEvents==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-SoundAnalysis==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-NetworkExtension==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-ReplayKit==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-AdSupport==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-InstantMessage==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-CoreServices==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-UserNotificationsUI==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Requirement already satisfied: pyobjc-framework-MediaAccessibility==8.5 in ./opt/anaconda3/lib/python3.9/site-packages (from pyobjc>=2.4->pyttsx3) (8.5)
+Installing collected packages: pyttsx3
+Successfully installed pyttsx3-2.90
+(base) pradeep:~$
+
+```
+
+```python
+>>> import pyttsx3
+>>> s=pyttsx3.init()
+s.say>>> s.say("Hello")
+>>> s.runAndWait()
+>>> 
+```
+
+
+
+```python
+>>> def myspeak(text):
+...     s=pyttsx3.init()
+...     s.say(text)
+...     s.runAndWait()
+... 
+>>> myspeak("Welcome to Python!")
+>>> 
+
 ```
 
