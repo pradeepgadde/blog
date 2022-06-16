@@ -528,3 +528,178 @@ dakshita
 >>> 
 ```
 
+## Functions
+
+A reusable block of code designed to solve a problem.
+
+`def` is the keyword in Python to define a function.
+
+```python
+>>> def demo():    ## Defining a function
+...     print("Hi")
+...     x=5
+...     print(x)
+... 
+>>> demo()  ## Calling a function
+Hi
+5
+>>> 
+```
+
+
+
+```python
+>>> def add():
+...     x =5
+...     y=10
+...     z=x+y
+...     print(z)
+... 
+>>> add()
+15
+>>> 
+```
+
+
+
+```python
+>>> add(3,4)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: add() takes 0 positional arguments but 2 were given
+>>> 
+
+```
+
+Function with parameters, very flexible.
+
+```python
+>>> def add(i,j): ## Function Signature
+...     x=i
+...     y=j
+...     z=x+y
+...     print(z)
+... 
+>>> add(3,4)
+7
+>>> 
+```
+
+We can pass any arguments that we want, the result will be returned.
+
+```python
+>>> add(21,45)
+66
+>>> 
+```
+
+If we dont pass any arguments, will get an Error
+
+```python
+>>> add()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: add() missing 2 required positional arguments: 'i' and 'j'
+>>> 
+
+```
+
+If we pass more arguments, then also same error
+
+```python
+>>> add(1,2,3,4)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: add() takes 2 positional arguments but 4 were given
+>>> 
+```
+
+While passing parameters (arguments), we have to follow the function signature.
+
+Instead of printing,if we have to store the value, use the `return`.
+
+```python
+>>> def add(i,j):
+...     x=i
+...     y=j
+...     z=x+y
+...     return z
+... 
+>>> add(3,4)
+7
+>>> r=add(3,4)
+>>> r
+7
+>>> type(r)
+<class 'int'>
+>>> 
+
+```
+
+If we dont know the number of arguments in advance, what to do?
+
+We can use `*` along with the argument name, then it becomes a tuple. With this we can pass any number of arguments.
+
+```python
+>>> def add(*i):
+...     return(i)
+... 
+>>> add(3,4)
+(3, 4)
+>>> add(4,5,6,7)
+(4, 5, 6, 7)
+>>> add()
+()
+>>> 
+```
+
+
+
+We can confirm the type of the argument with the `type`.
+
+```python
+>>> def add(*i):
+...     print(type(i))
+... 
+>>> add(3,4)
+<class 'tuple'>
+>>> add()
+<class 'tuple'>
+>>> 
+```
+
+```python
+>>> def add(*x):
+...     j=0
+...     for i in x:
+...             j=j+i
+...     return j
+... 
+>>> add(3,4)
+7
+>>> add(3,4,89)
+96
+>>> 
+
+```
+
+
+
+DRY principle: Don't Repeat Yourself!
+
+```python
+>>> def mypower(*data):
+...     r=[]
+...     for i in data:
+...             if i!=3:
+...                     j=i**2
+...                     r.append(j)
+...     return(r)
+... 
+>>> mypower(4,5,3,6)
+[16, 25, 36]
+>>> mypower(1,3,2)
+[1, 4]
+>>> 
+```
+
