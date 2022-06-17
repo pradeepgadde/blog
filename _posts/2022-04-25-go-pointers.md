@@ -2,8 +2,8 @@
 layout: single
 title:  "Go Pointers"
 date:   2022-04-25 00:56:04 +0530
-categories: Go
-tags: programming
+categories: Programming
+tags: Go
 show_date: true
 classes: wide
 header:

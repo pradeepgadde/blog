@@ -2,8 +2,8 @@
 layout: single
 title:  "Go Language Tour"
 date:   2022-04-24 11:55:04 +0530
-categories: Go
-tags: programming
+categories: Programming
+tags: Go
 toc: true
 toc_sticky: true
 show_date: true

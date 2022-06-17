@@ -2,8 +2,8 @@
 layout: single
 title:  "Go Flow Control Statements"
 date:   2022-04-24 11:56:04 +0530
-categories: Go
-tags: programming
+categories: Programming
+tags: Go
 toc: true
 toc_sticky: true
 show_date: true

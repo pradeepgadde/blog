@@ -2,8 +2,8 @@
 layout: single
 title:  "Go Arrays and Slices"
 date:   2022-04-30 01:56:04 +0530
-categories: Go
-tags: programming
+categories: Programming
+tags: Go
 show_date: true
 classes: wide
 header:
