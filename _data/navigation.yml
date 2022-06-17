@@ -22,8 +22,8 @@ my-sidebar:
   - title: "Networking"
     url: https://pradeepgadde.com/blog/categories/#networking
 
-  - title: "Scripting"
-    url: https://pradeepgadde.com/blog/categories/#go     
+  - title: "Programming"
+    url: https://pradeepgadde.com/blog/categories/#programming    
   
   - title: "Cloud"
     url: https://pradeepgadde.com/blog/categories/#cloud   
