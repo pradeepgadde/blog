@@ -1,3 +1,4 @@
+
 ---
 layout: splash
 permalink: /
@@ -7,9 +8,10 @@ header:
   overlay_image: /assets/images/homebg.jpg
   actions:
    - label: "Connect"
-     url: "https://pradeepgadde.com/blog/about/"
-excerpt: 
-  Be Curious!<br />
+     url: "https://learningextreme.com/about/"
+excerpt: >
+  I’m stashing my references for your benefit, feel free to access and comment for correction<br />
+#  <small><a href="https://github.com/mmistakes/minimal-mistakes/releases/tag/4.24.0">Latest release v4.24.0</a></small>
 feature_row:
   - image_path: /assets/images/kubernetes.png
     alt: "Kubernetes"
@@ -36,4 +38,3 @@ feature_row:
 
 {% include feature_row %}
 
-My sample text will appear here
