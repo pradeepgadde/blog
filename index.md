@@ -8,9 +8,8 @@ header:
   actions:
    - label: "Connect"
      url: "https://pradeepgadde.com/blog/about/"
-excerpt: >
+excerpt: 
   Be Curious!<br />
-#  <small><a href="https://github.com/mmistakes/minimal-mistakes/releases/tag/4.24.0">Latest release v4.24.0</a></small>
 feature_row:
   - image_path: /assets/images/kubernetes.png
     alt: "Kubernetes"
