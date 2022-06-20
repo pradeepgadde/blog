@@ -37,3 +37,4 @@ feature_row:
 
 {% include feature_row %}
 
+My sample text will appear here
