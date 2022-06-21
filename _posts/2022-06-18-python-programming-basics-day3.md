@@ -71,7 +71,7 @@ Passing a variable size tuple and perform some action on the data
 
 What if we pass a list as parameter?
 
-```pyt
+```python
 >>> mysum([5,6,7,8,9])
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -84,7 +84,7 @@ TypeError: unsupported operand type(s) for +=: 'int' and 'list'
 
 To fix this, just add a `*` before the list data while passing.
 
-```py
+```python
 >>> mysum(*[5,6,7,8,9])
 35
 >>> mysum(*[5,6,7,8,9.12])
@@ -113,13 +113,13 @@ To fix this, just add a `*` before the list data while passing.
 ```
 
 
-```pyt
+```python
 >>> all(school_condition)
 False
 >>> 
 ```
 Lets change the values to make all conditions True
-```pyt
+```python
 >>> school_condition=[ math >40, econ>30, phy>25, chem>50] # List of conditions
 >>> school_condition
 [True, True, True, True]
