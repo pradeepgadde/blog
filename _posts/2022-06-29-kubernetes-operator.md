@@ -4,8 +4,7 @@ title:  "Kubernetes Operator Example"
 date:   2022-06-29 10:55:04 +0530
 categories: Kubernetes
 tags: minikube awx-operator
-toc: true
-toc_sticky: true
+classes: wide
 show_date: true
 header:
   overlay_image: /assets/images/kubernetes.png
