@@ -1,7 +1,7 @@
 ---
 layout: single
 title:  "Kubernetes Operator Pattern: AWX-Operator"
-date:   2022-06-30 10:55:04 +0530
+date:   2022-06-30 02:55:04 +0530
 categories: Kubernetes
 tags: minikube awx-operator
 classes: wide
