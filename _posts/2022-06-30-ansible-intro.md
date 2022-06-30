@@ -13,11 +13,11 @@ header:
   caption: "Photo credit: [**Ansible**](https://www.ansible.com)"
   actions:
     - label: "Learn more"
-      url: "https://kubernetes.io"
+      url: "https://www.ansible.com"
 
 author:
-  name     : "Kubernetes"
-  avatar   : "/assets/images/kubernetes.png"
+  name     : "Ansible"
+  avatar   : "/assets/images/ansible.png"
  
 sidebar:
   - title: "Blog"
@@ -314,3 +314,4 @@ sidebar:
                   group: root
                   mode: 0644
                   
+```
