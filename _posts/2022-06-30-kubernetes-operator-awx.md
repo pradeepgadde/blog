@@ -1596,18 +1596,26 @@ http://172.16.30.10:30081
 (base) pradeep:~$
 ```
 
-Let us access the REST API of the AWX and test the `ping`.
+Let us access the REST API of the AWX and test the `ping` by pointing the service URL followed by `/api/v2/ping`.
+
 ![AWX Rest API]({{ site.url }}{{ site.baseurl }}/assets/images/awx-rest-api-ping-1.png)
-By default, the admin user is admin and the password is available in the <resourcename>-admin-password secret. To retrieve the admin password, run:
+
+If we look at the `X-API-Node` in the header,  or `node` under AWX Instances, we can see our Pod Name `awx-demo-794c579d5-cr89z`.
+
+By default, the admin user is `admin` and the password is available in the `<resourcename>-admin-password` secret. To retrieve the admin password, run:
 
 ```sh
 (base) pradeep:~$kubectl get -n awx secret awx-demo-admin-password -o jsonpath="{.data.password}" | base64 --decode
-Y7SH2eQ4EdcREYVapiYLaw8xTRbxuWDh%                                                                                                                                                                                                             (base) pradeep:~$
+Y7SH2eQ4EdcREYVapiYLaw8xTRbxuWDh%                                                                                             (base) pradeep:~$
 ```
+Login with username as `admin` and password as `Y7SH2eQ4EdcREYVapiYLaw8xTRbxuWDh`.
+
 ![AWX Login]({{ site.url }}{{ site.baseurl }}/assets/images/awx-login.png)
 
+Explore the AWX Dashboard
 ![AWX Dashboard]({{ site.url }}{{ site.baseurl }}/assets/images/awx-dashboard.png)
 
-![AWX Project]({{ site.url }}{{ site.baseurl }}/assets/images/awx-project.png)
+and Projects
+![AWX Project]({{ site.url }}{{ site.baseurl }}/assets/images/awx-projects.png)
 
-This completes the most basic install of an AWX instance via this operator. Congratulations!!!
+This completes the most basic install of an AWX instance via the Kubernetes operator. Congratulations!!!
