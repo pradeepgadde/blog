@@ -1,7 +1,7 @@
 ---
 layout: single
-title:  "Kubernetes Operator Example"
-date:   2022-06-29 10:55:04 +0530
+title:  "Kubernetes Operator Pattern: AWX-Operator"
+date:   2022-06-30 10:55:04 +0530
 categories: Kubernetes
 tags: minikube awx-operator
 classes: wide
@@ -39,56 +39,50 @@ https://github.com/ansible/awx-operator
 Let us test this operator in Minukube.
 
 ```sh
-(base) pradeep:~$ minikube start --cpus=4 --memory=6g --addons=ingress
+(base) pradeep:~$minikube start --cpus=4 --memory=6g --addons=ingress --driver=hyperkit                             
 😄  minikube v1.25.2 on Darwin 12.4
-✨  Using the docker driver based on existing profile
-❗  You cannot change the memory size for an existing minikube cluster. Please first delete the cluster.
-❗  You cannot change the CPUs for an existing minikube cluster. Please first delete the cluster.
+✨  Using the hyperkit driver based on user configuration
 👍  Starting control plane node minikube in cluster minikube
-🚜  Pulling base image ...
-🤷  docker "minikube" container is missing, will recreate.
-🔥  Creating docker container (CPUs=2, Memory=2200MB) ...
+🔥  Creating hyperkit VM (CPUs=4, Memory=6144MB, Disk=20000MB) ...
 🐳  Preparing Kubernetes v1.23.3 on Docker 20.10.12 ...
     ▪ kubelet.housekeeping-interval=5m
+    ▪ Generating certificates and keys ...
+    ▪ Booting up control plane ...
+    ▪ Configuring RBAC rules ...
 🔎  Verifying Kubernetes components...
+    ▪ Using image k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
     ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
-💡  After the addon is enabled, please run "minikube tunnel" and your ingress resources would be available at "127.0.0.1"
     ▪ Using image k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
     ▪ Using image k8s.gcr.io/ingress-nginx/controller:v1.1.1
-    ▪ Using image k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
 🔎  Verifying ingress addon...
 🌟  Enabled addons: storage-provisioner, default-storageclass, ingress
 🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
-(base) pradeep:~$
+(base) pradeep:~
+
 ```
 
 ```sh
-(base) pradeep:~$kubectl get nodes -A
-NAME       STATUS   ROLES                  AGE   VERSION
-minikube   Ready    control-plane,master   53d   v1.23.3
+(base) pradeep:~$kubectl get nodes   
+NAME       STATUS   ROLES                  AGE     VERSION
+minikube   Ready    control-plane,master   4m31s   v1.23.3
 (base) pradeep:~$
 ```
 ```sh
-(base) pradeep:~$kubectl get pods -A 
-NAMESPACE       NAME                                       READY   STATUS      RESTARTS          AGE
-default         cpx-ingress-64464fdb75-9wchv               2/2     Running     2 (2m36s ago)     53d
-default         frontend-7b988b7c4b-2vmht                  1/1     Running     1 (2m36s ago)     53d
-default         frontend-7b988b7c4b-8q8t9                  1/1     Running     1 (2m36s ago)     53d
-default         frontend-7b988b7c4b-xmp7f                  1/1     Running     1 (2m36s ago)     53d
-default         redis-master-55db8bb568-9lnqx              1/1     Running     1 (2m36s ago)     53d
-default         redis-slave-566774f44b-mwzzn               1/1     Running     1 (2m36s ago)     53d
-default         redis-slave-566774f44b-whbj8               1/1     Running     1 (2m36s ago)     53d
-ingress-nginx   ingress-nginx-admission-create-trm4s       0/1     Completed   0                 108s
-ingress-nginx   ingress-nginx-admission-patch-njpkl        0/1     Completed   0                 108s
-ingress-nginx   ingress-nginx-controller-cc8496874-c2qkk   1/1     Running     0                 108s
-kube-system     coredns-64897985d-tkhw6                    1/1     Running     3 (2m36s ago)     53d
-kube-system     etcd-minikube                              1/1     Running     3 (2m36s ago)     53d
-kube-system     kube-apiserver-minikube                    1/1     Running     110 (2m36s ago)   53d
-kube-system     kube-controller-manager-minikube           1/1     Running     1 (2m36s ago)     53d
-kube-system     kube-proxy-znj26                           1/1     Running     1 (2m36s ago)     53d
-kube-system     kube-scheduler-minikube                    1/1     Running     1 (2m36s ago)     53d
-kube-system     storage-provisioner                        1/1     Running     184 (82s ago)     53d
+
+(base) pradeep:~$kubectl get pods -A
+NAMESPACE       NAME                                       READY   STATUS      RESTARTS        AGE
+ingress-nginx   ingress-nginx-admission-create-5wcjh       0/1     Completed   0               4m19s
+ingress-nginx   ingress-nginx-admission-patch-j6kbm        0/1     Completed   0               4m19s
+ingress-nginx   ingress-nginx-controller-cc8496874-7tbj5   1/1     Running     0               4m19s
+kube-system     coredns-64897985d-cqzk6                    1/1     Running     0               4m19s
+kube-system     etcd-minikube                              1/1     Running     0               4m31s
+kube-system     kube-apiserver-minikube                    1/1     Running     0               4m33s
+kube-system     kube-controller-manager-minikube           1/1     Running     0               4m31s
+kube-system     kube-proxy-9jvmb                           1/1     Running     0               4m19s
+kube-system     kube-scheduler-minikube                    1/1     Running     0               4m30s
+kube-system     storage-provisioner                        1/1     Running     1 (3m47s ago)   4m29s
 (base) pradeep:~$
+
 ```
 
 Verify if any CRDs present.
@@ -194,7 +188,7 @@ Wait a bit and you should have the `awx-operator` running:
 ```sh
 (base) pradeep:~$kubectl get pods -n awx
 NAME                                               READY   STATUS              RESTARTS   AGE
-awx-operator-controller-manager-7594795b6b-qlmqc   0/2     ContainerCreating   0          65s
+awx-operator-controller-manager-7594795b6b-7t952   0/2     ContainerCreating   0          18s
 (base) pradeep:~$
 
 ```
@@ -202,14 +196,14 @@ After some time
 ```sh
 (base) pradeep:~$kubectl get pods -n awx
 NAME                                               READY   STATUS    RESTARTS   AGE
-awx-operator-controller-manager-7594795b6b-qlmqc   2/2     Running   0          2m43s
+awx-operator-controller-manager-7594795b6b-7t952   2/2     Running   0          2m3s
 (base) pradeep:~$
 
 ```
 
 Next, create a file named `awx-demo.yaml` in the same folder
 ```yaml
-(base) pradeep:~$cat awx-demo.yaml 
+(base) pradeep:~$cat awx-demo.yaml     
 ---
 apiVersion: awx.ansible.com/v1beta1
 kind: AWX
@@ -218,7 +212,8 @@ metadata:
 spec:
   service_type: nodeport
   # default nodeport_port is 30080
-  nodeport_port: 30080
+  nodeport_port: 30081
+  hostname: awx-demo.example.com
 (base) pradeep:~$
 ```
 
@@ -228,337 +223,15 @@ Verify if the operator has installed any CRDs.
 ```sh
 (base) pradeep:~$kubectl get crd
 NAME                          CREATED AT
-awxbackups.awx.ansible.com    2022-06-29T14:44:04Z
-awxrestores.awx.ansible.com   2022-06-29T14:44:04Z
-awxs.awx.ansible.com          2022-06-29T14:44:04Z
+awxbackups.awx.ansible.com    2022-06-30T01:09:31Z
+awxrestores.awx.ansible.com   2022-06-30T01:09:31Z
+awxs.awx.ansible.com          2022-06-30T01:09:31Z
+
 (base) pradeep:~$
 ```
 
 ```sh
-(base) pradeep:~$kubectl describe crds     
-Name:         awxbackups.awx.ansible.com
-Namespace:    
-Labels:       <none>
-Annotations:  <none>
-API Version:  apiextensions.k8s.io/v1
-Kind:         CustomResourceDefinition
-Metadata:
-  Creation Timestamp:  2022-06-29T14:44:04Z
-  Generation:          1
-  Managed Fields:
-    API Version:  apiextensions.k8s.io/v1
-    Fields Type:  FieldsV1
-    fieldsV1:
-      f:status:
-        f:acceptedNames:
-          f:kind:
-          f:listKind:
-          f:plural:
-          f:singular:
-        f:conditions:
-          k:{"type":"Established"}:
-            .:
-            f:lastTransitionTime:
-            f:message:
-            f:reason:
-            f:status:
-            f:type:
-          k:{"type":"NamesAccepted"}:
-            .:
-            f:lastTransitionTime:
-            f:message:
-            f:reason:
-            f:status:
-            f:type:
-    Manager:      Go-http-client
-    Operation:    Update
-    Subresource:  status
-    Time:         2022-06-29T14:44:04Z
-    API Version:  apiextensions.k8s.io/v1
-    Fields Type:  FieldsV1
-    fieldsV1:
-      f:metadata:
-        f:annotations:
-          .:
-          f:kubectl.kubernetes.io/last-applied-configuration:
-      f:spec:
-        f:conversion:
-          .:
-          f:strategy:
-        f:group:
-        f:names:
-          f:kind:
-          f:listKind:
-          f:plural:
-          f:singular:
-        f:scope:
-        f:versions:
-    Manager:         kubectl-client-side-apply
-    Operation:       Update
-    Time:            2022-06-29T14:44:04Z
-  Resource Version:  28858
-  UID:               e77ee16b-2552-437c-aac4-129d21d965b1
-Spec:
-  Conversion:
-    Strategy:  None
-  Group:       awx.ansible.com
-  Names:
-    Kind:       AWXBackup
-    List Kind:  AWXBackupList
-    Plural:     awxbackups
-    Singular:   awxbackup
-  Scope:        Namespaced
-  Versions:
-    Name:  v1beta1
-    Schema:
-      openAPIV3Schema:
-        Description:  Schema validation for the AWXBackup CRD
-        Properties:
-          Spec:
-            Properties:
-              backup_pvc:
-                Description:  Name of the PVC to be used for storing the backup
-                Type:         string
-              backup_pvc_namespace:
-                Description:  Namespace the PVC is in
-                Type:         string
-              backup_storage_class:
-                Description:  Storage class to use when creating PVC for backup
-                Type:         string
-              backup_storage_requirements:
-                Description:  Storage requirements for the PostgreSQL container
-                Type:         string
-              deployment_name:
-                Description:  Name of the deployment to be backed up
-                Type:         string
-              no_log:
-                Description:  Configure no_log for no_log tasks
-                Type:         string
-              postgres_image:
-                Description:  Registry path to the PostgreSQL container to use
-                Type:         string
-              postgres_image_version:
-                Description:  PostgreSQL container image version to use
-                Type:         string
-              postgres_label_selector:
-                Description:  Label selector used to identify postgres pod for backing up data
-                Type:         string
-            Required:
-              deployment_name
-            Type:  object
-          Status:
-            Properties:
-              Backup Claim:
-                Description:  Backup persistent volume claim
-                Type:         string
-              Backup Directory:
-                Description:  Backup directory name on the specified pvc
-                Type:         string
-              Conditions:
-                Description:  The resulting conditions when a Service Telemetry is instantiated
-                Items:
-                  Properties:
-                    Last Transition Time:
-                      Type:  string
-                    Reason:
-                      Type:  string
-                    Status:
-                      Type:  string
-                    Type:
-                      Type:                            string
-                  Type:                                object
-                Type:                                  array
-            Type:                                      object
-        Type:                                          object
-        X - Kubernetes - Preserve - Unknown - Fields:  true
-    Served:                                            true
-    Storage:                                           true
-    Subresources:
-      Status:
-Status:
-  Accepted Names:
-    Kind:       AWXBackup
-    List Kind:  AWXBackupList
-    Plural:     awxbackups
-    Singular:   awxbackup
-  Conditions:
-    Last Transition Time:  2022-06-29T14:44:04Z
-    Message:               no conflicts found
-    Reason:                NoConflicts
-    Status:                True
-    Type:                  NamesAccepted
-    Last Transition Time:  2022-06-29T14:44:04Z
-    Message:               the initial names have been accepted
-    Reason:                InitialNamesAccepted
-    Status:                True
-    Type:                  Established
-  Stored Versions:
-    v1beta1
-Events:  <none>
-
-
-Name:         awxrestores.awx.ansible.com
-Namespace:    
-Labels:       <none>
-Annotations:  <none>
-API Version:  apiextensions.k8s.io/v1
-Kind:         CustomResourceDefinition
-Metadata:
-  Creation Timestamp:  2022-06-29T14:44:04Z
-  Generation:          1
-  Managed Fields:
-    API Version:  apiextensions.k8s.io/v1
-    Fields Type:  FieldsV1
-    fieldsV1:
-      f:status:
-        f:acceptedNames:
-          f:kind:
-          f:listKind:
-          f:plural:
-          f:singular:
-        f:conditions:
-          k:{"type":"Established"}:
-            .:
-            f:lastTransitionTime:
-            f:message:
-            f:reason:
-            f:status:
-            f:type:
-          k:{"type":"NamesAccepted"}:
-            .:
-            f:lastTransitionTime:
-            f:message:
-            f:reason:
-            f:status:
-            f:type:
-    Manager:      Go-http-client
-    Operation:    Update
-    Subresource:  status
-    Time:         2022-06-29T14:44:04Z
-    API Version:  apiextensions.k8s.io/v1
-    Fields Type:  FieldsV1
-    fieldsV1:
-      f:metadata:
-        f:annotations:
-          .:
-          f:kubectl.kubernetes.io/last-applied-configuration:
-      f:spec:
-        f:conversion:
-          .:
-          f:strategy:
-        f:group:
-        f:names:
-          f:kind:
-          f:listKind:
-          f:plural:
-          f:singular:
-        f:scope:
-        f:versions:
-    Manager:         kubectl-client-side-apply
-    Operation:       Update
-    Time:            2022-06-29T14:44:04Z
-  Resource Version:  28859
-  UID:               d6c9d8e0-a067-4f7e-a853-fed09d0280ee
-Spec:
-  Conversion:
-    Strategy:  None
-  Group:       awx.ansible.com
-  Names:
-    Kind:       AWXRestore
-    List Kind:  AWXRestoreList
-    Plural:     awxrestores
-    Singular:   awxrestore
-  Scope:        Namespaced
-  Versions:
-    Name:  v1beta1
-    Schema:
-      openAPIV3Schema:
-        Description:  Schema validation for the AWXRestore CRD
-        Properties:
-          Spec:
-            Properties:
-              backup_dir:
-                Description:  Backup directory name, set as a status found on the awxbackup object (backupDirectory)
-                Type:         string
-              backup_name:
-                Description:  AWXBackup object name
-                Type:         string
-              backup_pvc:
-                Description:  Name of the PVC to be restored from, set as a status found on the awxbackup object (backupClaim)
-                Type:         string
-              backup_pvc_namespace:
-                Description:  Namespace the PVC is in
-                Type:         string
-              backup_source:
-                Description:  Backup source
-                Enum:
-                  CR
-                  PVC
-                Type:  string
-              deployment_name:
-                Description:  Name of the deployment to be restored to
-                Type:         string
-              no_log:
-                Description:  Configure no_log for no_log tasks
-                Type:         string
-              postgres_image:
-                Description:  Registry path to the PostgreSQL container to use
-                Type:         string
-              postgres_image_version:
-                Description:  PostgreSQL container image version to use
-                Type:         string
-              postgres_label_selector:
-                Description:  Label selector used to identify postgres pod for backing up data
-                Type:         string
-            Type:             object
-          Status:
-            Properties:
-              Conditions:
-                Description:  The resulting conditions when a Service Telemetry is instantiated
-                Items:
-                  Properties:
-                    Last Transition Time:
-                      Type:  string
-                    Reason:
-                      Type:  string
-                    Status:
-                      Type:  string
-                    Type:
-                      Type:  string
-                  Type:      object
-                Type:        array
-              Restore Complete:
-                Description:                           Restore process complete
-                Type:                                  boolean
-            Type:                                      object
-        Type:                                          object
-        X - Kubernetes - Preserve - Unknown - Fields:  true
-    Served:                                            true
-    Storage:                                           true
-    Subresources:
-      Status:
-Status:
-  Accepted Names:
-    Kind:       AWXRestore
-    List Kind:  AWXRestoreList
-    Plural:     awxrestores
-    Singular:   awxrestore
-  Conditions:
-    Last Transition Time:  2022-06-29T14:44:04Z
-    Message:               no conflicts found
-    Reason:                NoConflicts
-    Status:                True
-    Type:                  NamesAccepted
-    Last Transition Time:  2022-06-29T14:44:04Z
-    Message:               the initial names have been accepted
-    Reason:                InitialNamesAccepted
-    Status:                True
-    Type:                  Established
-  Stored Versions:
-    v1beta1
-Events:  <none>
-
-
+(base) pradeep:~$kubectl describe crd awxs.awx.ansible.com
 Name:         awxs.awx.ansible.com
 Namespace:    
 Labels:       <none>
@@ -566,7 +239,7 @@ Annotations:  <none>
 API Version:  apiextensions.k8s.io/v1
 Kind:         CustomResourceDefinition
 Metadata:
-  Creation Timestamp:  2022-06-29T14:44:04Z
+  Creation Timestamp:  2022-06-30T01:09:31Z
   Generation:          1
   Managed Fields:
     API Version:  apiextensions.k8s.io/v1
@@ -596,7 +269,7 @@ Metadata:
     Manager:      Go-http-client
     Operation:    Update
     Subresource:  status
-    Time:         2022-06-29T14:44:04Z
+    Time:         2022-06-30T01:09:31Z
     API Version:  apiextensions.k8s.io/v1
     Fields Type:  FieldsV1
     fieldsV1:
@@ -618,9 +291,9 @@ Metadata:
         f:versions:
     Manager:         kubectl-client-side-apply
     Operation:       Update
-    Time:            2022-06-29T14:44:04Z
-  Resource Version:  28869
-  UID:               c08ee52b-5796-440a-929c-fc262fcf6a81
+    Time:            2022-06-30T01:09:31Z
+  Resource Version:  839
+  UID:               57291a70-8fd3-4256-bb6c-8e48e02f7e43
 Spec:
   Conversion:
     Strategy:  None
@@ -1162,12 +835,12 @@ Status:
     Plural:     awxs
     Singular:   awx
   Conditions:
-    Last Transition Time:  2022-06-29T14:44:04Z
+    Last Transition Time:  2022-06-30T01:09:31Z
     Message:               no conflicts found
     Reason:                NoConflicts
     Status:                True
     Type:                  NamesAccepted
-    Last Transition Time:  2022-06-29T14:44:04Z
+    Last Transition Time:  2022-06-30T01:09:31Z
     Message:               the initial names have been accepted
     Reason:                InitialNamesAccepted
     Status:                True
@@ -1176,6 +849,7 @@ Status:
     v1beta1
 Events:  <none>
 (base) pradeep:~$
+
 ```
 
 Make sure to add this new file to the list of "resources" in your kustomization.yaml file:
@@ -1219,35 +893,38 @@ service/awx-operator-controller-manager-metrics-service unchanged
 deployment.apps/awx-operator-controller-manager unchanged
 awx.awx.ansible.com/awx-demo created
 (base) pradeep:~$
+
 ```
 
 
 After a few minutes, the new AWX instance will be deployed. You can look at the operator pod logs in order to know where the installation process is at:
 
 ```json
+
 (base) pradeep:~$kubectl logs -f deployments/awx-operator-controller-manager -c awx-manager -n awx
-{"level":"info","ts":1656513979.0858583,"logger":"cmd","msg":"Version","Go Version":"go1.16.9","GOOS":"linux","GOARCH":"amd64","ansible-operator":"v1.12.0","commit":"d3b2761afdb78f629a7eaf4461b0fb8ae3b02860"}
-{"level":"info","ts":1656513979.08625,"logger":"cmd","msg":"Watching single namespace.","Namespace":"awx"}
-{"level":"info","ts":1656513979.247896,"logger":"controller-runtime.metrics","msg":"metrics server is starting to listen","addr":"127.0.0.1:8080"}
-{"level":"info","ts":1656513979.2497354,"logger":"watches","msg":"Environment variable not set; using default value","envVar":"ANSIBLE_VERBOSITY_AWX_AWX_ANSIBLE_COM","default":2}
-{"level":"info","ts":1656513979.2499053,"logger":"watches","msg":"Environment variable not set; using default value","envVar":"ANSIBLE_VERBOSITY_AWXBACKUP_AWX_ANSIBLE_COM","default":2}
-{"level":"info","ts":1656513979.2499378,"logger":"watches","msg":"Environment variable not set; using default value","envVar":"ANSIBLE_VERBOSITY_AWXRESTORE_AWX_ANSIBLE_COM","default":2}
-{"level":"info","ts":1656513979.2499719,"logger":"ansible-controller","msg":"Watching resource","Options.Group":"awx.ansible.com","Options.Version":"v1beta1","Options.Kind":"AWX"}
-{"level":"info","ts":1656513979.2503543,"logger":"ansible-controller","msg":"Watching resource","Options.Group":"awx.ansible.com","Options.Version":"v1beta1","Options.Kind":"AWXBackup"}
-{"level":"info","ts":1656513979.250415,"logger":"ansible-controller","msg":"Watching resource","Options.Group":"awx.ansible.com","Options.Version":"v1beta1","Options.Kind":"AWXRestore"}
-{"level":"info","ts":1656513979.254063,"logger":"controller-runtime.manager","msg":"starting metrics server","path":"/metrics"}
-I0629 14:46:19.253894       7 leaderelection.go:243] attempting to acquire leader lease awx/awx-operator...
-{"level":"info","ts":1656513979.2537081,"logger":"proxy","msg":"Starting to serve","Address":"127.0.0.1:8888"}
-I0629 14:46:19.276210       7 leaderelection.go:253] successfully acquired lease awx/awx-operator
-{"level":"info","ts":1656513979.2779229,"logger":"controller-runtime.manager.controller.awxrestore-controller","msg":"Starting EventSource","source":"kind source: awx.ansible.com/v1beta1, Kind=AWXRestore"}
-{"level":"info","ts":1656513979.278723,"logger":"controller-runtime.manager.controller.awxrestore-controller","msg":"Starting Controller"}
-{"level":"info","ts":1656513979.2780023,"logger":"controller-runtime.manager.controller.awxbackup-controller","msg":"Starting EventSource","source":"kind source: awx.ansible.com/v1beta1, Kind=AWXBackup"}
-{"level":"info","ts":1656513979.2787871,"logger":"controller-runtime.manager.controller.awxbackup-controller","msg":"Starting Controller"}
-{"level":"info","ts":1656513979.2835915,"logger":"controller-runtime.manager.controller.awx-controller","msg":"Starting EventSource","source":"kind source: awx.ansible.com/v1beta1, Kind=AWX"}
-{"level":"info","ts":1656513979.2839265,"logger":"controller-runtime.manager.controller.awx-controller","msg":"Starting Controller"}
-{"level":"info","ts":1656513979.382164,"logger":"controller-runtime.manager.controller.awxrestore-controller","msg":"Starting workers","worker count":4}
-{"level":"info","ts":1656513979.3835855,"logger":"controller-runtime.manager.controller.awxbackup-controller","msg":"Starting workers","worker count":4}
-{"level":"info","ts":1656513979.3863482,"logger":"controller-runtime.manager.controller.awx-controller","msg":"Starting workers","worker count":4}
+{"level":"info","ts":1656551479.8186436,"logger":"cmd","msg":"Version","Go Version":"go1.16.9","GOOS":"linux","GOARCH":"amd64","ansible-operator":"v1.12.0","commit":"d3b2761afdb78f629a7eaf4461b0fb8ae3b02860"}
+{"level":"info","ts":1656551479.819281,"logger":"cmd","msg":"Watching single namespace.","Namespace":"awx"}
+{"level":"info","ts":1656551479.983489,"logger":"controller-runtime.metrics","msg":"metrics server is starting to listen","addr":"127.0.0.1:8080"}
+{"level":"info","ts":1656551479.9867737,"logger":"watches","msg":"Environment variable not set; using default value","envVar":"ANSIBLE_VERBOSITY_AWX_AWX_ANSIBLE_COM","default":2}
+{"level":"info","ts":1656551479.987127,"logger":"watches","msg":"Environment variable not set; using default value","envVar":"ANSIBLE_VERBOSITY_AWXBACKUP_AWX_ANSIBLE_COM","default":2}
+{"level":"info","ts":1656551479.9871945,"logger":"watches","msg":"Environment variable not set; using default value","envVar":"ANSIBLE_VERBOSITY_AWXRESTORE_AWX_ANSIBLE_COM","default":2}
+{"level":"info","ts":1656551479.9875116,"logger":"ansible-controller","msg":"Watching resource","Options.Group":"awx.ansible.com","Options.Version":"v1beta1","Options.Kind":"AWX"}
+{"level":"info","ts":1656551479.9878044,"logger":"ansible-controller","msg":"Watching resource","Options.Group":"awx.ansible.com","Options.Version":"v1beta1","Options.Kind":"AWXBackup"}
+{"level":"info","ts":1656551479.9880188,"logger":"ansible-controller","msg":"Watching resource","Options.Group":"awx.ansible.com","Options.Version":"v1beta1","Options.Kind":"AWXRestore"}
+{"level":"info","ts":1656551479.9955385,"logger":"proxy","msg":"Starting to serve","Address":"127.0.0.1:8888"}
+{"level":"info","ts":1656551479.9958413,"logger":"controller-runtime.manager","msg":"starting metrics server","path":"/metrics"}
+I0630 01:11:19.995943       8 leaderelection.go:243] attempting to acquire leader lease awx/awx-operator...
+I0630 01:11:20.012467       8 leaderelection.go:253] successfully acquired lease awx/awx-operator
+{"level":"info","ts":1656551480.0129783,"logger":"controller-runtime.manager.controller.awxrestore-controller","msg":"Starting EventSource","source":"kind source: awx.ansible.com/v1beta1, Kind=AWXRestore"}
+{"level":"info","ts":1656551480.0133452,"logger":"controller-runtime.manager.controller.awxrestore-controller","msg":"Starting Controller"}
+{"level":"info","ts":1656551480.013377,"logger":"controller-runtime.manager.controller.awxbackup-controller","msg":"Starting EventSource","source":"kind source: awx.ansible.com/v1beta1, Kind=AWXBackup"}
+{"level":"info","ts":1656551480.0135717,"logger":"controller-runtime.manager.controller.awxbackup-controller","msg":"Starting Controller"}
+{"level":"info","ts":1656551480.0131257,"logger":"controller-runtime.manager.controller.awx-controller","msg":"Starting EventSource","source":"kind source: awx.ansible.com/v1beta1, Kind=AWX"}
+{"level":"info","ts":1656551480.0141025,"logger":"controller-runtime.manager.controller.awx-controller","msg":"Starting Controller"}
+{"level":"info","ts":1656551480.115646,"logger":"controller-runtime.manager.controller.awx-controller","msg":"Starting workers","worker count":4}
+{"level":"info","ts":1656551480.1157455,"logger":"controller-runtime.manager.controller.awxbackup-controller","msg":"Starting workers","worker count":4}
+{"level":"info","ts":1656551480.1168225,"logger":"controller-runtime.manager.controller.awxrestore-controller","msg":"Starting workers","worker count":4}
+{"level":"info","ts":1656551651.8780146,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Patching labels to AWX kind"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1255,9 +932,8 @@ TASK [installer : Patching labels to AWX kind] *********************************
 task path: /opt/ansible/roles/installer/tasks/main.yml:2
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514381.2612007,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Patching labels to AWX kind"}
-{"level":"info","ts":1656514383.8062181,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/apis/awx.ansible.com/v1beta1/namespaces/awx/awxs/awx-demo","Verb":"get","APIPrefix":"apis","APIGroup":"awx.ansible.com","APIVersion":"v1beta1","Namespace":"awx","Resource":"awxs","Subresource":"","Name":"awx-demo","Parts":["awxs","awx-demo"]}}
-{"level":"info","ts":1656514383.9843922,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Include secret key configuration tasks"}
+{"level":"info","ts":1656551653.7789667,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/apis/awx.ansible.com/v1beta1/namespaces/awx/awxs/awx-demo","Verb":"get","APIPrefix":"apis","APIGroup":"awx.ansible.com","APIVersion":"v1beta1","Namespace":"awx","Resource":"awxs","Subresource":"","Name":"awx-demo","Parts":["awxs","awx-demo"]}}
+{"level":"info","ts":1656551653.9396234,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Include secret key configuration tasks"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1265,7 +941,6 @@ TASK [installer : Include secret key configuration tasks] **********************
 task path: /opt/ansible/roles/installer/tasks/main.yml:20
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514384.0234187,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Check for specified secret key configuration"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1273,7 +948,7 @@ TASK [installer : Check for specified secret key configuration] ****************
 task path: /opt/ansible/roles/installer/tasks/secret_key_configuration.yml:2
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514384.135357,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Check for default secret key configuration"}
+{"level":"info","ts":1656551653.9770892,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Check for specified secret key configuration"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1281,8 +956,9 @@ TASK [installer : Check for default secret key configuration] ******************
 task path: /opt/ansible/roles/installer/tasks/secret_key_configuration.yml:11
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514385.684847,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-secret-key"}
-{"level":"info","ts":1656514385.9231038,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Create secret key secret"}
+{"level":"info","ts":1656551654.0799713,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Check for default secret key configuration"}
+{"level":"info","ts":1656551656.025587,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-secret-key"}
+{"level":"info","ts":1656551656.259788,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Create secret key secret"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1290,11 +966,12 @@ TASK [installer : Create secret key secret] ************************************
 task path: /opt/ansible/roles/installer/tasks/secret_key_configuration.yml:25
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514387.1324403,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-secret-key"}
-{"level":"info","ts":1656514387.1379874,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-secret-key"}
-{"level":"info","ts":1656514387.1429126,"logger":"proxy","msg":"Injecting owner reference"}
-{"level":"info","ts":1656514387.1436377,"logger":"proxy","msg":"Watching child resource","kind":"/v1, Kind=Secret","enqueue_kind":"awx.ansible.com/v1beta1, Kind=AWX"}
-{"level":"info","ts":1656514387.143966,"logger":"controller-runtime.manager.controller.awx-controller","msg":"Starting EventSource","source":"kind source: /v1, Kind=Secret"}
+{"level":"info","ts":1656551657.1330822,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-secret-key"}
+{"level":"info","ts":1656551657.1374023,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-secret-key"}
+{"level":"info","ts":1656551657.1415858,"logger":"proxy","msg":"Injecting owner reference"}
+{"level":"info","ts":1656551657.1440074,"logger":"proxy","msg":"Watching child resource","kind":"/v1, Kind=Secret","enqueue_kind":"awx.ansible.com/v1beta1, Kind=AWX"}
+{"level":"info","ts":1656551657.1440873,"logger":"controller-runtime.manager.controller.awx-controller","msg":"Starting EventSource","source":"kind source: /v1, Kind=Secret"}
+{"level":"info","ts":1656551657.265475,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Read secret key secret"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1302,9 +979,8 @@ TASK [installer : Read secret key secret] **************************************
 task path: /opt/ansible/roles/installer/tasks/secret_key_configuration.yml:31
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514387.2785668,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Read secret key secret"}
-{"level":"info","ts":1656514388.1862056,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/secrets/awx-demo-secret-key","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"secrets","Subresource":"","Name":"awx-demo-secret-key","Parts":["secrets","awx-demo-secret-key"]}}
-{"level":"info","ts":1656514388.5468383,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Load LDAP CAcert certificate"}
+{"level":"info","ts":1656551658.3593879,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/secrets/awx-demo-secret-key","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"secrets","Subresource":"","Name":"awx-demo-secret-key","Parts":["secrets","awx-demo-secret-key"]}}
+{"level":"info","ts":1656551658.7293444,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Load LDAP CAcert certificate"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1312,7 +988,7 @@ TASK [installer : Load LDAP CAcert certificate] ********************************
 task path: /opt/ansible/roles/installer/tasks/main.yml:23
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514388.6443744,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Load ldap bind password"}
+{"level":"info","ts":1656551658.830105,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Load ldap bind password"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1320,7 +996,7 @@ TASK [installer : Load ldap bind password] *************************************
 task path: /opt/ansible/roles/installer/tasks/main.yml:28
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514388.7427282,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Load bundle certificate authority certificate"}
+{"level":"info","ts":1656551658.92726,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Load bundle certificate authority certificate"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1335,7 +1011,8 @@ TASK [installer : Include admin password configuration tasks] ******************
 task path: /opt/ansible/roles/installer/tasks/main.yml:38
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514388.861366,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Include admin password configuration tasks"}
+{"level":"info","ts":1656551659.0182931,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Include admin password configuration tasks"}
+{"level":"info","ts":1656551659.057363,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Check for specified admin password configuration"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1343,7 +1020,7 @@ TASK [installer : Check for specified admin password configuration] ************
 task path: /opt/ansible/roles/installer/tasks/admin_password_configuration.yml:2
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514388.8959813,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Check for specified admin password configuration"}
+{"level":"info","ts":1656551659.1481063,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Check for default admin password configuration"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1351,8 +1028,8 @@ TASK [installer : Check for default admin password configuration] **************
 task path: /opt/ansible/roles/installer/tasks/admin_password_configuration.yml:11
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514388.996421,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Check for default admin password configuration"}
-{"level":"info","ts":1656514389.8901668,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-admin-password"}
+{"level":"info","ts":1656551660.0125716,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-admin-password"}
+{"level":"info","ts":1656551660.2378795,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Create admin password secret"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1360,11 +1037,9 @@ TASK [installer : Create admin password secret] ********************************
 task path: /opt/ansible/roles/installer/tasks/admin_password_configuration.yml:25
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514390.1513214,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Create admin password secret"}
-{"level":"info","ts":1656514391.1139622,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-admin-password"}
-{"level":"info","ts":1656514391.1187196,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-admin-password"}
-{"level":"info","ts":1656514391.123459,"logger":"proxy","msg":"Injecting owner reference"}
-{"level":"info","ts":1656514391.2733018,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Read admin password secret"}
+{"level":"info","ts":1656551661.2781322,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-admin-password"}
+{"level":"info","ts":1656551661.2860236,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-admin-password"}
+{"level":"info","ts":1656551661.291983,"logger":"proxy","msg":"Injecting owner reference"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1372,8 +1047,9 @@ TASK [installer : Read admin password secret] **********************************
 task path: /opt/ansible/roles/installer/tasks/admin_password_configuration.yml:31
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514392.286784,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/secrets/awx-demo-admin-password","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"secrets","Subresource":"","Name":"awx-demo-admin-password","Parts":["secrets","awx-demo-admin-password"]}}
-{"level":"info","ts":1656514392.644318,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Include broadcast websocket configuration tasks"}
+{"level":"info","ts":1656551661.4300885,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Read admin password secret"}
+{"level":"info","ts":1656551662.2890952,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/secrets/awx-demo-admin-password","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"secrets","Subresource":"","Name":"awx-demo-admin-password","Parts":["secrets","awx-demo-admin-password"]}}
+{"level":"info","ts":1656551662.6438525,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Include broadcast websocket configuration tasks"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1381,6 +1057,7 @@ TASK [installer : Include broadcast websocket configuration tasks] *************
 task path: /opt/ansible/roles/installer/tasks/main.yml:41
 
 -------------------------------------------------------------------------------
+{"level":"info","ts":1656551662.693613,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Check for specified broadcast websocket secret configuration"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1388,8 +1065,7 @@ TASK [installer : Check for specified broadcast websocket secret configuration] 
 task path: /opt/ansible/roles/installer/tasks/broadcast_websocket_configuration.yml:2
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514392.6997364,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Check for specified broadcast websocket secret configuration"}
-{"level":"info","ts":1656514392.826467,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Check for default broadcast websocket secret configuration"}
+{"level":"info","ts":1656551662.8171732,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Check for default broadcast websocket secret configuration"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1397,8 +1073,8 @@ TASK [installer : Check for default broadcast websocket secret configuration] **
 task path: /opt/ansible/roles/installer/tasks/broadcast_websocket_configuration.yml:11
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514394.098465,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-broadcast-websocket"}
-{"level":"info","ts":1656514394.4652138,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Create broadcast websocket secret"}
+{"level":"info","ts":1656551663.8193839,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-broadcast-websocket"}
+{"level":"info","ts":1656551664.0785222,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Create broadcast websocket secret"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1406,10 +1082,10 @@ TASK [installer : Create broadcast websocket secret] ***************************
 task path: /opt/ansible/roles/installer/tasks/broadcast_websocket_configuration.yml:26
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514395.7890007,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-broadcast-websocket"}
-{"level":"info","ts":1656514395.7940722,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-broadcast-websocket"}
-{"level":"info","ts":1656514395.7992058,"logger":"proxy","msg":"Injecting owner reference"}
-{"level":"info","ts":1656514395.9262986,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Read broadcast websocket secret"}
+{"level":"info","ts":1656551665.0578918,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-broadcast-websocket"}
+{"level":"info","ts":1656551665.063082,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-broadcast-websocket"}
+{"level":"info","ts":1656551665.0685573,"logger":"proxy","msg":"Injecting owner reference"}
+{"level":"info","ts":1656551665.206693,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Read broadcast websocket secret"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1417,8 +1093,7 @@ TASK [installer : Read broadcast websocket secret] *****************************
 task path: /opt/ansible/roles/installer/tasks/broadcast_websocket_configuration.yml:32
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514396.9118576,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/secrets/awx-demo-broadcast-websocket","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"secrets","Subresource":"","Name":"awx-demo-broadcast-websocket","Parts":["secrets","awx-demo-broadcast-websocket"]}}
-{"level":"info","ts":1656514397.3507445,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Include set_images tasks"}
+{"level":"info","ts":1656551666.2865722,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/secrets/awx-demo-broadcast-websocket","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"secrets","Subresource":"","Name":"awx-demo-broadcast-websocket","Parts":["secrets","awx-demo-broadcast-websocket"]}}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1426,7 +1101,7 @@ TASK [installer : Include set_images tasks] ************************************
 task path: /opt/ansible/roles/installer/tasks/main.yml:44
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514397.7680774,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Include database configuration tasks"}
+{"level":"info","ts":1656551666.7777162,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Include set_images tasks"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1434,7 +1109,8 @@ TASK [installer : Include database configuration tasks] ************************
 task path: /opt/ansible/roles/installer/tasks/main.yml:47
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514397.846408,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Check for specified PostgreSQL configuration"}
+{"level":"info","ts":1656551667.2651138,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Include database configuration tasks"}
+{"level":"info","ts":1656551667.347047,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Check for specified PostgreSQL configuration"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1442,7 +1118,7 @@ TASK [installer : Check for specified PostgreSQL configuration] ****************
 task path: /opt/ansible/roles/installer/tasks/database_configuration.yml:2
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514397.966465,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Check for default PostgreSQL configuration"}
+{"level":"info","ts":1656551667.4916499,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Check for default PostgreSQL configuration"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1450,8 +1126,7 @@ TASK [installer : Check for default PostgreSQL configuration] ******************
 task path: /opt/ansible/roles/installer/tasks/database_configuration.yml:11
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514398.9796596,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-postgres-configuration"}
-{"level":"info","ts":1656514399.1473835,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Check for specified old PostgreSQL configuration secret"}
+{"level":"info","ts":1656551668.6158075,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-postgres-configuration"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1459,6 +1134,8 @@ TASK [installer : Check for specified old PostgreSQL configuration secret] *****
 task path: /opt/ansible/roles/installer/tasks/database_configuration.yml:19
 
 -------------------------------------------------------------------------------
+{"level":"info","ts":1656551668.7733934,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Check for specified old PostgreSQL configuration secret"}
+{"level":"info","ts":1656551668.9838223,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Check for default old PostgreSQL configuration"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1466,8 +1143,8 @@ TASK [installer : Check for default old PostgreSQL configuration] **************
 task path: /opt/ansible/roles/installer/tasks/database_configuration.yml:28
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514399.294304,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Check for default old PostgreSQL configuration"}
-{"level":"info","ts":1656514400.3911288,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-old-postgres-configuration"}
+{"level":"info","ts":1656551670.0687404,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-old-postgres-configuration"}
+{"level":"info","ts":1656551671.009511,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Create Database configuration"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1475,11 +1152,9 @@ TASK [installer : Create Database configuration] *******************************
 task path: /opt/ansible/roles/installer/tasks/database_configuration.yml:71
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514401.3200467,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Create Database configuration"}
-{"level":"info","ts":1656514402.358127,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-postgres-configuration"}
-{"level":"info","ts":1656514402.3636377,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-postgres-configuration"}
-{"level":"info","ts":1656514402.3702097,"logger":"proxy","msg":"Injecting owner reference"}
-{"level":"info","ts":1656514402.5437484,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Read Database Configuration"}
+{"level":"info","ts":1656551674.531274,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-postgres-configuration"}
+{"level":"info","ts":1656551674.5407627,"logger":"proxy","msg":"Cache miss: /v1, Kind=Secret, awx/awx-demo-postgres-configuration"}
+{"level":"info","ts":1656551674.5501308,"logger":"proxy","msg":"Injecting owner reference"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1487,8 +1162,9 @@ TASK [installer : Read Database Configuration] *********************************
 task path: /opt/ansible/roles/installer/tasks/database_configuration.yml:77
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514403.8506935,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/secrets/awx-demo-postgres-configuration","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"secrets","Subresource":"","Name":"awx-demo-postgres-configuration","Parts":["secrets","awx-demo-postgres-configuration"]}}
-{"level":"info","ts":1656514404.5861232,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Create Database if no database is specified"}
+{"level":"info","ts":1656551674.8235004,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Read Database Configuration"}
+{"level":"info","ts":1656551676.601051,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/secrets/awx-demo-postgres-configuration","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"secrets","Subresource":"","Name":"awx-demo-postgres-configuration","Parts":["secrets","awx-demo-postgres-configuration"]}}
+{"level":"info","ts":1656551677.0890338,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Create Database if no database is specified"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1496,17 +1172,17 @@ TASK [installer : Create Database if no database is specified] *****************
 task path: /opt/ansible/roles/installer/tasks/database_configuration.yml:96
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514406.302074,"logger":"proxy","msg":"Cache miss: apps/v1, Kind=StatefulSet, awx/awx-demo-postgres"}
-{"level":"info","ts":1656514406.3088312,"logger":"proxy","msg":"Cache miss: apps/v1, Kind=StatefulSet, awx/awx-demo-postgres"}
-{"level":"info","ts":1656514406.3169386,"logger":"proxy","msg":"Injecting owner reference"}
-{"level":"info","ts":1656514406.3175225,"logger":"proxy","msg":"Watching child resource","kind":"apps/v1, Kind=StatefulSet","enqueue_kind":"awx.ansible.com/v1beta1, Kind=AWX"}
-{"level":"info","ts":1656514406.3175895,"logger":"controller-runtime.manager.controller.awx-controller","msg":"Starting EventSource","source":"kind source: apps/v1, Kind=StatefulSet"}
-{"level":"info","ts":1656514406.4489024,"logger":"proxy","msg":"Cache miss: /v1, Kind=Service, awx/awx-demo-postgres"}
-{"level":"info","ts":1656514406.464284,"logger":"proxy","msg":"Cache miss: /v1, Kind=Service, awx/awx-demo-postgres"}
-{"level":"info","ts":1656514406.475667,"logger":"proxy","msg":"Injecting owner reference"}
-{"level":"info","ts":1656514406.4760535,"logger":"proxy","msg":"Watching child resource","kind":"/v1, Kind=Service","enqueue_kind":"awx.ansible.com/v1beta1, Kind=AWX"}
-{"level":"info","ts":1656514406.4760835,"logger":"controller-runtime.manager.controller.awx-controller","msg":"Starting EventSource","source":"kind source: /v1, Kind=Service"}
-{"level":"info","ts":1656514407.0634108,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Scale down Deployment for migration"}
+{"level":"info","ts":1656551679.3154178,"logger":"proxy","msg":"Cache miss: apps/v1, Kind=StatefulSet, awx/awx-demo-postgres"}
+{"level":"info","ts":1656551679.323545,"logger":"proxy","msg":"Cache miss: apps/v1, Kind=StatefulSet, awx/awx-demo-postgres"}
+{"level":"info","ts":1656551679.3303406,"logger":"proxy","msg":"Injecting owner reference"}
+{"level":"info","ts":1656551679.3316474,"logger":"proxy","msg":"Watching child resource","kind":"apps/v1, Kind=StatefulSet","enqueue_kind":"awx.ansible.com/v1beta1, Kind=AWX"}
+{"level":"info","ts":1656551679.331736,"logger":"controller-runtime.manager.controller.awx-controller","msg":"Starting EventSource","source":"kind source: apps/v1, Kind=StatefulSet"}
+{"level":"info","ts":1656551679.4991903,"logger":"proxy","msg":"Cache miss: /v1, Kind=Service, awx/awx-demo-postgres"}
+{"level":"info","ts":1656551679.5520222,"logger":"proxy","msg":"Cache miss: /v1, Kind=Service, awx/awx-demo-postgres"}
+{"level":"info","ts":1656551679.7807493,"logger":"proxy","msg":"Injecting owner reference"}
+{"level":"info","ts":1656551679.7903244,"logger":"proxy","msg":"Watching child resource","kind":"/v1, Kind=Service","enqueue_kind":"awx.ansible.com/v1beta1, Kind=AWX"}
+{"level":"info","ts":1656551679.7904308,"logger":"controller-runtime.manager.controller.awx-controller","msg":"Starting EventSource","source":"kind source: /v1, Kind=Service"}
+{"level":"info","ts":1656551680.4959095,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Scale down Deployment for migration"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1521,8 +1197,9 @@ TASK [installer : Check for presence of Deployment] ****************************
 task path: /opt/ansible/roles/installer/tasks/scale_down_deployment.yml:3
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514407.2420993,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Check for presence of Deployment"}
-{"level":"info","ts":1656514408.9700537,"logger":"proxy","msg":"Cache miss: apps/v1, Kind=Deployment, awx/awx-demo"}
+{"level":"info","ts":1656551680.6904542,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Check for presence of Deployment"}
+{"level":"info","ts":1656551682.6884406,"logger":"proxy","msg":"Cache miss: apps/v1, Kind=Deployment, awx/awx-demo"}
+{"level":"info","ts":1656551682.948929,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Scale down Deployment for migration"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1530,8 +1207,7 @@ TASK [installer : Scale down Deployment for migration] *************************
 task path: /opt/ansible/roles/installer/tasks/scale_down_deployment.yml:11
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514409.4453008,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Scale down Deployment for migration"}
-{"level":"info","ts":1656514409.9223673,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5480330406766847676","EventData.Name":"installer : Wait for Database to initialize if managed DB"}
+{"level":"info","ts":1656551683.41285,"logger":"logging_event_handler","msg":"[playbook task start]","name":"awx-demo","namespace":"awx","gvk":"awx.ansible.com/v1beta1, Kind=AWX","event_type":"playbook_on_task_start","job":"5233543046885435728","EventData.Name":"installer : Wait for Database to initialize if managed DB"}
 
 --------------------------- Ansible Task StdOut -------------------------------
 
@@ -1539,67 +1215,399 @@ TASK [installer : Wait for Database to initialize if managed DB] ***************
 task path: /opt/ansible/roles/installer/tasks/database_configuration.yml:145
 
 -------------------------------------------------------------------------------
-{"level":"info","ts":1656514410.862179,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/pods/awx-demo-postgres-0","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"pods","Subresource":"","Name":"awx-demo-postgres-0","Parts":["pods","awx-demo-postgres-0"]}}
-{"level":"info","ts":1656514417.4362078,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/pods/awx-demo-postgres-0","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"pods","Subresource":"","Name":"awx-demo-postgres-0","Parts":["pods","awx-demo-postgres-0"]}}
-{"level":"info","ts":1656514423.8269668,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/pods/awx-demo-postgres-0","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"pods","Subresource":"","Name":"awx-demo-postgres-0","Parts":["pods","awx-demo-postgres-0"]}}
-{"level":"info","ts":1656514430.4474628,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/pods/awx-demo-postgres-0","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"pods","Subresource":"","Name":"awx-demo-postgres-0","Parts":["pods","awx-demo-postgres-0"]}}
-{"level":"info","ts":1656514437.2217798,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/pods/awx-demo-postgres-0","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"pods","Subresource":"","Name":"awx-demo-postgres-0","Parts":["pods","awx-demo-postgres-0"]}}
-{"level":"info","ts":1656514444.9185786,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/pods/awx-demo-postgres-0","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"pods","Subresource":"","Name":"awx-demo-postgres-0","Parts":["pods","awx-demo-postgres-0"]}}
-{"level":"info","ts":1656514452.5875804,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/pods/awx-demo-postgres-0","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"pods","Subresource":"","Name":"awx-demo-postgres-0","Parts":["pods","awx-demo-postgres-0"]}}
-{"level":"info","ts":1656514460.0878494,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/pods/awx-demo-postgres-0","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"pods","Subresource":"","Name":"awx-demo-postgres-0","Parts":["pods","awx-demo-postgres-0"]}}
+{"level":"info","ts":1656551687.5439122,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/pods/awx-demo-postgres-0","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"pods","Subresource":"","Name":"awx-demo-postgres-0","Parts":["pods","awx-demo-postgres-0"]}}
+{"level":"info","ts":1656551694.2677295,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/pods/awx-demo-postgres-0","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"pods","Subresource":"","Name":"awx-demo-postgres-0","Parts":["pods","awx-demo-postgres-0"]}}
+{"level":"info","ts":1656551701.1495914,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/pods/awx-demo-postgres-0","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"pods","Subresource":"","Name":"awx-demo-postgres-0","Parts":["pods","awx-demo-postgres-0"]}}
+{"level":"info","ts":1656551708.2674649,"logger":"proxy","msg":"Read object from cache","resource":{"IsResourceRequest":true,"Path":"/api/v1/namespaces/awx/pods/awx-demo-postgres-0","Verb":"get","APIPrefix":"api","APIGroup":"","APIVersion":"v1","Namespace":"awx","Resource":"pods","Subresource":"","Name":"awx-demo-postgres-0","Parts":["pods","awx-demo-postgres-0"]}}
 
 
 ```
+
+```sh
+(base) pradeep:~$kubectl get awx -n awx
+NAME       AGE
+awx-demo   5m43s
+(base) pradeep:~$
+```
+
+```sh
+
+(base) pradeep:~$kubectl describe awx -n awx
+Name:         awx-demo
+Namespace:    awx
+Labels:       app.kubernetes.io/component=awx
+              app.kubernetes.io/managed-by=awx-operator
+              app.kubernetes.io/name=awx-demo
+              app.kubernetes.io/operator-version=0.23.0
+              app.kubernetes.io/part-of=awx-demo
+Annotations:  <none>
+API Version:  awx.ansible.com/v1beta1
+Kind:         AWX
+Metadata:
+  Creation Timestamp:  2022-06-30T01:14:09Z
+  Generation:          1
+  Managed Fields:
+    API Version:  awx.ansible.com/v1beta1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:status:
+        .:
+        f:conditions:
+    Manager:      ansible-operator
+    Operation:    Update
+    Subresource:  status
+    Time:         2022-06-30T01:14:09Z
+    API Version:  awx.ansible.com/v1beta1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .:
+          f:kubectl.kubernetes.io/last-applied-configuration:
+      f:spec:
+        .:
+        f:admin_user:
+        f:create_preload_data:
+        f:garbage_collect_secrets:
+        f:hostname:
+        f:image_pull_policy:
+        f:loadbalancer_port:
+        f:loadbalancer_protocol:
+        f:nodeport_port:
+        f:projects_persistence:
+        f:projects_storage_access_mode:
+        f:projects_storage_size:
+        f:replicas:
+        f:route_tls_termination_mechanism:
+        f:service_type:
+        f:task_privileged:
+    Manager:      kubectl-client-side-apply
+    Operation:    Update
+    Time:         2022-06-30T01:14:09Z
+    API Version:  awx.ansible.com/v1beta1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .:
+          f:app.kubernetes.io/component:
+          f:app.kubernetes.io/managed-by:
+          f:app.kubernetes.io/name:
+          f:app.kubernetes.io/operator-version:
+          f:app.kubernetes.io/part-of:
+    Manager:         OpenAPI-Generator
+    Operation:       Update
+    Time:            2022-06-30T01:14:13Z
+  Resource Version:  1206
+  UID:               7e61824c-55d3-406b-8767-cfacff661928
+Spec:
+  admin_user:                       admin
+  create_preload_data:              true
+  garbage_collect_secrets:          false
+  Hostname:                         awx-demo.example.com
+  image_pull_policy:                IfNotPresent
+  loadbalancer_port:                80
+  loadbalancer_protocol:            http
+  nodeport_port:                    30081
+  projects_persistence:             false
+  projects_storage_access_mode:     ReadWriteMany
+  projects_storage_size:            8Gi
+  Replicas:                         1
+  route_tls_termination_mechanism:  Edge
+  service_type:                     nodeport
+  task_privileged:                  false
+Status:
+  Conditions:
+    Last Transition Time:  2022-06-30T01:14:09Z
+    Reason:                Running
+    Status:                True
+    Type:                  Running
+Events:                    <none>
+(base) pradeep:~$
+
+```
+
+
+
 After a few seconds, you should see the operator begin to create new resources:
+
 ```sh
 (base) pradeep:~$kubectl get pods -l "app.kubernetes.io/managed-by=awx-operator" -n awx
-NAME                  READY   STATUS     RESTARTS   AGE
-awx-demo-postgres-0   0/1     Init:0/1   0          97s
+NAME                  READY   STATUS            RESTARTS   AGE
+awx-demo-postgres-0   0/1     PodInitializing   0          113s
 (base) pradeep:~$
 ```
 
 ```sh
 (base) pradeep:~$kubectl get svc -l "app.kubernetes.io/managed-by=awx-operator" -n awx
 NAME                TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
-awx-demo-postgres   ClusterIP   None         <none>        5432/TCP   2m12s
+awx-demo-postgres   ClusterIP   None         <none>        5432/TCP   2m18s
 (base) pradeep:~$
 ```
 
 After some more time
 ```sh
+(base) pradeep:~$kubectl get svc -l "app.kubernetes.io/managed-by=awx-operator" -n awx
+NAME                TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+awx-demo-postgres   ClusterIP   None            <none>        5432/TCP       8m2s
+awx-demo-service    NodePort    10.109.91.153   <none>        80:30081/TCP   4m12s
 (base) pradeep:~$kubectl get pods -l "app.kubernetes.io/managed-by=awx-operator" -n awx
 NAME                       READY   STATUS              RESTARTS   AGE
-awx-demo-794c579d5-ttkrc   0/4     ContainerCreating   0          40s
-awx-demo-postgres-0        1/1     Running             0          4m19s
-(base) pradeep:~$kubectl get svc -l "app.kubernetes.io/managed-by=awx-operator" -n awx 
-NAME                TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
-awx-demo-postgres   ClusterIP   None           <none>        5432/TCP       4m25s
-awx-demo-service    NodePort    10.98.36.228   <none>        80:30080/TCP   50s
+awx-demo-794c579d5-cr89z   0/4     ContainerCreating   0          4m10s
+awx-demo-postgres-0        1/1     Running             0          8m4s
 (base) pradeep:~$
 ```
 
 ```sh
 (base) pradeep:~$kubectl get pods -n awx
 NAME                                               READY   STATUS    RESTARTS   AGE
-awx-demo-794c579d5-ttkrc                           4/4     Running   0          14m
-awx-demo-postgres-0                                1/1     Running   0          17m
-awx-operator-controller-manager-7594795b6b-qlmqc   2/2     Running   0          27m
+awx-demo-794c579d5-cr89z                           4/4     Running   0          9m16s
+awx-demo-postgres-0                                1/1     Running   0          13m
+awx-operator-controller-manager-7594795b6b-7t952   2/2     Running   0          18m
+(base) pradeep:~$
+```
+
+```sh
+(base) pradeep:~$kubectl describe pods awx-demo-794c579d5-cr89z -n awx
+Name:         awx-demo-794c579d5-cr89z
+Namespace:    awx
+Priority:     0
+Node:         minikube/172.16.30.10
+Start Time:   Thu, 30 Jun 2022 06:48:33 +0530
+Labels:       app.kubernetes.io/component=awx
+              app.kubernetes.io/managed-by=awx-operator
+              app.kubernetes.io/name=awx-demo
+              app.kubernetes.io/part-of=awx-demo
+              app.kubernetes.io/version=21.2.0
+              pod-template-hash=794c579d5
+Annotations:  <none>
+Status:       Running
+IP:           172.17.0.6
+IPs:
+  IP:           172.17.0.6
+Controlled By:  ReplicaSet/awx-demo-794c579d5
+Containers:
+  redis:
+    Container ID:  docker://942a19dd9c890b49584cbcfcf59a730a2d5ad5a34cb3e29cc46c78a50134a253
+    Image:         docker.io/redis:latest
+    Image ID:      docker-pullable://redis@sha256:d581aded52343c461f32e4a48125879ed2596291f4ea4baa7e3af0ad1e56feed
+    Port:          <none>
+    Host Port:     <none>
+    Args:
+      redis-server
+      /etc/redis.conf
+    State:          Running
+      Started:      Thu, 30 Jun 2022 06:48:52 +0530
+    Ready:          True
+    Restart Count:  0
+    Requests:
+      cpu:        50m
+      memory:     64Mi
+    Environment:  <none>
+    Mounts:
+      /data from awx-demo-redis-data (rw)
+      /etc/redis.conf from awx-demo-redis-config (ro,path="redis.conf")
+      /var/run/redis from awx-demo-redis-socket (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-pm4zh (ro)
+  awx-demo-web:
+    Container ID:  docker://f1a35db3b415a047fc59e728a8cfa41b6f3224bdea9f24667aba5ddd7dbc297c
+    Image:         quay.io/ansible/awx:21.2.0
+    Image ID:      docker-pullable://quay.io/ansible/awx@sha256:121a8d962fc2d3d439a1ef92ad77411b1b42b3b9cf4027f2749a176ac9a8a4f2
+    Port:          8052/TCP
+    Host Port:     0/TCP
+    Args:
+      /usr/bin/launch_awx.sh
+    State:          Running
+      Started:      Thu, 30 Jun 2022 06:51:53 +0530
+    Ready:          True
+    Restart Count:  0
+    Requests:
+      cpu:     100m
+      memory:  128Mi
+    Environment:
+      MY_POD_NAMESPACE:  awx (v1:metadata.namespace)
+      UWSGI_MOUNT_PATH:  /
+    Mounts:
+      /etc/nginx/nginx.conf from awx-demo-nginx-conf (ro,path="nginx.conf")
+      /etc/tower/SECRET_KEY from awx-demo-secret-key (ro,path="SECRET_KEY")
+      /etc/tower/conf.d/credentials.py from awx-demo-application-credentials (ro,path="credentials.py")
+      /etc/tower/conf.d/execution_environments.py from awx-demo-application-credentials (ro,path="execution_environments.py")
+      /etc/tower/conf.d/ldap.py from awx-demo-application-credentials (ro,path="ldap.py")
+      /etc/tower/settings.py from awx-demo-settings (ro,path="settings.py")
+      /var/lib/awx/projects from awx-demo-projects (rw)
+      /var/lib/awx/rsyslog from rsyslog-dir (rw)
+      /var/run/awx-rsyslog from rsyslog-socket (rw)
+      /var/run/redis from awx-demo-redis-socket (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-pm4zh (ro)
+      /var/run/supervisor from supervisor-socket (rw)
+  awx-demo-task:
+    Container ID:  docker://cb06b3328d9f357aa94fd3d15fe8ba738e0d87b3bbd3d239dd61db6c87d5ac0d
+    Image:         quay.io/ansible/awx:21.2.0
+    Image ID:      docker-pullable://quay.io/ansible/awx@sha256:121a8d962fc2d3d439a1ef92ad77411b1b42b3b9cf4027f2749a176ac9a8a4f2
+    Port:          <none>
+    Host Port:     <none>
+    Args:
+      /usr/bin/launch_awx_task.sh
+    State:          Running
+      Started:      Thu, 30 Jun 2022 06:51:53 +0530
+    Ready:          True
+    Restart Count:  0
+    Requests:
+      cpu:     100m
+      memory:  128Mi
+    Environment:
+      SUPERVISOR_WEB_CONFIG_PATH:  /etc/supervisord.conf
+      AWX_SKIP_MIGRATIONS:         1
+      MY_POD_UID:                   (v1:metadata.uid)
+      MY_POD_IP:                    (v1:status.podIP)
+      MY_POD_NAMESPACE:            awx (v1:metadata.namespace)
+    Mounts:
+      /etc/receptor/receptor.conf from awx-demo-receptor-config (ro,path="receptor.conf")
+      /etc/tower/SECRET_KEY from awx-demo-secret-key (ro,path="SECRET_KEY")
+      /etc/tower/conf.d/credentials.py from awx-demo-application-credentials (ro,path="credentials.py")
+      /etc/tower/conf.d/execution_environments.py from awx-demo-application-credentials (ro,path="execution_environments.py")
+      /etc/tower/conf.d/ldap.py from awx-demo-application-credentials (ro,path="ldap.py")
+      /etc/tower/settings.py from awx-demo-settings (ro,path="settings.py")
+      /var/lib/awx/projects from awx-demo-projects (rw)
+      /var/lib/awx/rsyslog from rsyslog-dir (rw)
+      /var/run/awx-rsyslog from rsyslog-socket (rw)
+      /var/run/receptor from receptor-socket (rw)
+      /var/run/redis from awx-demo-redis-socket (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-pm4zh (ro)
+      /var/run/supervisor from supervisor-socket (rw)
+  awx-demo-ee:
+    Container ID:  docker://30f971bb4f5ffe8ac4a42799160230be4a6d081c99aa8001db5195a693192757
+    Image:         quay.io/ansible/awx-ee:latest
+    Image ID:      docker-pullable://quay.io/ansible/awx-ee@sha256:94a2c8b5568ae5bfdb378afe26bdb823e6fda62e1bb0bb8f59816216436a825f
+    Port:          <none>
+    Host Port:     <none>
+    Args:
+      receptor
+      --config
+      /etc/receptor/receptor.conf
+    State:          Running
+      Started:      Thu, 30 Jun 2022 06:56:33 +0530
+    Ready:          True
+    Restart Count:  0
+    Requests:
+      cpu:        100m
+      memory:     64Mi
+    Environment:  <none>
+    Mounts:
+      /etc/receptor/receptor.conf from awx-demo-receptor-config (ro,path="receptor.conf")
+      /var/lib/awx/projects from awx-demo-projects (rw)
+      /var/run/receptor from receptor-socket (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-pm4zh (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  awx-demo-application-credentials:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  awx-demo-app-credentials
+    Optional:    false
+  awx-demo-secret-key:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  awx-demo-secret-key
+    Optional:    false
+  awx-demo-settings:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      awx-demo-awx-configmap
+    Optional:  false
+  awx-demo-nginx-conf:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      awx-demo-awx-configmap
+    Optional:  false
+  awx-demo-redis-config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      awx-demo-awx-configmap
+    Optional:  false
+  awx-demo-redis-socket:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  awx-demo-redis-data:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  supervisor-socket:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  rsyslog-socket:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  receptor-socket:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  rsyslog-dir:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  awx-demo-receptor-config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      awx-demo-awx-configmap
+    Optional:  false
+  awx-demo-projects:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  kube-api-access-pm4zh:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  22m   default-scheduler  Successfully assigned awx/awx-demo-794c579d5-cr89z to minikube
+  Normal  Pulling    22m   kubelet            Pulling image "docker.io/redis:latest"
+  Normal  Pulled     22m   kubelet            Successfully pulled image "docker.io/redis:latest" in 16.962689372s
+  Normal  Created    22m   kubelet            Created container redis
+  Normal  Started    22m   kubelet            Started container redis
+  Normal  Pulling    22m   kubelet            Pulling image "quay.io/ansible/awx:21.2.0"
+  Normal  Pulled     19m   kubelet            Successfully pulled image "quay.io/ansible/awx:21.2.0" in 3m0.709836248s
+  Normal  Started    19m   kubelet            Started container awx-demo-web
+  Normal  Created    19m   kubelet            Created container awx-demo-web
+  Normal  Pulled     19m   kubelet            Container image "quay.io/ansible/awx:21.2.0" already present on machine
+  Normal  Created    19m   kubelet            Created container awx-demo-task
+  Normal  Started    19m   kubelet            Started container awx-demo-task
+  Normal  Pulling    19m   kubelet            Pulling image "quay.io/ansible/awx-ee:latest"
+  Normal  Pulled     14m   kubelet            Successfully pulled image "quay.io/ansible/awx-ee:latest" in 4m39.602052148s
+  Normal  Created    14m   kubelet            Created container awx-demo-ee
+  Normal  Started    14m   kubelet            Started container awx-demo-ee
 (base) pradeep:~$
 ```
 Once deployed, the AWX instance will be accessible by running
 
 ```sh
-(base) pradeep:~$minikube service awx-demo-service --url -n awx                                                    
-🏃  Starting tunnel for service awx-demo-service.
-❗  Because you are using a Docker driver on darwin, the terminal needs to be open to run it.
-
-
+(base) pradeep:~$minikube service awx-demo-service --url -n awx
+http://172.16.30.10:30081
+(base) pradeep:~$
 ```
+
+Let us access the REST API of the AWX and test the `ping`.
+![AWX Rest API]({{ site.url }}{{ site.baseurl }}/assets/images/awx-rest-api-ping-1.png)
 By default, the admin user is admin and the password is available in the <resourcename>-admin-password secret. To retrieve the admin password, run:
 
 ```sh
 (base) pradeep:~$kubectl get -n awx secret awx-demo-admin-password -o jsonpath="{.data.password}" | base64 --decode
-ORQ3pqalx9V3vlEYnQmKt9CpGJJ6odTL%                                                                                               (base) pradeep:~$
+Y7SH2eQ4EdcREYVapiYLaw8xTRbxuWDh%                                                                                                                                                                                                             (base) pradeep:~$
 ```
+![AWX Login]({{ site.url }}{{ site.baseurl }}/assets/images/awx-login.png)
+
+![AWX Dashboard]({{ site.url }}{{ site.baseurl }}/assets/images/awx-dashboard.png)
+
+![AWX Project]({{ site.url }}{{ site.baseurl }}/assets/images/awx-project.png)
 
 This completes the most basic install of an AWX instance via this operator. Congratulations!!!
