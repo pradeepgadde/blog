@@ -5,8 +5,9 @@ date:   2022-02-07 10:55:04 +0530
 categories: Kubernetes
 tags: minikube
 author: "Pradeep Gadde"
-classes: wide
+
 toc: true
+toc_sticky: true
 show_date: true
 header:
   teaser: /assets/images/sched-128.png

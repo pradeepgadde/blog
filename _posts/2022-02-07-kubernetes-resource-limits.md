@@ -6,7 +6,7 @@ categories: Kubernetes
 tags: minikube
 author: "Pradeep Gadde"
 classes: wide
-toc: true
+
 show_date: true
 header:
   teaser: /assets/images/limits-128.png
