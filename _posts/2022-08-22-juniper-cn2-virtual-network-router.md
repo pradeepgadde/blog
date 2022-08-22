@@ -30,7 +30,7 @@ sidebar:
 # CN2-Virtual Network Router
 
 ## Reference
-[https://www.juniper.net/documentation/us/en/software/cn-cloud-native22/cn-cloud-native-feature-guide/cn-cloud-native-network-feature/topics/concept/Contrail_Network_Policy_Implementation_in_CN2.html#xd_a29cf6a0c60ca860-3566e1ce-17b7d3148e0--7e89__section_rrx_pl4_ftb](https://www.juniper.net/documentation/us/en/software/cn-cloud-native22/cn-cloud-native-feature-guide/cn-cloud-native-network-feature/topics/concept/Contrail_Network_Policy_Implementation_in_CN2.html#xd_a29cf6a0c60ca860-3566e1ce-17b7d3148e0--7e89__section_rrx_pl4_ftb) 
+[https://www.juniper.net/documentation/us/en/software/cn-cloud-native22/cn-cloud-native-feature-guide/cn-cloud-native-network-feature/topics/concept/Contrail_Network_Policy_Implementation_in_CN2.html](https://www.juniper.net/documentation/us/en/software/cn-cloud-native22/cn-cloud-native-feature-guide/cn-cloud-native-network-feature/topics/concept/Contrail_Network_Policy_Implementation_in_CN2.html)  
 
 ## VirtualNetworkRouter Connecting Two Virtual Networks
 In this post, let us start from scratch, with no Pods, no Virtual Networks.
