@@ -1,4 +1,3 @@
-
 ---
 layout: single
 title:  "Juniper CN2 Virtual Network Router "
@@ -20,13 +19,14 @@ header:
 author:
   name     : "Cloud-Native Contrail Networking (CN2)"
   avatar   : "/assets/images/junos.png"
- 
+
 sidebar:
   - title: "Blog"
- 
+
     text: "Checkout other topics"
     nav: my-sidebar
 ---
+
 # CN2-Virtual Network Router
 
 ## Reference
