@@ -29,7 +29,8 @@ sidebar:
 # CN2-Enable Pods with Multiple Network Interfaces
 
 ## Reference
-https://www.juniper.net/documentation/us/en/software/cn-cloud-native22/cn-cloud-native-feature-guide/cn-cloud-native-network-feature/topics/task/cn-cloud-native-multiple-interface-pod.html
+[https://www.juniper.net/documentation/us/en/software/cn-cloud-native22/cn-cloud-native-feature-guide/cn-cloud-native-network-feature/topics/task/cn-cloud-native-multiple-interface-pod.html](https://www.juniper.net/documentation/us/en/software/cn-cloud-native22/cn-cloud-native-feature-guide/cn-cloud-native-network-feature/topics/task/cn-cloud-native-multiple-interface-pod.html)
+
 
 ## NetworkAttachmentDefinition
 To support multiple interfaces we must first define the `NetworkAttachmentDefinition` object and include the `juniper.net/networks` annotation.
@@ -1134,11 +1135,12 @@ Events:         <none>
 pradeep@CN2 %
 ```
 
-
+## KUBEMANAGER_ENABLE_NAD
 
 The network attachment definition controller is part of the `kube-manager` object. 
 
-If we describe the `kubemanager` pod in the `contrail` namespace, we can see the ` KUBEMANAGER_ENABLE_NAD:                       true` environment variable.
+If we describe the `kubemanager` pod in the `contrail` namespace, we can see the
+`KUBEMANAGER_ENABLE_NAD:true` environment variable.
 
 ```sh
 pradeep@CN2 % kubectl describe  pod contrail-k8s-kubemanager-ccc4dcd66-v968l -n contrail
