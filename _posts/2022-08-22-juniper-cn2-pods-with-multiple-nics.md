@@ -17,7 +17,7 @@ header:
       url: "https://www.juniper.net/documentation/product/us/en/cloud-native-contrail-networking"
 
 author:
-  name     : "Junos"
+  name     : "Cloud-Native Contrail Networking (CN2)"
   avatar   : "/assets/images/junos.png"
  
 sidebar:
