@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "Juniper CN2 Isolated Namespace "
+title:  "Juniper CN2 Isolated Namespace"
 date:   2022-08-23 01:55:04 +0530
 categories: Kubernetes
 tags: CN2 
@@ -42,7 +42,7 @@ You can create an isolated namespace to isolate a pod from other pods, without e
 To create an isolated namespace, we need to add a label, `core.juniper.net/isolated-namespace: "true" ` to the namespace.
 
 ```yaml
-pradga@pradga-mbp CN2 % cat ns-isolated.yaml 
+pradeep@CN2% cat ns-isolated.yaml 
 apiVersion: v1 
 kind: Namespace 
 metadata: 
@@ -50,17 +50,17 @@ metadata:
    labels: 
      core.juniper.net/isolated-namespace: "true" 
       
-pradga@pradga-mbp CN2 % 
+pradeep@CN2% 
 ```
 
 ```sh
-pradga@pradga-mbp CN2 % kubectl apply -f ns-isolated.yaml 
+pradeep@CN2% kubectl apply -f ns-isolated.yaml 
 namespace/isolated-namespace-demo created
-pradga@pradga-mbp CN2 % 
+pradeep@CN2% 
 ```
 
 ```sh
-pradga@pradga-mbp CN2 % kubectl get ns                   
+pradeep@CN2% kubectl get ns                   
 NAME                                   STATUS   AGE
 contrail                               Active   4d7h
 contrail-analytics                     Active   4d7h
@@ -72,11 +72,11 @@ isolated-namespace-demo                Active   2s
 kube-node-lease                        Active   4d7h
 kube-public                            Active   4d7h
 kube-system                            Active   4d7h
-pradga@pradga-mbp CN2 % 
+pradeep@CN2% 
 ```
 
 ```sh
-pradga@pradga-mbp CN2 % kubectl describe ns isolated-namespace-demo 
+pradeep@CN2% kubectl describe ns isolated-namespace-demo 
 Name:         isolated-namespace-demo
 Labels:       core.juniper.net/clusterName=contrail-k8s-kubemanager-mk
               core.juniper.net/isolated-namespace=true
@@ -87,28 +87,28 @@ Status:       Active
 No resource quota.
 
 No LimitRange resource.
-pradga@pradga-mbp CN2 %
+pradeep@CN2%
 ```
 Lets create another namespace, this time without the label, making it the standard namespace (non-isolated).
 
 ```sh
-pradga@pradga-mbp CN2 % cat non-isolated-ns.yaml 
+pradeep@CN2% cat non-isolated-ns.yaml 
 apiVersion: v1 
 kind: Namespace 
 metadata: 
    name: non-isolated-namespace-demo
 
-pradga@pradga-mbp CN2 % 
+pradeep@CN2% 
 ```
 
 ```sh
-pradga@pradga-mbp CN2 % kubectl apply -f non-isolated-ns.yaml        
+pradeep@CN2% kubectl apply -f non-isolated-ns.yaml        
 namespace/non-isolated-namespace-demo created
-pradga@pradga-mbp CN2 %
+pradeep@CN2%
 ```
 
 ```sh
-pradga@pradga-mbp CN2 % kubectl get ns                               
+pradeep@CN2% kubectl get ns                               
 NAME                                   STATUS   AGE
 contrail                               Active   4d7h
 contrail-analytics                     Active   4d7h
@@ -121,17 +121,17 @@ kube-node-lease                        Active   4d7h
 kube-public                            Active   4d7h
 kube-system                            Active   4d7h
 non-isolated-namespace-demo            Active   7s
-pradga@pradga-mbp CN2 %
+pradeep@CN2%
 ```
 
 ```sh
-pradga@pradga-mbp CN2 % cat non-isolated-ns.yaml 
+pradeep@CN2% cat non-isolated-ns.yaml 
 apiVersion: v1 
 kind: Namespace 
 metadata: 
    name: non-isolated-namespace-demo
 
-pradga@pradga-mbp CN2 % kubectl describe ns non-isolated-namespace-demo  
+pradeep@CN2% kubectl describe ns non-isolated-namespace-demo  
 Name:         non-isolated-namespace-demo
 Labels:       core.juniper.net/clusterName=contrail-k8s-kubemanager-mk
               kubernetes.io/metadata.name=non-isolated-namespace-demo
@@ -141,7 +141,7 @@ Status:       Active
 No resource quota.
 
 No LimitRange resource.
-pradga@pradga-mbp CN2 % 
+pradeep@CN2% 
 
 ```
 
@@ -150,7 +150,7 @@ Let us create four pods. Two pods in the isolated-namespace and one pod in the n
 
 ### Isolated Namespace
 ```yaml
-pradga@pradga-mbp CN2 % cat p1.yaml 
+pradeep@CN2% cat p1.yaml 
 apiVersion: v1
 kind: Pod
 metadata:
@@ -164,11 +164,11 @@ spec:
     command: ["bash","-c","while true; do sleep 60s; done"]
     securityContext:
       privileged: true
-pradga@pradga-mbp CN2 %
+pradeep@CN2%
 ```
 
 ```yaml
-pradga@pradga-mbp CN2 % cat p2.yaml 
+pradeep@CN2% cat p2.yaml 
 apiVersion: v1
 kind: Pod
 metadata:
@@ -183,11 +183,11 @@ spec:
     command: ["bash","-c","while true; do sleep 60s; done"]
     securityContext:
       privileged: true
-pradga@pradga-mbp CN2 % 
+pradeep@CN2% 
 ```
 ### Non-Isolated Namespace
 ```yaml
-pradga@pradga-mbp CN2 % cat p3.yaml 
+pradeep@CN2% cat p3.yaml 
 apiVersion: v1
 kind: Pod
 metadata:
@@ -202,12 +202,12 @@ spec:
     command: ["bash","-c","while true; do sleep 60s; done"]
     securityContext:
       privileged: true
-pradga@pradga-mbp CN2 % 
+pradeep@CN2% 
 ```
 ### Default Namespace 
 
 ```yaml
-pradga@pradga-mbp CN2 % cat p4.yaml 
+pradeep@CN2% cat p4.yaml 
 apiVersion: v1
 kind: Pod
 metadata:
@@ -223,50 +223,50 @@ spec:
     command: ["bash","-c","while true; do sleep 60s; done"]
     securityContext:
       privileged: true
-pradga@pradga-mbp CN2 % 
+pradeep@CN2% 
 
 ```
 
 ```sh
-pradga@pradga-mbp CN2 % kubectl apply -f p1.yaml 
+pradeep@CN2% kubectl apply -f p1.yaml 
 pod/pod1 created
-pradga@pradga-mbp CN2 % kubectl apply -f p2.yaml 
+pradeep@CN2% kubectl apply -f p2.yaml 
 pod/pod2 created
-pradga@pradga-mbp CN2 % kubectl apply -f p3.yaml 
+pradeep@CN2% kubectl apply -f p3.yaml 
 pod/pod3 created
-pradga@pradga-mbp CN2 % kubectl apply -f p4.yaml 
+pradeep@CN2% kubectl apply -f p4.yaml 
 pod/pod4 created
-pradga@pradga-mbp CN2 %
+pradeep@CN2%
 ```
 
 ```sh
-pradga@pradga-mbp CN2 % kubectl get pods -n non-isolated-namespace-demo -o wide
+pradeep@CN2% kubectl get pods -n non-isolated-namespace-demo -o wide
 NAME   READY   STATUS    RESTARTS   AGE    IP           NODE       NOMINATED NODE   READINESS GATES
 pod3   1/1     Running   0          112s   10.244.0.7   minikube   <none>           <none>
-pradga@pradga-mbp CN2 %
+pradeep@CN2%
 ```
 
 ```sh
-pradga@pradga-mbp CN2 % kubectl get pods -n isolated-namespace-demo -o wide 
+pradeep@CN2% kubectl get pods -n isolated-namespace-demo -o wide 
 NAME   READY   STATUS    RESTARTS   AGE    IP           NODE       NOMINATED NODE   READINESS GATES
 pod1   1/1     Running   0          2m6s   10.244.0.5   minikube   <none>           <none>
 pod2   1/1     Running   0          2m3s   10.244.0.6   minikube   <none>           <none>
-pradga@pradga-mbp CN2 %
+pradeep@CN2%
 ```
 
 ```sh
-pradga@pradga-mbp CN2 % kubectl get pods  -o wide
+pradeep@CN2% kubectl get pods  -o wide
 NAME      READY   STATUS    RESTARTS   AGE    IP           NODE       NOMINATED NODE   READINESS GATES
 pod4      1/1     Running   0          2m6s   10.244.0.8   minikube   <none>           <none>
 vn1-pod   1/1     Running   0          13h    10.244.0.3   minikube   <none>           <none>
 vn2-pod   1/1     Running   0          13h    10.244.0.4   minikube   <none>           <none>
-pradga@pradga-mbp CN2 % 
+pradeep@CN2% 
 ```
 
 ## Verify Pods from Isolated Namespace
 
 ```sh
-pradga@pradga-mbp CN2 % kubectl exec -it pod1 -n isolated-namespace-demo -- ip a
+pradeep@CN2% kubectl exec -it pod1 -n isolated-namespace-demo -- ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -281,11 +281,11 @@ pradga@pradga-mbp CN2 % kubectl exec -it pod1 -n isolated-namespace-demo -- ip a
        valid_lft forever preferred_lft forever
     inet6 fe80::281c:20ff:fe2d:1053/64 scope link 
        valid_lft forever preferred_lft forever
-pradga@pradga-mbp CN2 %
+pradeep@CN2%
 ```
 
 ```sh
-pradga@pradga-mbp CN2 % kubectl exec -it pod2 -n isolated-namespace-demo -- ip a
+pradeep@CN2% kubectl exec -it pod2 -n isolated-namespace-demo -- ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -300,7 +300,7 @@ pradga@pradga-mbp CN2 % kubectl exec -it pod2 -n isolated-namespace-demo -- ip a
        valid_lft forever preferred_lft forever
     inet6 fe80::489e:95ff:fe0e:77d7/64 scope link 
        valid_lft forever preferred_lft forever
-pradga@pradga-mbp CN2 %
+pradeep@CN2%
 ```
 
 
@@ -312,7 +312,7 @@ Pods in isolated namespace are able to communicate with only other pods in the s
 Communication to other namespaces including the default namespace is not working.
 
 ```sh
-pradga@pradga-mbp CN2 % kubectl exec -it pod1 -n isolated-namespace-demo -- ping 10.244.0.6
+pradeep@CN2% kubectl exec -it pod1 -n isolated-namespace-demo -- ping 10.244.0.6
 PING 10.244.0.6 (10.244.0.6) 56(84) bytes of data.
 64 bytes from 10.244.0.6: icmp_seq=1 ttl=63 time=1.64 ms
 64 bytes from 10.244.0.6: icmp_seq=2 ttl=63 time=0.099 ms
@@ -321,28 +321,28 @@ PING 10.244.0.6 (10.244.0.6) 56(84) bytes of data.
 --- 10.244.0.6 ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 2009ms
 rtt min/avg/max/mdev = 0.099/0.630/1.648/0.720 ms
-pradga@pradga-mbp CN2 % kubectl exec -it pod1 -n isolated-namespace-demo -- ping 10.244.0.7
+pradeep@CN2% kubectl exec -it pod1 -n isolated-namespace-demo -- ping 10.244.0.7
 PING 10.244.0.7 (10.244.0.7) 56(84) bytes of data.
 ^C
 --- 10.244.0.7 ping statistics ---
 4 packets transmitted, 0 received, 100% packet loss, time 3057ms
 
 command terminated with exit code 1
-pradga@pradga-mbp CN2 % kubectl exec -it pod1 -n isolated-namespace-demo -- ping 10.244.0.8
+pradeep@CN2% kubectl exec -it pod1 -n isolated-namespace-demo -- ping 10.244.0.8
 PING 10.244.0.8 (10.244.0.8) 56(84) bytes of data.
 ^C
 --- 10.244.0.8 ping statistics ---
 4 packets transmitted, 0 received, 100% packet loss, time 3106ms
 
 command terminated with exit code 1
-pradga@pradga-mbp CN2 % 
+pradeep@CN2% 
 
 ```
 
 ### Pod2 in Isolated Namespace
 
 ```sh
-pradga@pradga-mbp CN2 % kubectl exec -it pod2 -n isolated-namespace-demo -- ping 10.244.0.5
+pradeep@CN2% kubectl exec -it pod2 -n isolated-namespace-demo -- ping 10.244.0.5
 PING 10.244.0.5 (10.244.0.5) 56(84) bytes of data.
 64 bytes from 10.244.0.5: icmp_seq=1 ttl=63 time=5.43 ms
 64 bytes from 10.244.0.5: icmp_seq=2 ttl=63 time=0.120 ms
@@ -350,29 +350,29 @@ PING 10.244.0.5 (10.244.0.5) 56(84) bytes of data.
 --- 10.244.0.5 ping statistics ---
 2 packets transmitted, 2 received, 0% packet loss, time 1002ms
 rtt min/avg/max/mdev = 0.120/2.779/5.438/2.659 ms
-pradga@pradga-mbp CN2 % 
+pradeep@CN2% 
 ```
 
 ```sh
-pradga@pradga-mbp CN2 % kubectl exec -it pod2 -n isolated-namespace-demo -- ping 10.244.0.7
+pradeep@CN2% kubectl exec -it pod2 -n isolated-namespace-demo -- ping 10.244.0.7
 PING 10.244.0.7 (10.244.0.7) 56(84) bytes of data.
 ^C
 --- 10.244.0.7 ping statistics ---
 4 packets transmitted, 0 received, 100% packet loss, time 3110ms
 
 command terminated with exit code 1
-pradga@pradga-mbp CN2 %
+pradeep@CN2%
 ```
 
 ```sh
-pradga@pradga-mbp CN2 % kubectl exec -it pod2 -n isolated-namespace-demo -- ping 10.244.0.8
+pradeep@CN2% kubectl exec -it pod2 -n isolated-namespace-demo -- ping 10.244.0.8
 PING 10.244.0.8 (10.244.0.8) 56(84) bytes of data.
 ^C
 --- 10.244.0.8 ping statistics ---
 3 packets transmitted, 0 received, 100% packet loss, time 2029ms
 
 command terminated with exit code 1
-pradga@pradga-mbp CN2 % 
+pradeep@CN2% 
 ```
 
 
@@ -381,7 +381,7 @@ pradga@pradga-mbp CN2 %
 Pods in non isolated namespace are able to communicate with pods in the non-isolated namespace as well as the default namespace.
 
 ```sh
-pradga@pradga-mbp CN2 % kubectl exec -it pod3 -n non-isolated-namespace-demo -- ip a           
+pradeep@CN2% kubectl exec -it pod3 -n non-isolated-namespace-demo -- ip a           
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -396,11 +396,11 @@ pradga@pradga-mbp CN2 % kubectl exec -it pod3 -n non-isolated-namespace-demo -- 
        valid_lft forever preferred_lft forever
     inet6 fe80::3048:8eff:fe81:e84f/64 scope link 
        valid_lft forever preferred_lft forever
-pradga@pradga-mbp CN2 % 
+pradeep@CN2% 
 ```
 
 ```sh
-pradga@pradga-mbp CN2 % kubectl exec -it pod3 -n non-isolated-namespace-demo -- ping 10.244.0.5
+pradeep@CN2% kubectl exec -it pod3 -n non-isolated-namespace-demo -- ping 10.244.0.5
 PING 10.244.0.5 (10.244.0.5) 56(84) bytes of data.
 64 bytes from 10.244.0.5: icmp_seq=1 ttl=63 time=2.53 ms
 64 bytes from 10.244.0.5: icmp_seq=2 ttl=63 time=0.185 ms
@@ -410,7 +410,7 @@ PING 10.244.0.5 (10.244.0.5) 56(84) bytes of data.
 3 packets transmitted, 3 received, 0% packet loss, time 2012ms
 rtt min/avg/max/mdev = 0.105/0.942/2.537/1.128 ms
 
-pradga@pradga-mbp CN2 % kubectl exec -it pod3 -n non-isolated-namespace-demo -- ping 10.244.0.6
+pradeep@CN2% kubectl exec -it pod3 -n non-isolated-namespace-demo -- ping 10.244.0.6
 PING 10.244.0.6 (10.244.0.6) 56(84) bytes of data.
 64 bytes from 10.244.0.6: icmp_seq=1 ttl=63 time=10.7 ms
 64 bytes from 10.244.0.6: icmp_seq=2 ttl=63 time=0.094 ms
@@ -421,7 +421,7 @@ PING 10.244.0.6 (10.244.0.6) 56(84) bytes of data.
 4 packets transmitted, 4 received, 0% packet loss, time 3038ms
 rtt min/avg/max/mdev = 0.094/3.877/10.708/4.297 ms
 
-pradga@pradga-mbp CN2 % kubectl exec -it pod3 -n non-isolated-namespace-demo -- ping 10.244.0.8
+pradeep@CN2% kubectl exec -it pod3 -n non-isolated-namespace-demo -- ping 10.244.0.8
 PING 10.244.0.8 (10.244.0.8) 56(84) bytes of data.
 64 bytes from 10.244.0.8: icmp_seq=1 ttl=63 time=3.33 ms
 64 bytes from 10.244.0.8: icmp_seq=2 ttl=63 time=0.175 ms
@@ -431,7 +431,7 @@ PING 10.244.0.8 (10.244.0.8) 56(84) bytes of data.
 --- 10.244.0.8 ping statistics ---
 4 packets transmitted, 4 received, 0% packet loss, time 3042ms
 rtt min/avg/max/mdev = 0.112/0.952/3.331/1.373 ms
-pradga@pradga-mbp CN2 % 
+pradeep@CN2% 
 
 ```
 
@@ -439,7 +439,7 @@ pradga@pradga-mbp CN2 %
 Pods in the default  namespace are able to communicate with both pods in the  isolated namespace and non-isolated namespace.
 
 ```sh
-pradga@pradga-mbp CN2 % kubectl exec -it pod4  -- ip a                   
+pradeep@CN2% kubectl exec -it pod4  -- ip a                   
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -460,12 +460,12 @@ pradga@pradga-mbp CN2 % kubectl exec -it pod4  -- ip a
        valid_lft forever preferred_lft forever
     inet6 fe80::6cb4:4aff:fe07:bf99/64 scope link 
        valid_lft forever preferred_lft forever
-pradga@pradga-mbp CN2 % 
+pradeep@CN2% 
 
 ```
 
 ```sh
-pradga@pradga-mbp CN2 % kubectl exec -it pod4 -- ping 10.244.0.5                               
+pradeep@CN2% kubectl exec -it pod4 -- ping 10.244.0.5                               
 PING 10.244.0.5 (10.244.0.5) 56(84) bytes of data.
 64 bytes from 10.244.0.5: icmp_seq=1 ttl=63 time=3.04 ms
 64 bytes from 10.244.0.5: icmp_seq=2 ttl=63 time=0.097 ms
@@ -475,7 +475,7 @@ PING 10.244.0.5 (10.244.0.5) 56(84) bytes of data.
 3 packets transmitted, 3 received, 0% packet loss, time 2010ms
 rtt min/avg/max/mdev = 0.097/1.084/3.043/1.385 ms
 
-pradga@pradga-mbp CN2 % kubectl exec -it pod4 -- ping 10.244.0.6
+pradeep@CN2% kubectl exec -it pod4 -- ping 10.244.0.6
 PING 10.244.0.6 (10.244.0.6) 56(84) bytes of data.
 64 bytes from 10.244.0.6: icmp_seq=1 ttl=63 time=1.47 ms
 64 bytes from 10.244.0.6: icmp_seq=2 ttl=63 time=0.156 ms
@@ -485,7 +485,7 @@ PING 10.244.0.6 (10.244.0.6) 56(84) bytes of data.
 3 packets transmitted, 3 received, 0% packet loss, time 2003ms
 rtt min/avg/max/mdev = 0.156/0.638/1.479/0.597 ms
 
-pradga@pradga-mbp CN2 % kubectl exec -it pod4 -- ping 10.244.0.7
+pradeep@CN2% kubectl exec -it pod4 -- ping 10.244.0.7
 PING 10.244.0.7 (10.244.0.7) 56(84) bytes of data.
 64 bytes from 10.244.0.7: icmp_seq=1 ttl=63 time=1.96 ms
 64 bytes from 10.244.0.7: icmp_seq=2 ttl=63 time=0.196 ms
@@ -495,7 +495,7 @@ PING 10.244.0.7 (10.244.0.7) 56(84) bytes of data.
 --- 10.244.0.7 ping statistics ---
 4 packets transmitted, 4 received, 0% packet loss, time 3078ms
 rtt min/avg/max/mdev = 0.127/0.727/1.965/0.739 ms
-pradga@pradga-mbp CN2 % 
+pradeep@CN2% 
 ```
 
 I was expecting that the isolated namespace resources are completely isolated in both directions. But it looks like if the communication is initiated from outside, towards the isolated namespace resources, it still works.  
