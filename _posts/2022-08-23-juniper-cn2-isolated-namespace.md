@@ -263,7 +263,7 @@ vn2-pod   1/1     Running   0          13h    10.244.0.4   minikube   <none>    
 pradeep@CN2% 
 ```
 
-## Verify Pods from Isolated Namespace
+## Verify Connectivity between the Pods
 
 ```sh
 pradeep@CN2% kubectl exec -it pod1 -n isolated-namespace-demo -- ip a
@@ -377,7 +377,7 @@ pradeep@CN2%
 
 
 
-## Pod3 in Non Isolated Namespace
+### Pod3 in Non Isolated Namespace
 Pods in non isolated namespace are able to communicate with pods in the non-isolated namespace as well as the default namespace.
 
 ```sh
@@ -435,7 +435,7 @@ pradeep@CN2%
 
 ```
 
-## Pod4 in Default Namespace
+### Pod4 in Default Namespace
 Pods in the default  namespace are able to communicate with both pods in the  isolated namespace and non-isolated namespace.
 
 ```sh
