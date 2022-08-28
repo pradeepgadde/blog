@@ -4,8 +4,7 @@ title:  "Getting Started with ArgoCD "
 date:   2022-08-28 11:55:04 +0530
 categories: Kubernetes
 tags: ArgoCD
-toc: true
-toc_sticky: true
+classes: wide
 show_date: true
 header:
   overlay_image: /assets/images/argo.png
@@ -314,4 +313,5 @@ simple-service   NodePort    10.104.91.157   <none>        8080:31000/TCP   3m37
 ```
 
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/argocd-9.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/argocd-10.png)
 
