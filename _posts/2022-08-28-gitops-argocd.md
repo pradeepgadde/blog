@@ -32,6 +32,10 @@ Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.
 
 In this post, let us install ArgoCD in a minikube Kubernetes cluster and explore its user interface.
 
+CodeFresh is offering an interactive training (theory + hands-on) on GitOps fundamentals.
+
+For more info check out [https://learning.codefresh.io/](https://learning.codefresh.io/) .
+
 First let us spin a new cluster using minikube.
 
 ```sh
