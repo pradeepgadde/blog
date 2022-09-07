@@ -184,7 +184,7 @@ Do you really want to destroy all resources?
   Enter a value: yes
 
 azurerm_virtual_network.vnet: Destroying... [id=/subscriptions/xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx/resourceGroups/myTFResourceGroup/providers/Microsoft.Network/virtualNetworks/myTFVnet]
-azurerm_virtual_network.vnet: Still destroying... [id=/subscriptions/f3f98f91-9191-4dd5-a561-...osoft.Network/virtualNetworks/myTFVnet, 10s elapsed]
+azurerm_virtual_network.vnet: Still destroying... [id=/subscriptions/xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx...osoft.Network/virtualNetworks/myTFVnet, 10s elapsed]
 azurerm_virtual_network.vnet: Destruction complete after 12s
 azurerm_resource_group.rg: Destroying... [id=/subscriptions/xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx/resourceGroups/myTFResourceGroup]
 azurerm_resource_group.rg: Still destroying... [id=/subscriptions/xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx/resourceGroups/myTFResourceGroup, 10s elapsed]
