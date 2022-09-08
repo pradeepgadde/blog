@@ -22,6 +22,25 @@ sidebar:
 
 # Jenkins Essentials Lab Instance Setup
 
+[https://university.cloudbees.com/](https://university.cloudbees.com/)
+
+CloudBees University is offering several courses on Jenkins to help prepare for the Certified Jenkins Engineer (CJE) exam.
+
+![Jenkins]({{ site.url }}{{ site.baseurl }}/assets/images/cb.png)
+
+This is a hands-on class with a lab environment where you can follow along with the material and perform the lab exercises at the end of each section.
+
+If you are not a CloudBees customer, partner, or employee, this page explains how to install and access the provided Virtual Machine to use as your CloudBees lab environment.
+
+
+
+## Getting lab resources
+
+After installing the software prerequisites:
+
+- Right click this [link to the virtual machine’s **ZIP** archive](https://s3.amazonaws.com/cloudbees-training-materials/training-admin-fundamentals/master/cloudbees-training-admin-fundamentals.zip) to open it in a new tab or window. When you click **OK**, the archive downloads to your local disc.
+- Extract the virtual machine **ZIP** archive to your local disc. This archive contains your virtual machine image and automated settings in a folder named `cloudbees-training-admin-fundamentals`.
+
 ```sh
 (base) pradeep:~$pwd
 /Users/pradeep
@@ -117,3 +136,7 @@ simply run `vagrant up`.
 ![Jenkins]({{ site.url }}{{ site.baseurl }}/assets/images/cb-3.png)
 ![Jenkins]({{ site.url }}{{ site.baseurl }}/assets/images/cb-4.png)
 ![Jenkins]({{ site.url }}{{ site.baseurl }}/assets/images/cb-5.png)
+
+
+
+Now that the lab environment is setup, let us explore the main features of Jenkins. 
