@@ -195,3 +195,127 @@ Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
 ```
 
 A file `pets.txt` and a random password `"result": "B3zo2*K]"` are created.
+
+```sh
+(base) pradeep:~$cat main.tf 
+resource "local_file" "pets" {
+    filename = "/Users/pradeep/pets.txt"
+    content = "Demo of multiple .tf files in the same directory"
+}
+
+resource "random_password" "password" {
+  length           = 8
+  special          = true
+}
+
+resource "random_pet" "my-pet" {
+	      prefix = "Mrs"
+	      separator = "."
+	      length = "1"
+}
+(base) pradeep:~$
+```
+
+
+```sh
+(base) pradeep:~$terraform plan
+local_file.pets: Refreshing state... [id=2f20cf483ae1926cb52d153141858330208a61ce]
+random_password.password: Refreshing state... [id=none]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated
+with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # random_pet.my-pet will be created
+  + resource "random_pet" "my-pet" {
+      + id        = (known after apply)
+      + length    = 1
+      + prefix    = "Mrs"
+      + separator = "."
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions
+if you run "terraform apply" now.
+(base) pradeep:~$
+```
+
+```sh
+(base) pradeep:~$terraform apply
+local_file.pets: Refreshing state... [id=2f20cf483ae1926cb52d153141858330208a61ce]
+random_password.password: Refreshing state... [id=none]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated
+with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # random_pet.my-pet will be created
+  + resource "random_pet" "my-pet" {
+      + id        = (known after apply)
+      + length    = 1
+      + prefix    = "Mrs"
+      + separator = "."
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+random_pet.my-pet: Creating...
+random_pet.my-pet: Creation complete after 0s [id=Mrs.firefly]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+(base) pradeep:~$
+```
+
+```sh
+(base) pradeep:~$terraform show
+# local_file.pets:
+resource "local_file" "pets" {
+    content              = "Demo of multiple .tf files in the same directory"
+    directory_permission = "0777"
+    file_permission      = "0777"
+    filename             = "/Users/pradeep/pets.txt"
+    id                   = "2f20cf483ae1926cb52d153141858330208a61ce"
+}
+
+# random_password.password:
+resource "random_password" "password" {
+    bcrypt_hash = (sensitive value)
+    id          = "none"
+    length      = 8
+    lower       = true
+    min_lower   = 0
+    min_numeric = 0
+    min_special = 0
+    min_upper   = 0
+    number      = true
+    numeric     = true
+    result      = (sensitive value)
+    special     = true
+    upper       = true
+}
+
+# random_pet.my-pet:
+resource "random_pet" "my-pet" {
+    id        = "Mrs.firefly"
+    length    = 1
+    prefix    = "Mrs"
+    separator = "."
+}
+(base) pradeep:~$
+```
+Other than password and pets, there are few more random resources can be created using the `random` provider.
+
+![TF-Random]({{ site.url }}{{ site.baseurl }}/assets/images/tf-random.png)
