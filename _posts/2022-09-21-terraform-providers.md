@@ -372,3 +372,4 @@ provider "registry.terraform.io/hashicorp/local" {
 
 ```
 
+Instead of creating multiple `.tf` files in the same directory, we can combine all of them into a single file, usually called `main.tf`.
