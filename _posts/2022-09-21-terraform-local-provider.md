@@ -248,4 +248,165 @@ ls: /Users/pradeep/learn-terraform: No such file or directory
 cat: /Users/pradeep/learn-terraform: No such file or directory
 (base) pradeep:~$
 ```
+Add some sensitive content
 
+```sh
+(base) pradeep:~$cat local.tf 
+resource "local_file" "demo" {
+    filename = "/Users/pradeep/learn-terraform"
+    content = "This is a demo of local provider"
+    file_permission = "0700"
+    sensitive_content = "Another demo"
+}
+(base) pradeep:~$
+```
+
+```sh
+(base) pradeep:~$terraform plan
+╷
+│ Error: Invalid combination of arguments
+│ 
+│   with local_file.demo,
+│   on local.tf line 1, in resource "local_file" "demo":
+│    1: resource "local_file" "demo" {
+│ 
+│ "content_base64": only one of `content,content_base64,sensitive_content,source` can be specified, but
+│ `content,sensitive_content` were specified.
+╵
+╷
+│ Error: Invalid combination of arguments
+│ 
+│   with local_file.demo,
+│   on local.tf line 1, in resource "local_file" "demo":
+│    1: resource "local_file" "demo" {
+│ 
+│ "source": only one of `content,content_base64,sensitive_content,source` can be specified, but
+│ `content,sensitive_content` were specified.
+╵
+╷
+│ Error: Invalid combination of arguments
+│ 
+│   with local_file.demo,
+│   on local.tf line 3, in resource "local_file" "demo":
+│    3:     content = "This is a demo of local provider"
+│ 
+│ "content": only one of `content,content_base64,sensitive_content,source` can be specified, but
+│ `content,sensitive_content` were specified.
+╵
+╷
+│ Error: Invalid combination of arguments
+│ 
+│   with local_file.demo,
+│   on local.tf line 5, in resource "local_file" "demo":
+│    5:     sensitive_content = "Another demo"
+│ 
+│ "sensitive_content": only one of `content,content_base64,sensitive_content,source` can be specified, but
+│ `content,sensitive_content` were specified.
+╵
+(base) pradeep:~$
+```
+
+```sh
+(base) pradeep:~$cat local.tf 
+resource "local_file" "demo" {
+    filename = "/Users/pradeep/learn-terraform"
+    file_permission = "0700"
+    sensitive_content = "Another demo"
+}
+(base) pradeep:~$
+```
+
+```sh
+(base) pradeep:~$terraform plan
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated
+with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # local_file.demo will be created
+  + resource "local_file" "demo" {
+      + directory_permission = "0777"
+      + file_permission      = "0700"
+      + filename             = "/Users/pradeep/learn-terraform"
+      + id                   = (known after apply)
+      + sensitive_content    = (sensitive value)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+╷
+│ Warning: Argument is deprecated
+│ 
+│   with local_file.demo,
+│   on local.tf line 4, in resource "local_file" "demo":
+│    4:     sensitive_content = "Another demo"
+│ 
+│ Use the `local_sensitive_file` resource instead.
+│ 
+│ (and one more similar warning elsewhere)
+╵
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions
+if you run "terraform apply" now.
+(base) pradeep:~$
+```
+```sh
+(base) pradeep:~$terraform apply
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated
+with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # local_file.demo will be created
+  + resource "local_file" "demo" {
+      + directory_permission = "0777"
+      + file_permission      = "0700"
+      + filename             = "/Users/pradeep/learn-terraform"
+      + id                   = (known after apply)
+      + sensitive_content    = (sensitive value)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+╷
+│ Warning: Argument is deprecated
+│ 
+│   with local_file.demo,
+│   on local.tf line 4, in resource "local_file" "demo":
+│    4:     sensitive_content = "Another demo"
+│ 
+│ Use the `local_sensitive_file` resource instead.
+│ 
+│ (and one more similar warning elsewhere)
+╵
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+local_file.demo: Creating...
+local_file.demo: Creation complete after 0s [id=2beb569b8980210262aae09cb1eefb25de810d0a]
+╷
+│ Warning: Argument is deprecated
+│ 
+│   with local_file.demo,
+│   on local.tf line 4, in resource "local_file" "demo":
+│    4:     sensitive_content = "Another demo"
+│ 
+│ Use the `local_sensitive_file` resource instead.
+╵
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+(base) pradeep:~$
+```
+
+```sh
+(base) pradeep:~$cat /Users/pradeep/learn-terraform
+Another demo%                                                             (base) pradeep:~$
+```
