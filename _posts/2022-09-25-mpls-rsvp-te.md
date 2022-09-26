@@ -46,16 +46,14 @@ root@juniper# set protocols ospf traffic-engineering
 ```
 
 ```sh
+root@Juniper> show ospf database opaque-area
+```
+
+```sh
 root@Juniper> show isis database <routername> extensive 
 ```
 
 TE information is extracted from OSPF/IS-IS and reformatted for consistency, and placed into Traffic Engineering Database (TED).
-
-```sh
-root@Juniper> show ospf database opaque-area
-```
-
-
 
 The TED on each router is almost identical. 
 
