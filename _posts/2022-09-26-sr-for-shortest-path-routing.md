@@ -74,5 +74,5 @@ root@juniper# set protocols isis source-packet-routing srgb index-range <value>
 
 Here is short demo of SR from Juniper Learning Bytes.
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=HXs6keKpkK0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HXs6keKpkK0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
