@@ -10,7 +10,7 @@ classes: wide
 header:
   teaser: /assets/images/gcp.png
 author:
-  name     : "Google"
+  name     : "Google Cloud Platform"
   avatar   : "/assets/images/gcp.png"
 
 sidebar:
@@ -83,7 +83,7 @@ Google Cloud Virtual Private Cloud (VPC) provides networking functionality to Co
 
 You can think of a VPC network as similar to a physical network, except that it is virtualized within Google Cloud. A VPC network is a global resource that consists of a list of regional virtual subnetworks (subnets) in data centers, all connected by a global wide area network (WAN). VPC networks are logically isolated from each other in Google Cloud.
 
- Create an auto mode VPC network with firewall rules and two VM instances. Then, you explore the connectivity for the VM instances.
+
 
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-4.png)
 
@@ -115,7 +115,7 @@ The **Internal IP** should be 10.164.0.2 because 10.164.0.1 is reserved for the 
 
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-10.png)
 
-The **External IP addresses** for both VM instances are ephemeral. If an instance is stopped, any ephemeral external IP addresses assigned to the instance are released back into the general Compute Engine pool and become available for use by other projects. When a stopped instance is started again, a new ephemeral external IP address is assigned to the instance.
+The **External IP addresses** for VM instances are ephemeral. If an instance is stopped, any ephemeral external IP addresses assigned to the instance are released back into the general Compute Engine pool and become available for use by other projects. When a stopped instance is started again, a new ephemeral external IP address is assigned to the instance.
 
 
 
@@ -235,3 +235,65 @@ In this lab, we explored the default network along with its subnets, routes, and
 
 
 
+## Storage in the Cloud
+
+- Google Cloud storage options
+
+- Cloud Storage
+
+- Storae classes and data transfer
+
+- Cloud SQL
+
+- Cloud Spanner
+
+- Firestore
+
+- Cloud Bigtable
+
+- Compare storage options 
+
+- Getting started with Cloud Storage and Cloud SQL Lab
+
+  
+
+## Containers in the Cloud
+
+- Introduction to containers
+- Kubernetes
+- Google Kubernetes Engine
+- Hybrid and multi-cloud
+- Anthos
+- Getting Started with GKE Lab
+
+## Applications in the Cloud
+
+- App Engine
+- App Engine evrionments
+- Google Cloud API management tool
+- Cloud Run
+- Hello Cloud Run Lab
+
+## Developing and Deploying the Cloud
+
+- Development in the cloud
+- Infrastructure as Code
+- Terraform Lab
+
+## Logging and Monitoring in the Cloud
+
+- Importance of monitoring
+
+- Measuring performance and reliability
+
+- SLI, SLO, and SLA
+
+- Integrated observability tools
+
+- Monitoring tools
+
+- Logging tools
+
+- Error reporting and debugging tools
+
+  
