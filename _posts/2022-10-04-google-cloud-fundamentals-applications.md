@@ -60,7 +60,7 @@ It takes a few moments to provision and connect to the environment. When you are
 
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-41.png)
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-42.png)
+
 
 `gcloud` is the command-line tool for Google Cloud. It comes pre-installed on Cloud Shell and supports tab-completion.
 
@@ -327,7 +327,9 @@ student_01_da96e1e7e410@cloudshell:~/helloworld (qwiklabs-gcp-01-fe91867477e4)$
 
 In the Cloud Shell window, click on **Web preview** and select **Preview on port 8080**.
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-43.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-42.png)
+
+
 
 
 
@@ -365,6 +367,8 @@ student_01_da96e1e7e410@cloudshell:~/helloworld (qwiklabs-gcp-01-fe91867477e4)$
 ```
 
 You can now visit your deployed container by opening the service URL in any browser window.
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-43.png)
 
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-44.png)
 

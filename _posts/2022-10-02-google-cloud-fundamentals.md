@@ -74,12 +74,6 @@ student-04-1c4e6cf5917c@lampstack-1-vm:/opt/bitnami$
 
 
 
-## Developing and Deploying the Cloud
-
-- Development in the cloud
-- Infrastructure as Code
-- Terraform Lab
-
 ## Logging and Monitoring in the Cloud
 
 - Importance of monitoring
