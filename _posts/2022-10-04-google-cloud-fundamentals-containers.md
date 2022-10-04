@@ -2,7 +2,7 @@
 
 layout: single
 title:  "Getting Started with Google Cloud—Containers"
-date:   2022-10-02 10:59:04 +0530
+date:   2022-10-04 7:59:04 +0530
 categories: Cloud
 tags: GCP
 show_date: true

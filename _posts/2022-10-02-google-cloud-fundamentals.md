@@ -74,16 +74,6 @@ student-04-1c4e6cf5917c@lampstack-1-vm:/opt/bitnami$
 
 
 
-
-
-## Applications in the Cloud
-
-- App Engine
-- App Engine evrionments
-- Google Cloud API management tool
-- Cloud Run
-- Hello Cloud Run Lab
-
 ## Developing and Deploying the Cloud
 
 - Development in the cloud
