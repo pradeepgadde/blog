@@ -682,6 +682,10 @@ student_01_44f6d6297b5c@cloudshell:~ (qwiklabs-gcp-02-bffac160bdef)$
 
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-48.png)
 
+Image Courtesy : GCP Labs/Networking in Google Cloud: Defining and Implementing Networks
+
+
+
 There are three instances in `us-central1-c` and one instance in `europe-west1-c`. However, these instances are spread across three VPC networks (`managementnet`, `mynetwork`, and `privatene`t), with no instance in the same zone and network as another. In the next task, you explore the effect this has on internal connectivity.
 
 >mynet-us-vm

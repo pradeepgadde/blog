@@ -18,10 +18,10 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: NetDevOps
+title: CloudNetDevOps
 subtitle:  Notes by Pradeep Gadde
 email: gaddepradeep@gmail.com
-description: "Pradeep Gadde | NetDevOps Engineer + Tech Educator"
+description: "Pradeep Gadde | CloudNetDevOps Engineer + Tech Educator"
  
 baseurl: "/blog" # the subpath of your site, e.g. /blog
 url: "https://pradeepgadde.com" # the base hostname & protocol for your site, e.g. http://example.com

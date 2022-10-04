@@ -33,6 +33,649 @@ Creating a VPC without selecting any of the default firewall rules
 gcloud compute networks create mynetwork --project=qwiklabs-gcp-02-24d285a2c4db --subnet-mode=auto --mtu=1460 --bgp-routing-mode=regional
 ```
 
+```sh
+Welcome to Cloud Shell! Type "help" to get started.
+Your Cloud Platform project in this session is set to qwiklabs-gcp-00-dbb9bd775ddb.
+Use “gcloud config set project [PROJECT_ID]” to change to a different project.
+student_02_9bcbe9228694@cloudshell:~ (qwiklabs-gcp-00-dbb9bd775ddb)$ gcloud compute zones list
+NAME: us-east1-b
+REGION: us-east1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-east1-c
+REGION: us-east1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-east1-d
+REGION: us-east1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-east4-c
+REGION: us-east4
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-east4-b
+REGION: us-east4
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-east4-a
+REGION: us-east4
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-central1-c
+REGION: us-central1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-central1-a
+REGION: us-central1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-central1-f
+REGION: us-central1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-central1-b
+REGION: us-central1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-west1-b
+REGION: us-west1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-west1-c
+REGION: us-west1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-west1-a
+REGION: us-west1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west4-a
+REGION: europe-west4
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west4-b
+REGION: europe-west4
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west4-c
+REGION: europe-west4
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west1-b
+REGION: europe-west1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west1-d
+REGION: europe-west1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west1-c
+REGION: europe-west1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west3-c
+REGION: europe-west3
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west3-a
+REGION: europe-west3
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west3-b
+REGION: europe-west3
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west2-c
+REGION: europe-west2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west2-b
+REGION: europe-west2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west2-a
+REGION: europe-west2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-east1-b
+REGION: asia-east1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-east1-a
+REGION: asia-east1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-east1-c
+REGION: asia-east1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-southeast1-b
+REGION: asia-southeast1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-southeast1-a
+REGION: asia-southeast1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-southeast1-c
+REGION: asia-southeast1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-northeast1-b
+REGION: asia-northeast1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-northeast1-c
+REGION: asia-northeast1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-northeast1-a
+REGION: asia-northeast1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-south1-c
+REGION: asia-south1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-south1-b
+REGION: asia-south1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-south1-a
+REGION: asia-south1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: australia-southeast1-b
+REGION: australia-southeast1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: australia-southeast1-c
+REGION: australia-southeast1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: australia-southeast1-a
+REGION: australia-southeast1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: southamerica-east1-b
+REGION: southamerica-east1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: southamerica-east1-c
+REGION: southamerica-east1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: southamerica-east1-a
+REGION: southamerica-east1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-east2-a
+REGION: asia-east2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-east2-b
+REGION: asia-east2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-east2-c
+REGION: asia-east2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-northeast2-a
+REGION: asia-northeast2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-northeast2-b
+REGION: asia-northeast2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-northeast2-c
+REGION: asia-northeast2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-northeast3-a
+REGION: asia-northeast3
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-northeast3-b
+REGION: asia-northeast3
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-northeast3-c
+REGION: asia-northeast3
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-south2-a
+REGION: asia-south2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-south2-b
+REGION: asia-south2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-south2-c
+REGION: asia-south2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-southeast2-a
+REGION: asia-southeast2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-southeast2-b
+REGION: asia-southeast2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: asia-southeast2-c
+REGION: asia-southeast2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: australia-southeast2-a
+REGION: australia-southeast2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: australia-southeast2-b
+REGION: australia-southeast2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: australia-southeast2-c
+REGION: australia-southeast2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-central2-a
+REGION: europe-central2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-central2-b
+REGION: europe-central2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-central2-c
+REGION: europe-central2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-north1-a
+REGION: europe-north1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-north1-b
+REGION: europe-north1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-north1-c
+REGION: europe-north1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-southwest1-a
+REGION: europe-southwest1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-southwest1-b
+REGION: europe-southwest1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-southwest1-c
+REGION: europe-southwest1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west6-a
+REGION: europe-west6
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west6-b
+REGION: europe-west6
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west6-c
+REGION: europe-west6
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west8-a
+REGION: europe-west8
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west8-b
+REGION: europe-west8
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west8-c
+REGION: europe-west8
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west9-a
+REGION: europe-west9
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west9-b
+REGION: europe-west9
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: europe-west9-c
+REGION: europe-west9
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: me-west1-a
+REGION: me-west1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: me-west1-b
+REGION: me-west1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: me-west1-c
+REGION: me-west1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: northamerica-northeast1-a
+REGION: northamerica-northeast1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: northamerica-northeast1-b
+REGION: northamerica-northeast1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: northamerica-northeast1-c
+REGION: northamerica-northeast1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: northamerica-northeast2-a
+REGION: northamerica-northeast2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: northamerica-northeast2-b
+REGION: northamerica-northeast2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: northamerica-northeast2-c
+REGION: northamerica-northeast2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: southamerica-west1-a
+REGION: southamerica-west1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: southamerica-west1-b
+REGION: southamerica-west1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: southamerica-west1-c
+REGION: southamerica-west1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-east5-a
+REGION: us-east5
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-east5-b
+REGION: us-east5
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-east5-c
+REGION: us-east5
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-south1-a
+REGION: us-south1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-south1-b
+REGION: us-south1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-south1-c
+REGION: us-south1
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-west2-a
+REGION: us-west2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-west2-b
+REGION: us-west2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-west2-c
+REGION: us-west2
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-west3-a
+REGION: us-west3
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-west3-b
+REGION: us-west3
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-west3-c
+REGION: us-west3
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-west4-a
+REGION: us-west4
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-west4-b
+REGION: us-west4
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+
+NAME: us-west4-c
+REGION: us-west4
+STATUS: UP
+NEXT_MAINTENANCE:
+TURNDOWN_DATE:
+student_02_9bcbe9228694@cloudshell:~ (qwiklabs-gcp-00-dbb9bd775ddb)$
+```
+
 Creating a VM in the US region
 
 ```sh
