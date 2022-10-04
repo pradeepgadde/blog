@@ -74,14 +74,7 @@ student-04-1c4e6cf5917c@lampstack-1-vm:/opt/bitnami$
 
 
 
-## Containers in the Cloud
 
-- Introduction to containers
-- Kubernetes
-- Google Kubernetes Engine
-- Hybrid and multi-cloud
-- Anthos
-- Getting Started with GKE Lab
 
 ## Applications in the Cloud
 
