@@ -5,6 +5,9 @@ layout: posts-monthly
 author_profile: true
 classes: wide
 entries_layout: grid
+sidebar:
+  - title: "Topics"
+    nav: my-sidebar
 author:
   name     : "Pradeep"
   avatar   : "/assets/images/bio.jpg"
@@ -20,7 +23,4 @@ author:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/junivator"
-sidebar:
-  - title: "Topics"
-    nav: my-sidebar
 ---
