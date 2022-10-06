@@ -10,20 +10,17 @@ main:
   - title: "Tags"
     url: /tags/
 my-sidebar:
+  - title: "Automation"
+    url: https://pradeepgadde.com/blog/categories/Automation
+
+  - title: "Cloud"
+    url: https://pradeepgadde.com/blog/categories/Cloud   
+
   - title: "Kubernetes"
     url: https://pradeepgadde.com/blog/categories/Kubernetes
     
-  - title: "OpenShift"
-    url: https://pradeepgadde.com/blog/categories/OpenShift
-     
-  - title: "Automation"
-    url: https://pradeepgadde.com/blog/categories/Automation
-     
   - title: "Networking"
     url: https://pradeepgadde.com/blog/categories/Networking
 
   - title: "Programming"
     url: https://pradeepgadde.com/blog/categories/Programming    
-  
-  - title: "Cloud"
-    url: https://pradeepgadde.com/blog/categories/Cloud   
