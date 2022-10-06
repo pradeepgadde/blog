@@ -2,7 +2,7 @@
 
 layout: single
 title:  "GCP—Configuring an Internal Load Balancer"
-date:   2022-10-06 11:59:04 +0530
+date:   2022-10-06 03:59:04 +0530
 categories: Cloud
 tags: GCP
 show_date: true
