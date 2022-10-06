@@ -22,8 +22,6 @@ author:
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/junivator"
 sidebar:
-  - title: "Blog"
-   
-    text: "Checkout other topics"
+  - title: "Topics"
     nav: my-sidebar
 ---

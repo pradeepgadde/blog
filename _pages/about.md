@@ -22,9 +22,7 @@ author:
 
 classes: wide
 sidebar:
-  - title: "Blog"
-   
-    text: "Checkout other topics"
+  - title: "Topics"
     nav: my-sidebar
 ---
 
