@@ -39,7 +39,7 @@ In this task, you create two VM instances and define their network service tier 
 Create the Premium Tier VM
 Create a VM instance using the Premium service tier, which is the default.
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-99.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-100.png)
 
 ```sh
 gcloud compute instances create vm-premium --project=qwiklabs-gcp-02-fcdded3b3476 --zone=us-central1-c --machine-type=n1-standard-1 --network-interface=network-tier=PREMIUM,subnet=default --metadata=enable-oslogin=true --maintenance-policy=MIGRATE --provisioning-model=STANDARD --service-account=457883812419-compute@developer.gserviceaccount.com --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append --create-disk=auto-delete=yes,boot=yes,device-name=vm-premium,image=projects/debian-cloud/global/images/debian-11-bullseye-v20220920,mode=rw,size=10,type=projects/qwiklabs-gcp-02-fcdded3b3476/zones/us-central1-c/diskTypes/pd-balanced --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --reservation-affinity=any
@@ -48,7 +48,7 @@ gcloud compute instances create vm-premium --project=qwiklabs-gcp-02-fcdded3b347
 Create the Standard Tier VM
 Create a VM instance of the same machine type and in the same zone but use the Standard service tier.
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-100.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-101.png)
 
 ```sh
 gcloud compute instances create vm-standard --project=qwiklabs-gcp-02-fcdded3b3476 --zone=us-central1-c --machine-type=n1-standard-1 --network-interface=network-tier=STANDARD,subnet=default --metadata=enable-oslogin=true --maintenance-policy=MIGRATE --provisioning-model=STANDARD --service-account=457883812419-compute@developer.gserviceaccount.com --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append --create-disk=auto-delete=yes,boot=yes,device-name=vm-standard,image=projects/debian-cloud/global/images/debian-11-bullseye-v20220920,mode=rw,size=10,type=projects/qwiklabs-gcp-02-fcdded3b3476/zones/us-central1-c/diskTypes/pd-balanced --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --reservation-affinity=any
@@ -58,7 +58,7 @@ Both VM instances have the same machine type, zone, and VPC network. The only di
 
 
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-101.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-102.png)
 
 
 
@@ -130,6 +130,8 @@ Explore the network path for each VM instance
 Explore the network path between a third-party service in Europe and your VM instances in us-central1-c using traceroute. Traceroute shows all Layer 3 (routing layer) hops between hosts; therefore, it can illustrate a network path between hosts.
 
 >Premium
+
+
 ```sh
 traceroute to 104.154.31.108 (104.154.31.108), 30 hops max, 60 byte packets
 
@@ -163,6 +165,8 @@ No reply for 5 hops. Assuming we reached firewall.
 ```
 
 >Standard
+
+
 
 ```sh
 traceroute to 35.208.0.178 (35.208.0.178), 30 hops max, 60 byte packets
