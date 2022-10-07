@@ -4,35 +4,49 @@ permalink: /
 hidden: true
 header:
   overlay_color: "#5e616c"
-  overlay_image: /assets/images/junos.png
+  overlay_image: /assets/images/blog-header.png
   actions:
    - label: "Connect"
      url: "https://pradeepgadde.com/"
 excerpt: >
-  Hello! Welcome to my Notes!<br />
+  Hello! Welcome to my Notes on various CloudNetDevOps topics!<br />
 #  <small><a href="https://github.com/mmistakes/minimal-mistakes/releases/tag/4.24.0">Latest release v4.24.0</a></small>
 feature_row:
+  - image_path: /assets/images/automation.png
+    alt: "Automation"
+    title: "Automation"
+    excerpt: "Automation tools help to automate provisioning/configuration, troubleshooting, operations/maintenance, validation and reporting of infrastructure components."
+    url: "https://pradeepgadde.com/blog/categories/Automation/"
+    btn_class: "btn--primary"
+    btn_label: "Automation"
+  - image_path: /assets/images/cloud.png
+    alt: "Cloud"
+    title: "Cloud"
+    excerpt: "Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that can be rapidly provisioned and released with minimal management effort or service provider interaction."
+    url: "https://pradeepgadde.com/blog/categories/Cloud/"
+    btn_class: "btn--primary"
+    btn_label: "Cloud"
   - image_path: /assets/images/kubernetes.png
-    alt: "wireless"
-    title: "On the air"
-    excerpt: "Wireless networks link devices via radio waves, but how they function is a mystery"
-    url: "https://pradeepgadde.com/blog/Kubernetes"
+    alt: "Kubernetes"
+    title: "Kubernetes"
+    excerpt: "Kubernetes, also known as K8s, is an open-source system for automating deployment, scaling, and management of containerized applications."
+    url: "https://pradeepgadde.com/blog/categories/Kubernetes/"
     btn_class: "btn--primary"
-    btn_label: "Wireless"
-  - image_path: /assets/images/junos.png
-    alt: "wire"
-    title: "Cast through the cord"
-    excerpt: "Ethernet cables are used to send data from one device to another or across the Internet"
-    url: "https://learningextreme.com/wire"
+    btn_label: "Kubernetes"        
+  - image_path: /assets/images/networking.png
+    alt: "Networking"
+    title: "Networking"
+    excerpt: "A computer network is a set of computers sharing resources located on or provided by network nodes. The computers use common communication protocols over digital interconnections to communicate with each other. These interconnections are made up of telecommunication network technologies, based on physically wired, optical, and wireless radio-frequency methods that may be arranged in a variety of network topologies. "
+    url: "https://pradeepgadde.com/blog/categories/Networking/"
     btn_class: "btn--primary"
-    btn_label: "Wire"
-  - image_path: /assets/images/junos.png
-    alt: "wan"
-    title: "Faraway access"
-    excerpt: "Communication and access between a variety of networks is available, and security is a must"
-    url: "https://learningextreme.com/wan"
+    btn_label: "Networking"     
+  - image_path: /assets/images/programming.png
+    alt: "Programming"
+    title: "Programming"
+    excerpt: "A computer network is a set of computers sharing resources located on or provided by network nodes. The computers use common communication protocols over digital interconnections to communicate with each other. These interconnections are made up of telecommunication network technologies, based on physically wired, optical, and wireless radio-frequency methods that may be arranged in a variety of network topologies. "
+    url: "https://pradeepgadde.com/blog/categories/Programming/"
     btn_class: "btn--primary"
-    btn_label: "WAN"        
+    btn_label: "Programming"       
 ---
 
 {% include feature_row %}
