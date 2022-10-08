@@ -41,8 +41,6 @@ Three VM instances have been created for you that you will monitor.
 Create a Monitoring workspace
 You will now setup a Monitoring workspace that's tied to your Google Cloud Project. The following steps create a new account that has a free trial of Monitoring.
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-111.png)
-
 ## Task 2. Custom dashboards
 Create a dashboard
 
@@ -52,15 +50,16 @@ The Metrics Explorer allows you to examine resources and metrics without having 
 
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-113.png)
 
-## Task 3. Alerting policies
-Create an alert and add the first condition
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-114.png)
 
-## Task 4. Resource groups
-
+## Task 3. Alerting policies
+Create an alert and add the first condition
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-115.png)
 
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-116.png)
+
+## Task 4. Resource groups
+
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-117.png)
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-118.png)
 
