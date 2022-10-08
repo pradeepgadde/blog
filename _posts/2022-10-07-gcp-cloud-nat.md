@@ -58,7 +58,7 @@ gcloud compute instances create vm-internal --project=qwiklabs-gcp-01-9d92c04e98
 >The default setting for a VM instance is to have an ephemeral external IP address. This behavior can be changed with a policy constraint at the organization or project level. 
 
 
-
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-103.png)
 
 
 ### SSH to vm-internal to test the IAP tunnel
@@ -208,6 +208,9 @@ This should not work: **vm-internal** can only send traffic within the VPC netwo
 Press **Ctrl+Z** to stop the request.
 
 
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-104.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-105.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-106.png)
 
 ### Enable Private Google Access
 
@@ -249,6 +252,10 @@ Cloud NAT is a regional resource. You can configure it to allow traffic from all
 
 
 The NAT mapping section allows you to choose the subnets to map to the NAT gateway. You can also manually assign static IP addresses that should be used when performing NAT. Do not change the NAT mapping configuration in this lab.
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-107.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-108.png)
+
 
 Verify the Cloud NAT gateway
 It may take up to 3 minutes for the NAT configuration to propagate to the VM, so wait at least a minute before trying to access the internet again.
@@ -323,7 +330,7 @@ Hit:7 http://deb.debian.org/debian buster-backports InRelease
 Reading package lists... Done
 student-01-e3c2b9ab4419@vm-internal:~$
 ```
-
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-109.png)
 ## Task 5. Review
 You created vm-internal, an instance with no external IP address, and connected to it securely using an IAP tunnel. Then you enabled Private Google Access, configured a NAT gateway, and verified that vm-internal can access Google APIs and services and other public IP addresses.
 
