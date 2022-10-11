@@ -21,6 +21,8 @@ sidebar:
 
 # OpenStack Overview
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/openstack-overview.png)
-![]({{ site.url }}{{ site.baseurl }}/assets/images/openstack-map.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/openstack-overview.png) 
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/openstack-map.png) 
+
 Image Courtesy: Openstack.org
