@@ -9,8 +9,8 @@ classes: wide
 header:
   teaser: /assets/images/junos.png
 header:
-  overlay_image: /assets/images/networking-getty-4.jpg
-  og_image: /assets/images/networking-getty-4.jpg
+  overlay_image: /assets/images/networking-getty.jpg
+  og_image: /assets/images/networking-getty.jpg
   teaser: /assets/images/junos.png
 
 author:
@@ -18,9 +18,7 @@ author:
   avatar   : "/assets/images/junos.png"
 
 sidebar:
-  - title: "Blog"
-   
-    text: "Checkout other topics"
+  - title: "Topics"
     nav: my-sidebar
 
 ---
