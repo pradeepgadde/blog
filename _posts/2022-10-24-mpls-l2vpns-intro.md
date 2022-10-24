@@ -8,8 +8,8 @@ tags: MPLS
 show_date: true
 classes: wide
 header:
-  overlay_image: /assets/images/networking-getty.jpg
-  og_image: /assets/images/networking-getty.jpg
+  overlay_image: /assets/images/networking-getty-2.jpg
+  og_image: /assets/images/networking-getty-2.jpg
   teaser: /assets/images/junos.png
 
 author:
@@ -27,7 +27,7 @@ sidebar:
 While working on MPLS L2VPNs, these are the topics that we need to be familiar with:
 
 Different flavors of Layer 2 VPN
-1. **L2VPN (BGP-Signalled Pseudowires), Uppercase `L`**
+1. **L2VPN (BGP-Signalled Pseudowires)**
 - L2VPN Configuration and Troubleshooting
 - Site IDs
 - Label Base
@@ -37,7 +37,7 @@ Different flavors of Layer 2 VPN
 - Traffic Policing
 - Out-of-band route reflection
 
-2. **L2Circuit (LDP singalled Pseudowires), Lowercase `l`**
+2. **L2Circuit (LDP singalled Pseudowires)**
 
 3. **FEC 129 Psedowires**
 4. **Virtual Private LAN Service (VPLS)**
