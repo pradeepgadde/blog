@@ -58,6 +58,20 @@ we need to specify `l2vpn-id` with a value like `l2vpn-id:64512:456` (AGI)
 
 and within the site, `source-attachment-identifier` (SAII) and `target-attachment-identifier` (TAII) needs to be specified.
 
+
+
+```sh
+set routing-instances <name> instance-type l2vpn
+set routing-instances <name> interface <name>
+set routing-instances <name> route-distinguisher 192.168.1.1:123
+set routing-instances <name> l2vpn-id l2vpn-id:64512:456
+set routing-instances <name> vrf-target target:64512:456
+set routing-instances <name> protocols l2vpn site <name> source-attachment-identifier X
+set routing-instances <name> protocols l2vpn site <name> interface <name> target-attachment-identifier Y
+```
+
+
+
 in `bgp.l2vpn.0`table we find entries in this format : route distinguisher + SAII 
 
 `192.168.1.1:123:0.0.0.1/96`
