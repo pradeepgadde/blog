@@ -48,7 +48,7 @@ FEC 129 is advantageous in inter-AS VPNs
 ```sh
 set protocols bgp group <group-name> type internal
 set protocols bgp group <group-name> local-address Y.Y.Y.Y
-set protocols bgp group <group-name> family l2vpn auto-discover-only
+set protocols bgp group <group-name> family l2vpn auto-discovery-only
 set protocols bgp group <group-name> neighbor X.X.X.X (Route Reflector IP)
 ```
 
