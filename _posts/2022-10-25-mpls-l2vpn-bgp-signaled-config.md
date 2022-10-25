@@ -31,7 +31,7 @@ sidebar:
 
 ```sh
 [edit]
-lab@Student-MX1:CE1-1# show interfaces 
+pradeep@MX1:CE1-1# show interfaces 
 ge-0/0/2 {
     unit 610 {
         vlan-id 610;
@@ -49,13 +49,13 @@ lo0 {
 }
 
 [edit]
-lab@Student-MX1:CE1-1# 
+pradeep@MX1:CE1-1# 
 
 ```
 
 ```sh
 [edit]
-lab@Student-MX1:CE1-1# show routing-options 
+pradeep@MX1:CE1-1# show routing-options 
 autonomous-system 65101;
 static {
     route 10.1.1.0/24 receive;
@@ -65,12 +65,12 @@ static {
 }
 
 [edit]
-lab@Student-MX1:CE1-1# 
+pradeep@MX1:CE1-1# 
 ```
 
 ```sh
 [edit]
-lab@Student-MX1:CE1-1# show routing-options 
+pradeep@MX1:CE1-1# show routing-options 
 autonomous-system 65101;
 static {
     route 10.1.1.0/24 receive;
@@ -80,12 +80,12 @@ static {
 }
 
 [edit]
-lab@Student-MX1:CE1-1# 
+pradeep@MX1:CE1-1# 
 ```
 
 ```sh
 [edit]
-lab@Student-MX1:CE1-1# show protocols 
+pradeep@MX1:CE1-1# show protocols 
 ospf {
     area 0.0.0.0 {
         interface ge-0/0/2.610;
@@ -95,7 +95,7 @@ ospf {
 }
 
 [edit]
-lab@Student-MX1:CE1-1# 
+pradeep@MX1:CE1-1# 
 
 ```
 
@@ -103,7 +103,7 @@ lab@Student-MX1:CE1-1#
 
 ```sh
 [edit]
-lab@Student-MX2:CE1-2# show interfaces 
+pradeep@MX2:CE1-2# show interfaces 
 ge-0/0/1 {
     unit 610 {
         vlan-id 610;
@@ -121,12 +121,12 @@ lo0 {
 }
 
 [edit]
-lab@Student-MX2:CE1-2# 
+pradeep@MX2:CE1-2# 
 ```
 
 ```sh
 [edit]
-lab@Student-MX2:CE1-2# show routing-options            
+pradeep@MX2:CE1-2# show routing-options            
 autonomous-system 65101;
 static {
     route 10.1.4.0/24 receive;
@@ -136,12 +136,12 @@ static {
 }
 
 [edit]
-lab@Student-MX2:CE1-2# 
+pradeep@MX2:CE1-2# 
 ```
 
 ```sh
 [edit]
-lab@Student-MX2:CE1-2# show policy-options 
+pradeep@MX2:CE1-2# show policy-options 
 policy-statement export-policy {
     term static {
         from protocol static;
@@ -160,12 +160,12 @@ policy-statement statics {
 }
 
 [edit]
-lab@Student-MX2:CE1-2# 
+pradeep@MX2:CE1-2# 
 ```
 
 ```sh
 [edit]
-lab@Student-MX2:CE1-2# show protocols 
+pradeep@MX2:CE1-2# show protocols 
 ospf {
     area 0.0.0.0 {
         interface ge-0/0/1.610;
@@ -175,14 +175,14 @@ ospf {
 }
 
 [edit]
-lab@Student-MX2:CE1-2# 
+pradeep@MX2:CE1-2# 
 
 ```
 
 ## PE1
 
 ```sh
-lab@Student-MX1:PE-1> show configuration 
+pradeep@MX1:PE-1> show configuration 
 interfaces {
     ge-0/0/0 {
         unit 0 {
@@ -266,14 +266,14 @@ routing-options {
     autonomous-system 65512;            
 }                                       
                                         
-lab@Student-MX1:PE-1>
+pradeep@MX1:PE-1>
 
 ```
 
 ## PE-2
 
 ```sh
-lab@Student-MX2:PE-2> show configuration 
+pradeep@MX2:PE-2> show configuration 
 interfaces {
     ge-0/0/2 {
         unit 0 {
@@ -357,7 +357,7 @@ routing-options {
     autonomous-system 65512;
 }
 
-lab@Student-MX2:PE-2> 
+pradeep@MX2:PE-2> 
 
 ```
 
@@ -366,7 +366,7 @@ lab@Student-MX2:PE-2>
 ## PE-1 Verification
 
 ```sh
-lab@Student-MX1:PE-1> show bgp summary 
+pradeep@MX1:PE-1> show bgp summary 
 Threading mode: BGP I/O
 Default eBGP mode: advertise - accept, receive - accept
 Groups: 1 Peers: 1 Down peers: 0
@@ -381,11 +381,11 @@ Peer                     AS      InPkt     OutPkt    OutQ   Flaps Last Up/Dwn St
   bgp.l2vpn.0: 1/1/1/0
   vpn-a.l2vpn.0: 1/1/1/0
 
-lab@Student-MX1:PE-1> 
+pradeep@MX1:PE-1> 
 ```
 
 ```sh
-lab@Student-MX1:PE-1> show l2vpn connections 
+pradeep@MX1:PE-1> show l2vpn connections 
 Layer-2 VPN connections:
 
 Legend for connection status (St)   
@@ -422,11 +422,11 @@ Edge protection: Not-Primary
       Local interface: ge-0/0/4.610, Status: Up, Encapsulation: VLAN
       Flow Label Transmit: No, Flow Label Receive: No
 
-lab@Student-MX1:PE-1> 
+pradeep@MX1:PE-1> 
 ```
 
 ```sh
-lab@Student-MX1:PE-1> show route table bgp.l2vpn.0 
+pradeep@MX1:PE-1> show route table bgp.l2vpn.0 
 
 bgp.l2vpn.0: 1 destinations, 1 routes (1 active, 0 holddown, 0 hidden)
 + = Active Route, - = Last Active, * = Both
@@ -437,7 +437,7 @@ bgp.l2vpn.0: 1 destinations, 1 routes (1 active, 0 holddown, 0 hidden)
                     >  to 172.17.23.2 via ge-0/0/0.0, Push 30
                        to 172.17.23.6 via ge-0/0/1.0, Push 31
 
-lab@Student-MX1:PE-1> 
+pradeep@MX1:PE-1> 
 ```
 
 ```sh
@@ -453,13 +453,13 @@ vpn-a.l2vpn.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidden)
                     >  to 172.17.23.2 via ge-0/0/0.0, Push 30
                        to 172.17.23.6 via ge-0/0/1.0, Push 31
 
-lab@Student-MX1:PE-1> 
+pradeep@MX1:PE-1> 
 ```
 
 ## PE-2 Verification
 
 ```sh
-lab@Student-MX2:PE-2> show bgp summary 
+pradeep@MX2:PE-2> show bgp summary 
 Threading mode: BGP I/O
 Default eBGP mode: advertise - accept, receive - accept
 Groups: 1 Peers: 1 Down peers: 0
@@ -474,11 +474,11 @@ Peer                     AS      InPkt     OutPkt    OutQ   Flaps Last Up/Dwn St
   bgp.l2vpn.0: 1/1/1/0
   vpn-a.l2vpn.0: 1/1/1/0
 
-lab@Student-MX2:PE-2> 
+pradeep@MX2:PE-2> 
 ```
 
 ```sh
-lab@Student-MX2:PE-2> show route table bgp.l2vpn.0 
+pradeep@MX2:PE-2> show route table bgp.l2vpn.0 
 
 bgp.l2vpn.0: 1 destinations, 1 routes (1 active, 0 holddown, 0 hidden)
 + = Active Route, - = Last Active, * = Both
@@ -489,11 +489,11 @@ bgp.l2vpn.0: 1 destinations, 1 routes (1 active, 0 holddown, 0 hidden)
                     >  to 172.17.23.25 via ge-0/0/2.0, Push 35
                        to 172.17.23.29 via ge-0/0/3.0, Push 34
 
-lab@Student-MX2:PE-2>
+pradeep@MX2:PE-2>
 ```
 
 ```sh
-lab@Student-MX2:PE-2> show route table vpn-a.l2vpn.0 
+pradeep@MX2:PE-2> show route table vpn-a.l2vpn.0 
 
 vpn-a.l2vpn.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidden)
 + = Active Route, - = Last Active, * = Both
@@ -507,11 +507,11 @@ vpn-a.l2vpn.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidden)
                    *[L2VPN/170/-101] 00:23:59, metric2 1
                        Indirect
 
-lab@Student-MX2:PE-2> 
+pradeep@MX2:PE-2> 
 ```
 
 ```sh
-lab@Student-MX2:PE-2> show l2vpn connections 
+pradeep@MX2:PE-2> show l2vpn connections 
 Layer-2 VPN connections:
 
 Legend for connection status (St)   
@@ -548,19 +548,19 @@ Edge protection: Not-Primary
       Local interface: ge-0/0/6.610, Status: Up, Encapsulation: VLAN
       Flow Label Transmit: No, Flow Label Receive: No
                                         
-lab@Student-MX2:PE-2> 
+pradeep@MX2:PE-2> 
 ```
 
 ## CE1-1 Verification
 
 ```sh
-lab@Student-MX1:CE1-1> show ospf neighbor 
+pradeep@MX1:CE1-1> show ospf neighbor 
 Address          Interface              State           ID               Pri  Dead
 10.1.0.2         ge-0/0/2.610           Full            10.1.20.2        128    34
 ```
 
 ```sh
-lab@Student-MX1:CE1-1> show route protocol ospf   
+pradeep@MX1:CE1-1> show route protocol ospf   
 
 inet.0: 12 destinations, 13 routes (12 active, 0 holddown, 0 hidden)
 + = Active Route, - = Last Active, * = Both
@@ -580,12 +580,12 @@ inet.0: 12 destinations, 13 routes (12 active, 0 holddown, 0 hidden)
 
 inet6.0: 1 destinations, 1 routes (1 active, 0 holddown, 0 hidden)
 
-lab@Student-MX1:CE1-1> 
+pradeep@MX1:CE1-1> 
 
 ```
 
 ```sh
-lab@Student-MX1:CE1-1> ping 10.1.20.2 source 10.1.20.1 
+pradeep@MX1:CE1-1> ping 10.1.20.2 source 10.1.20.1 
 PING 10.1.20.2 (10.1.20.2): 56 data bytes
 64 bytes from 10.1.20.2: icmp_seq=0 ttl=64 time=9.367 ms
 64 bytes from 10.1.20.2: icmp_seq=1 ttl=64 time=5.596 ms
@@ -595,19 +595,19 @@ PING 10.1.20.2 (10.1.20.2): 56 data bytes
 3 packets transmitted, 3 packets received, 0% packet loss
 round-trip min/avg/max/stddev = 5.007/6.657/9.367/1.932 ms
 
-lab@Student-MX1:CE1-1> 
+pradeep@MX1:CE1-1> 
 ```
 
 ## CE1-2 Verification
 
 ```sh
-lab@Student-MX2:CE1-2> show ospf neighbor 
+pradeep@MX2:CE1-2> show ospf neighbor 
 Address          Interface              State           ID               Pri  Dead
 10.1.0.1         ge-0/0/1.610           Full            10.1.20.1        128    39
 ```
 
 ```sh
-lab@Student-MX2:CE1-2> show route protocol ospf    
+pradeep@MX2:CE1-2> show route protocol ospf    
 
 inet.0: 12 destinations, 12 routes (12 active, 0 holddown, 0 hidden)
 + = Active Route, - = Last Active, * = Both
@@ -625,11 +625,11 @@ inet.0: 12 destinations, 12 routes (12 active, 0 holddown, 0 hidden)
 
 inet6.0: 1 destinations, 1 routes (1 active, 0 holddown, 0 hidden)
 
-lab@Student-MX2:CE1-2> 
+pradeep@MX2:CE1-2> 
 ```
 
 ```sh
-lab@Student-MX2:CE1-2> ping 10.1.20.1 source 10.1.20.2 count 3 
+pradeep@MX2:CE1-2> ping 10.1.20.1 source 10.1.20.2 count 3 
 PING 10.1.20.1 (10.1.20.1): 56 data bytes
 64 bytes from 10.1.20.1: icmp_seq=0 ttl=64 time=6.615 ms
 64 bytes from 10.1.20.1: icmp_seq=1 ttl=64 time=5.672 ms
@@ -639,7 +639,7 @@ PING 10.1.20.1 (10.1.20.1): 56 data bytes
 3 packets transmitted, 3 packets received, 0% packet loss
 round-trip min/avg/max/stddev = 4.860/5.716/6.615/0.717 ms
 
-lab@Student-MX2:CE1-2> 
+pradeep@MX2:CE1-2> 
 ```
 
 So far we established a point-to-point BGP Layer 2 virtual private network (VPN) using LDP signaled label switched paths (LSP) between provider edge (PE) routers. Once the virtual LAN (VLAN)-based Layer 2 VPN is operational, we configured the customer edge (CE) routers to run OSPF routing protocol and advertise their static route and loopback address blocks. Because this is a BGP Layer 2 VPN, the PE routers will not interact with the routing protocols used on the CE routers. 
