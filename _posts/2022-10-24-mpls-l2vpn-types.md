@@ -9,8 +9,8 @@ classes: wide
 header:
   teaser: /assets/images/junos.png
 header:
-  overlay_image: /assets/images/networking-getty.jpg
-  og_image: /assets/images/networking-getty.jpg
+  overlay_image: /assets/images/networking-1.png
+  og_image: /assets/images/networking-1.png
   teaser: /assets/images/junos.png
 
 author:
