@@ -7,8 +7,6 @@ tags: MPLS
 show_date: true
 classes: wide
 header:
-  teaser: /assets/images/junos.png
-header:
   overlay_image: /assets/images/networking-3.jpg
   og_image: /assets/images/networking-3.jpg
   teaser: /assets/images/junos.png

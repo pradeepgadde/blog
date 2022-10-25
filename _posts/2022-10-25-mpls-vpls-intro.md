@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "VPLS
+title: "VPLS Introduction"
 date:   2022-10-25 02:55:04 +0530
 categories: Networking
 tags: MPLS
@@ -31,6 +31,10 @@ VPLS: Virtual Private LAN Service
 VPLS can be created using the same methods: BGP, LDP, FEC 129
 
 3 methods of signaling a VPLS
+
+
+
+## BGP Signaled VPLS
 
 
 
