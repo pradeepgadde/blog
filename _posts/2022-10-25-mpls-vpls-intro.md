@@ -7,8 +7,6 @@ tags: MPLS
 show_date: true
 classes: wide
 header:
-  teaser: /assets/images/junos.png
-header:
   overlay_image: /assets/images/networking-4.jpg
   og_image: /assets/images/networking-4.jpg
   teaser: /assets/images/junos.png
@@ -31,5 +29,8 @@ L2VPN and L2Circuit falls under VPWS
 VPLS: Virtual Private LAN Service
 
 VPLS can be created using the same methods: BGP, LDP, FEC 129
+
+3 methods of signaling a VPLS
+
 
 
