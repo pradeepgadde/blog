@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "VPLS Advanced Tpologies"
+title: "VPLS Advanced Topologies"
 date:   2022-10-26 01:55:04 +0530
 categories: Networking
 tags: MPLS
@@ -22,6 +22,8 @@ sidebar:
 ---
 
 # VPLS Advanced Topologies
+
+## Hub and Spoke VPLS
 
 Hub and Spoke VPLS instead of full mesh
 

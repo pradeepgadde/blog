@@ -66,7 +66,7 @@ Could be a switching loop, misconfiguration
 
 Solution is to shutdown the interface if a MAC flaps quickly
 
-Define  `l2-learning global-mac-move` properites 
+Define  <span style="color:green">`l2-learning global-mac-move`</span> properites 
 
 ```sh
 set protocols l2-learning global-mac-move threshold-time X
@@ -77,7 +77,7 @@ set protocols l2-learning global-mac-move cooloff-time X
 set protocols l2-learning global-mac-move virtual-mac XXXXXXX
 ```
 
-Blocks of MACs to exclude are specified with `virtual-mac` option.
+Blocks of MACs to exclude are specified with <span style="color:green"> `virtual-mac`</span> option.
 
 Apply
 
@@ -103,7 +103,7 @@ Uses RSVP
 
 ## Troubleshooting VPLS
 
-Use `show vpls connections instance <name>`
+Use <span style="color:green">`show vpls connections instance <name>`</span>
 
 `NP -- interface hardware not present`
 
