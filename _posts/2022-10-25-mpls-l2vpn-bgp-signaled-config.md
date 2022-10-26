@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "BGP-Signaled L2VPN Config"
+title: "BGP-Signaled L2VPN Config Demo"
 date:   2022-10-25 04:55:04 +0530
 categories: Networking
 tags: MPLS
@@ -441,6 +441,8 @@ pradeep@MX1:PE-1>
 ```
 
 ```sh
+pradeep@MX2:PE-1> show route table vpn-a.l2vpn.0
+
 vpn-a.l2vpn.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidden)
 + = Active Route, - = Last Active, * = Both
 
