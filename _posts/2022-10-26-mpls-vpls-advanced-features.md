@@ -109,7 +109,7 @@ Use `show vpls connections instance <name>`
 
 Check if you have a Tunnel Services PIC or not
 
-`no-tunnel-services` if not present
+Use <span style="color:green">`no-tunnel-services`</span> if not present
 
 a PE can host multiple sites in a BGP VPLS
 
@@ -118,7 +118,7 @@ Multiple sites, multiple pseudowires
 ```sh
 set routing-instances <name> protocols vpls site <name_1> site-identifier 1
 set routing-instances <name> protocols vpls site <name_1> interface <name_1>
-outing-instances <name> protocols vpls site <name_2> site-identifier 2
+set routing-instances <name> protocols vpls site <name_2> site-identifier 2
 set routing-instances <name> protocols vpls site <name_2> interface <name_2>
 ```
 
