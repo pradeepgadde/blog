@@ -4,7 +4,10 @@ title:  "Getting Started with OpenAI"
 date:   2022-12-12 10:55:04 +0530
 categories: OpenAI
 tags: OpenAI
-author: "Pradeep Gadde"
+
+author:
+  name     : "OpenAI"
+  avatar   : "/assets/images/openai.png"
 classes: wide
 show_date: true
 header:
@@ -21,7 +24,7 @@ sidebar:
 
 # OpenAI
 
-https://beta.openai.com/docs/quickstart
+[https://beta.openai.com/docs/quickstart](https://beta.openai.com/docs/quickstart) 
 
 ```sh
 (base) pradeep:~$pwd
@@ -215,6 +218,7 @@ FLASK_ENV=development
 OPENAI_API_KEY=
 (venv) (base) pradeep:~$
 ```
+![OpenAI]({{ site.url }}{{ site.baseurl }}/assets/images/openai-1a.png)
 
 ```sh
 (venv) (base) pradeep:~$flask run
