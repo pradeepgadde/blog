@@ -33,7 +33,7 @@ sidebar:
 ## Introduction 
 Google has created a resource in the form of a comic to understand why Kubernetes and  what problems can be addressed by Kubernetes. Here is the link to the same.
 
-https://cloud.google.com/kubernetes-engine/kubernetes-comic
+[https://cloud.google.com/kubernetes-engine/kubernetes-comic](https://cloud.google.com/kubernetes-engine/kubernetes-comic) 
 
 And here is an extract:
 
