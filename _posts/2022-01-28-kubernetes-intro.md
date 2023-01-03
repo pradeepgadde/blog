@@ -37,8 +37,6 @@ https://cloud.google.com/kubernetes-engine/kubernetes-comic
 
 And here is an extract:
 
-
-
 ![Kubernetes-Comic]({{ site.url }}{{ site.baseurl }}/assets/images/kubernetes-comic.png)
 
 ## Learning Resources
@@ -48,7 +46,7 @@ While there are many resources out there, personally I have used these resources
 
 then, the most popular Udemy course on this subject: 
 
-[Certified Kubernetes Administrator (CKA) with Practice Tests by Mumshad Mannambeth](https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/),
+[Certified Kubernetes Administrator (CKA) with Practice Tests by Mumshad Mannambeth](https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/), by [KodeKloud](https://kodekloud.com)
 
 and the official Linux Foundation course 
 [LFS258](https://training.linuxfoundation.org/training/kubernetes-fundamentals-lfs258-cka-exam-bundle/)
