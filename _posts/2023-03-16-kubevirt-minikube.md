@@ -10,7 +10,7 @@ classes: wide
 show_date: true
  
 header:
-  overlay_image: /assets/images/kubernetes.png
+  overlay_image: /assets/images/kubevirt.png
   og_image: /assets/images/kubernetes.png
   caption: "Photo credit: [**Kubernetes**](https://kubernetes.io)"
   teaser: /assets/images/kubernetes.png
