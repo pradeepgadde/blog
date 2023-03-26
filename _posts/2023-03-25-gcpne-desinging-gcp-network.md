@@ -92,8 +92,8 @@ With respect to network routing and IP planning, there are two main approaches t
 
 Creating GKE private clusters improves security. There are 3 high level configurations available for private clusters with varying levels of security and ease of access for each:
 
-● Public endpoint access disabled is the most secure. Connectivity to the control plane is not allowed from any client outside the cluster subnet.
+- Public endpoint access disabled is the most secure. Connectivity to the control plane is not allowed from any client outside the cluster subnet.
 
-● Public endpoint access enabled, authorized networks enabled is the next most secure and provides connectivity to the control plane from only specified public or private IP ranges.
+- Public endpoint access enabled, authorized networks enabled is the next most secure and provides connectivity to the control plane from only specified public or private IP ranges.
 
-● Public endpoint access enabled, authorized networks disabled provides the least secure and provides the most permissive connectivity allowing access to the public endpoint from any IP address.
+- Public endpoint access enabled, authorized networks disabled provides the least secure and provides the most permissive connectivity allowing access to the public endpoint from any IP address.
