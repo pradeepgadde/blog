@@ -5,6 +5,8 @@ title:  "Google Cloud Certified Professional Cloud Network Engineer"
 date:   2023-03-25 04:59:04 +0530
 categories: Cloud
 tags: GCP
+toc: true
+toc_sticky: true
 show_date: true
 classes: wide
 header:
@@ -141,7 +143,7 @@ Considerations include:
 - Configuring Cloud NAT
 - Configuring network packet inspection
 
-### Configuring network packet inspection
+### Configuring load balancing
 Considerations include:
 - Backend services and network endpoint groups (NEGs)
 - Firewall rules to allow traffic and health checks to backend services

@@ -5,6 +5,8 @@ title:  "Designing, planning, and prototyping a Google Cloud network"
 date:   2023-03-25 05:59:04 +0530
 categories: Cloud
 tags: GCP
+toc: true
+toc_sticky: true
 show_date: true
 classes: wide
 header:
