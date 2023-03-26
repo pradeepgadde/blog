@@ -8,6 +8,8 @@ tags: GCP
 show_date: true
 classes: wide
 header:
+  overlay_image: /assets/images/gpcne.png
+  og_image: /assets/images/gpcne.png
   teaser: /assets/images/gpcne.png
 author:
   name     : "Cloud Network Engineer"
@@ -21,10 +23,10 @@ sidebar:
 
 # Google Cloud Certified Professional Cloud Network Engineer
 
-Topics to be leant:
+Topics to be learnt:
 - Designing, planning, and prototyping a Google Cloud network
 - Implementing a Virtual Private Cloud (VPC)
-- Configuring network service
+- Configuring network services
 - Implementing hybrid interconnectivity
 - Managing, monitoring, and optimizing network operations
 
