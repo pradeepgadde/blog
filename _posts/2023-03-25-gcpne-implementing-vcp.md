@@ -5,6 +5,7 @@ title:  "Implementing a Virtual Private Cloud (VPC)"
 date:   2023-03-25 06:59:04 +0530
 categories: Cloud
 tags: GCP
+toc: true
 toc_sticky: true
 show_date: true
 header:
