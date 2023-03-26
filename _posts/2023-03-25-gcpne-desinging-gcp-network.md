@@ -23,7 +23,7 @@ sidebar:
 
 # Designing, planning, and prototyping a Google Cloud network
 
-
+## Designing an overall network architecture
 
 - What subnet range should you use?
 
@@ -54,6 +54,10 @@ Auto VPC networks will have at least one subnet in each Google Cloud region.
 Custom VPC networks can have subnetworks in only desired regions. Each subnetwork will have at least one primary subnet range and none of the primary or secondary subnet ranges can overlap in a single VPC. Each VPC network has a set of default routes routing the subnet IP ranges of each subnet to that subnet and a route for all other IP addresses to the internet. Other custom routes can also be added. Firewall rules are the primary mechanism for traffic control and can be used to allow or deny traffic matching the configured rule parameters. Firewall rules are evaluated in priority order. The two implicit firewall rules in every VPC - implicit deny all ingress and allow all egress rules- have the lowest priority.
 
 
+
+## Designing a Virtual Private Cloud (VPC)
+
+
 There are 2 main approaches to connecting resources using private/internal IP communication across projects or VPC networks in Google Cloud. 
 - Shared VPC provides a centralized networking model. 
 - VPC peering provides a decentralized model. 
@@ -76,7 +80,7 @@ is relatively inexpensive and quick to set up.
 
 Google Cloud offers 3 zones across approximately 30 regions (4 zones in us-central1 in Iowa). Though many capabilities are available across all regions, there are some differences in supported features and capabilities by region. Resources may be zonal, regional, multi-regional, or global with implications for availability, latency, and data residency. Placing replica resources across multiple zones increases availability (protecting against resource and zone failure). Placing replica resources across multiple regions can further increase availability, protect against regional outage, and reduce average latency for users close to those regions.
 
-
+## Designing a hybrid or multi-cloud network
 
 There are many configuration options available for Cloud VPN in Google Cloud. There is Classic VPN which supports both static and dynamic routing when used with the Cloud Router. Classic VPN offers lower availability (99.9%) but can connect to on-premises VPN gateways that don’t support BGP. HA VPN only supports dynamic routing and requires a Cloud Router. Cloud Routers and HA VPN can’t work with on-premises VPN gateways that don’t support BGP. However, HA VPN can offer higher availability (99.99%) and is the Google recommended approach where possible.
 
@@ -88,7 +92,7 @@ Partner Interconnect can provide lower bandwidths and will be available at more 
 
 With respect to network routing and IP planning, there are two main approaches to deploying GKE: routes-based or VPC-native. VPC-native is the newer and recommended approach that provides several benefits. It is important to be aware of the subtle differences in how to select the correct IP ranges to use with each type, as well as the supported numbers of resources based on size of the ranges.
 
-
+## Designing an IP addressing plan for Google Kubernetes Engine
 
 Creating GKE private clusters improves security. There are 3 high level configurations available for private clusters with varying levels of security and ease of access for each:
 
