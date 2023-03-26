@@ -7,7 +7,6 @@ categories: Cloud
 tags: GCP
 toc_sticky: true
 show_date: true
-classes: wide
 header:
   overlay_image: /assets/images/gpcne.png
   og_image: /assets/images/gpcne.png
