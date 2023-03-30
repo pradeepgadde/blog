@@ -9,8 +9,8 @@ toc: true
 toc_sticky: true
 show_date: true
 header:
-  overlay_image: /assets/images/gpcne.png
-  og_image: /assets/images/gpcne.png
+  overlay_image: /assets/images/gcp-banner.png
+  og_image: /assets/images/gcp-banner.png
   teaser: /assets/images/gpcne.png
 author:
   name     : "Cloud Network Engineer"
