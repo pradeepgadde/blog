@@ -215,7 +215,7 @@ student_01_c41e1c322859@cloudshell:~ (qwiklabs-gcp-04-ac2146a4cfe4)$
 
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-433.png)
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-sign.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-sign.jpg)
 
 
 
