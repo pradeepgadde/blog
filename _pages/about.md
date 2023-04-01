@@ -41,8 +41,10 @@ Thank you for reading my blog.
 Be Curious and Keep Learning!
 
 Best regards,
+
 Pradeep
 
+### Badges 
 
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="078e54f2-91bc-49c7-8aa3-2fb57c13f42f" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
@@ -113,4 +115,3 @@ Pradeep
 
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="8646603c-015c-4ab4-8570-e56749cfa2e3" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
-<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="dfc3891f-d648-4b02-b021-1b9f021c564c" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
