@@ -50,7 +50,7 @@ The Welcome to BigQuery in the Cloud Console message box opens.
 
 The Explorer section now lists the data-to-insights project.
 
-  ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-446.png)
+  ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-447.png)
 
 ## 2. Explore ecommerce data and identify duplicate records
 
@@ -69,8 +69,6 @@ In the right pane, a section opens that provides 3 views of the table data:
 - Preview tab: Table preview
 
 1. Click the **Details** tab to view the table metadata.
-
-![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-447.png)
 
 ### Identify duplicate rows
 
