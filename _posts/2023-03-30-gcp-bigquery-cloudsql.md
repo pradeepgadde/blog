@@ -2095,8 +2095,6 @@ As you see, 13/14 stations share the top spots for rideshare starting  and endin
 
 
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-401.png)
-
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-402.png)
 
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-403.png)
