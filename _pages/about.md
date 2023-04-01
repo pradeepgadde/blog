@@ -44,7 +44,8 @@ Best regards,
 
 Pradeep
 
-### Badges 
+## Badges 
+
 
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="078e54f2-91bc-49c7-8aa3-2fb57c13f42f" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
@@ -105,24 +106,17 @@ Pradeep
 
 
 
-
-<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="8646603c-015c-4ab4-8570-e56749cfa2e3" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="13f6d7c4-ce2e-4cd1-943f-2c60c01c9798" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
 
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="920bcec8-5a38-4490-a34c-b5929898d41f" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
 
-
-<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="13f6d7c4-ce2e-4cd1-943f-2c60c01c9798" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-
-
-
-
-
-
-
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="7da325b2-19c0-46c1-b1bb-c11cdb388d1d" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
+
+
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="8646603c-015c-4ab4-8570-e56749cfa2e3" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
 
 
