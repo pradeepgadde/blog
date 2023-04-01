@@ -7,7 +7,7 @@ header:
   overlay_image: /assets/images/blog-header.png
   actions:
    - label: "About Me"
-     url: "https://pradeepgadde.com/"
+     url: "https://pradeepgadde.com/blog/about"
 excerpt: >
   Hello! Welcome to my Notes on various CloudNetDevOps topics!<br />
 #  <small><a href="https://github.com/mmistakes/minimal-mistakes/releases/tag/4.24.0">Latest release v4.24.0</a></small>
