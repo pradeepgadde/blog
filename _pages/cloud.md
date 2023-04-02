@@ -6,6 +6,9 @@ taxonomy: Cloud
 author_profile: true
 classes: wide
 entries_layout: grid
+header:
+  overlay_color: "#5e616c"
+  overlay_image: /assets/images/gcp-banner-1.png 
 author:
   name     : "Pradeep"
   avatar   : "/assets/images/bio.jpg"
