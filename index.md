@@ -4,7 +4,7 @@ permalink: /
 hidden: true
 header:
   overlay_color: "#5e616c"
-  overlay_image: /assets/images/blog-header.png
+  overlay_image: /assets/images/home-banner.png
   actions:
    - label: "About Me"
      url: "https://pradeepgadde.com/blog/about"
@@ -50,4 +50,3 @@ feature_row:
 ---
 
 {% include feature_row %}
-
