@@ -6,6 +6,9 @@ taxonomy: Kubernetes
 author_profile: true
 classes: wide
 entries_layout: grid
+header:
+  overlay_color: "#5e616c"
+  overlay_image: /assets/images/k8s-banner.png 
 author:
   name     : "Pradeep"
   avatar   : "/assets/images/bio.jpg"
