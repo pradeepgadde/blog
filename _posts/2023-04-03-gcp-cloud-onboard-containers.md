@@ -24,33 +24,42 @@ sidebar:
 
 # Cloud OnBoard: Getting Started with Google Kubernetes Engine
 
-- ​    Introduction to Containers  
+This week, I attended a Google Cloud Webinar on Containers. Here is the summary of the 3-hour long tutorial which is divided into three sections.
+
+[https://cloudonair.withgoogle.com/events/cloud-onboard-started-google-kubernetes-engine#](https://cloudonair.withgoogle.com/events/cloud-onboard-started-google-kubernetes-engine#) 
+[https://cloud.google.com/kubernetes-engine/docs/quickstarts/deploy-app-container-image](https://cloud.google.com/kubernetes-engine/docs/quickstarts/deploy-app-container-image)
+
+
+-  Introduction to Containers  
 
   Containers are a new way of running applications that are revolutionizing the way  we build and deploy software. They offer a number of advantages  including efficiency and portability. we will use Cloud Shell Editor to write an application that we will deploy in the next session. 
 
-- ​     Deploying a Container  
+-  Deploying a Container  
 
   Once you  have written your application, it is time to deploy it. This can often  be a major hurdle for application developers. In this session, you will  learn how to use Cloud Build to build a container image for your  application. You will then learn how to use Artifact Registry to store  the container image. Finally, you will learn how to use Cloud Run to  deploy your application to production including a URL you can share with anyone on the internet.
 
--    Kubernetes and GKE  
+-  Kubernetes and GKE  
 
   One of  the major advantages of containers is their portability. After deploying your containerized application to Cloud Run, we will deploy that same  application to Google Kubernetes Engine (GKE). GKE is a managed  Kubernetes service that makes it easy to deploy, manage, and scale  containerized applications. You will learn how to create a GKE cluster,  deploy a container to the cluster, and expose the container to the  internet.
 
-  ​    
+Following Google Cloud Products are used :
+- Cloud Shell + Editor
+- Cloud Build
+- Artifact Registry
+- Cloud Run
+- Google Kubernetes Engine (GKE)
+  
 
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-container-deploy-steps.png)
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-tools.png)
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-cloud-build-1.png)
-
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-cloud-build-2.png)
-
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-artifact-registry.png)
-
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-cloud-run.png)
-
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-gke.png)
-
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-cloud-run-gke.png)
+
+Hope this summary is useful.
 
 
 
