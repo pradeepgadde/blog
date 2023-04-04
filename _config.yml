@@ -31,7 +31,7 @@ github_username:  pradeepgadde
 words_per_minute         : 200
 paginate: 5
 paginate_path: /page:num/
-logo: "/assets/images/googel-developer"
+logo: "/assets/images/google-developer.png"
 
 include: ["_pages"]
 
