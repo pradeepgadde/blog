@@ -46,6 +46,24 @@ Only the `/home` directory persists.
 
 Any changes made to system configuration, including environment variables are lost between sessions.
 
+
+
+```sh
+gaddepradeep@cloudshell:~$ ls
+README-cloudshell.txt
+gaddepradeep@cloudshell:~$ pwd
+/home/gaddepradeep
+gaddepradeep@cloudshell:~$ uname -a
+Linux cs-57773528480-default 5.15.89+ #1 SMP Sat Mar 18 09:27:02 UTC 2023 x86_64 GNU/Linux
+gaddepradeep@cloudshell:~$ touch pradeep-gcp.txt
+gaddepradeep@cloudshell:~$ vi pradeep-gcp.txt
+gaddepradeep@cloudshell:~$ cat pradeep-gcp.txt
+This is a test file in GCP CloudShell.
+gaddepradeep@cloudshell:~$
+```
+
+
+
 ## Use Cloud Shell to create a Cloud Storage bucket
 
 ```sh
@@ -67,6 +85,14 @@ gsutil cp [MY_FILE] gs://[BUCKET_NAME]
 If your filename has whitespaces,  be sure to place single quotes around the filename. For example, `gsutil cp ‘my file.txt' gs://[BUCKET_NAME]`
 
 So far we have uploaded a file to Cloud Shell VM and copied it to the Cloud Storage bucket.
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-507.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-508.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-509.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-510.png)
 
 ## Create a persistent state in Cloud Shell
 
