@@ -303,7 +303,7 @@ student_00_66cebfab53e7@cloudshell:~/compute (qwiklabs-gcp-00-5e985de63b63)$
 
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-tf-1.png)
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-tf-2.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-tf-3.png)
 
 In this task, we will be performing 2 types of changes to the infrastructure:
 
@@ -422,7 +422,7 @@ student_00_66cebfab53e7@cloudshell:~/compute (qwiklabs-gcp-00-5e985de63b63)$
 
 
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-tf-3.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-tf-2.png)
 
 
 
