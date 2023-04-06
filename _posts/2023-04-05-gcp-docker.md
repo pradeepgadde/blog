@@ -22,7 +22,7 @@ sidebar:
 
 ---
 # Introduction to Docker on GCP
-Overview
+
 
 Docker is an open platform for developing, shipping, and running applications. With Docker, you can separate your applications from your infrastructure and treat your infrastructure like a managed application. Docker helps you ship code faster, test faster, deploy faster, and shorten the cycle between writing code and running code.
 
@@ -105,13 +105,7 @@ For more examples and ideas, visit:
 student_03_549093f60571@cloudshell:~ (qwiklabs-gcp-04-542391075613)$ docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 student_03_549093f60571@cloudshell:~ (qwiklabs-gcp-04-542391075613)$
-student_03_549093f60571@cloudshell:~ (qwiklabs-gcp-04-542391075613)$ docker ps -
-"docker ps" accepts no arguments.
-See 'docker ps --help'.
 
-Usage:  docker ps [OPTIONS]
-
-List containers
 student_03_549093f60571@cloudshell:~ (qwiklabs-gcp-04-542391075613)$ docker ps -a
 CONTAINER ID   IMAGE         COMMAND    CREATED              STATUS                          PORTS     NAMES
 b69394853641   hello-world   "/hello"   40 seconds ago       Exited (0) 39 seconds ago                 suspicious_bose
@@ -154,6 +148,8 @@ process.on('SIGINT', function() {
 EOF process.exit();
 student_03_549093f60571@cloudshell:~/test (qwiklabs-gcp-04-542391075613)$ ls
 app.js  Dockerfile
+```
+```js
 student_03_549093f60571@cloudshell:~/test (qwiklabs-gcp-04-542391075613)$ cat app.js
 const http = require('http');
 const hostname = '0.0.0.0';
@@ -170,6 +166,8 @@ process.on('SIGINT', function() {
     console.log('Caught interrupt signal and will exit');
     process.exit();
 });
+```
+```sh
 student_03_549093f60571@cloudshell:~/test (qwiklabs-gcp-04-542391075613)$ cat Dockerfile
 # Use an official Node runtime as the parent image
 FROM node:lts
@@ -345,18 +343,15 @@ student_03_549093f60571@cloudshell:~/test (qwiklabs-gcp-04-542391075613)$ docker
 Server running at http://0.0.0.0:80/
 
 ^C
-student_03_549093f60571@cloudshell:~/test (qwiklabs-gcp-04-542391075613)$ docker exec -it 83ed57056c49
-"docker exec" requires at least 2 arguments.
-See 'docker exec --help'.
 
-Usage:  docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
-
-Execute a command in a running container
 student_03_549093f60571@cloudshell:~/test (qwiklabs-gcp-04-542391075613)$ docker exec -it 83ed57056c49 bash
 root@83ed57056c49:/app# ls
 Dockerfile  app.js
 root@83ed57056c49:/app# exit
 exit
+```
+
+```sh
 student_03_549093f60571@cloudshell:~/test (qwiklabs-gcp-04-542391075613)$ docker inspect 83ed57056c49
 [
     {
@@ -760,9 +755,8 @@ Welcome to Cloud
 student_03_549093f60571@cloudshell:~/test (qwiklabs-gcp-04-542391075613)$
 ```
 
-```sh
 Here the portability of containers is showcased. As long as Docker is installed on the host (either on-premise or VM), it can pull images from public or private registries and run containers based on that image. There are no application dependencies that have to be installed on the host except for Docker.
-```
+
 So far, we 
 - Ran containers based on public images from Docker Hub.
 - Built your own container images and pushed them to Google Artifact Registry.
