@@ -505,9 +505,6 @@ student_01_cd9de465be5c@cloudshell:~ (qwiklabs-gcp-02-7d4040b2c6c9)$
 ```
 
 
-
-![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-gke-9.png)
-
 ### Try to create a VM instance
 
 Verify that you cannot create a VM instance without a VPC network.

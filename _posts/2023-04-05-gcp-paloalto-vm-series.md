@@ -111,8 +111,6 @@ For a complete description of the new features and instructions for how to use t
 
 Internet traffic is distributed by an external TCP/UDP load balancer  to the VM-Series untrust interfaces. The VM-Series inspects and  translates the traffic to `VM A` in the `spoke 1` network. `VM A`  runs a generic web service and Jenkins.
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-510.png)
-
 The request to the Jenkins server fails because the Jenkins application has not been enabled in the VM-Series security policies. Palo Alto Networks firewalls leverage App-ID™ to identify and enable applications with layer-7 controls.
 
 Access the Jenkins service again. The Jenkins page resolves because you enabled the jenkins application within the VM-Series security policies.
