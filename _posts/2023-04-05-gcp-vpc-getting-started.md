@@ -1,7 +1,7 @@
 ---
 
 layout: single
-title:  "Google Cloud Fundamentals: Getting Started with GKE"
+title:  "Getting Started with VPC Networking and Google Compute Engine"
 date:   2023-04-05 13:59:04 +0530
 categories: Cloud
 tags: GCP
@@ -56,26 +56,14 @@ Routes tell VM instances and the VPC network how to send traffic from an instanc
 
 Each VPC network implements a distributed virtual firewall that you  can configure. Firewall rules allow you to control which packets are  allowed to travel to which destinations. Every VPC network has two  implied firewall rules that block all incoming connections and allow all outgoing connections.
 
-- In the left pane, click  
+- In the left pane, click  Firewall
 
-  Firewall
-
-  .
-
-  Notice that there are 4 
-
-  Ingress
-
-   firewall rules for the 
-
-  default
-
-   network:
+  Notice that there are 4 Ingress firewall rules for the default network:
 
   - default-allow-icmp
-  - default-allow-rdp
+- default-allow-rdp
   - default-allow-ssh
-  - default-allow-internal
+- default-allow-internal
 
 ```sh
 student_01_cd9de465be5c@cloudshell:~ (qwiklabs-gcp-02-7d4040b2c6c9)$ gcloud compute networks list
@@ -708,3 +696,60 @@ Remove the **allow-ssh** firewall rule and try to SSH to **mynet-us-vm**.
 In this lab, you explored the default network along with its subnets, routes, and firewall rules. You deleted the default network and  determined that you cannot create any VM instances without a VPC  network.
 
 Thus, you created a new auto mode VPC network with subnets, routes,  firewall rules, and two VM instances. Then you tested the connectivity  for the VM instances and explored the effects of the firewall rules on  connectivity.
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-1.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-2.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-3.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-4.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-5.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-6.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-7.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-8.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-9.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-10.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-11.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-12.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-13.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-14.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-15.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-16.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-17.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-18.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-19.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-20.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-21.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-22.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-23.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-24.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-25.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-26.png)
+
+![]({{ site.url }}{{ site.baseurl }}/assets/images/vpc-27.png)
+
+
+
