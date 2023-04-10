@@ -459,6 +459,6 @@ Destroy complete! Resources: 1 destroyed.
 student_03_1336992abf14@cloudshell:~ (qwiklabs-gcp-00-0244f2a4320d)$
 ```
 
-![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-tf-14.png)
+![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-tf-1.png)
 
 In this lab, we learned how to manage backends and state with  Terraform. We created local and Cloud Storage backends to manage our  state file, and also refreshed the state.
