@@ -10,13 +10,8 @@ classes: wide
 show_date: true
  
 header:
-  overlay_image: /assets/images/kubernetes.png
-  og_image: /assets/images/kubernetes.png
-  caption: "Photo credit: [**Kubernetes**](https://www.juniper.net)"
   teaser: /assets/images/kubernetes.png
-  actions:
-    - label: "Learn more"
-      url: "https://juniper.net"
+  
 author:
   name     : "Kubernetes"
   avatar   : "/assets/images/kubernetes.png"
@@ -25,6 +20,8 @@ sidebar:
   - title: "Topics"
     nav: my-sidebar
 ---
+
+
 
 ## Paragon Automation Cluster Nodes
 
