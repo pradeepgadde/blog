@@ -63,7 +63,7 @@ admin@node.router#
 
 We can use `?` anytime, like Junos. This provides context-sensitive help. 
 
-```admin@node.router#
+```
 admin@node.router#
 adopt           Assign the current router to a Mist organization.
 clear           <app-id> | <arp> | <bgp> | <history>
