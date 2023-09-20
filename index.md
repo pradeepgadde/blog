@@ -47,6 +47,13 @@ feature_row:
     url: "https://pradeepgadde.com/blog/categories/Programming/"
     btn_class: "btn--primary"
     btn_label: "Programming"       
+  - image_path: /assets/images/wireless.png
+    alt: "Wireless"
+    title: "Wireless"
+    excerpt: "Wireless is freedom!"
+    url: "https://pradeepgadde.com/blog/categories/Wireless/"
+    btn_class: "btn--primary"
+    btn_label: "Wireless"      
 ---
 
 {% include feature_row %}
