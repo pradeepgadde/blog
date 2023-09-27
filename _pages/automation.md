@@ -1,7 +1,7 @@
 ---
 title: "Automation"
 layout: category
-permalink: /categories/Automation/
+permalink: /categories/automation/
 taxonomy: Automation
 author_profile: true
 classes: wide

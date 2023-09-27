@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes"
 layout: category
-permalink: /categories/Kubernetes/
+permalink: /categories/kubernetes/
 taxonomy: Kubernetes
 author_profile: true
 classes: wide

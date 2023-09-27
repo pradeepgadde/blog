@@ -1,7 +1,7 @@
 ---
 title: "Networking"
 layout: category
-permalink: /categories/Networking/
+permalink: /categories/networking/
 taxonomy: Networking
 author_profile: true
 classes: wide

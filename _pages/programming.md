@@ -1,7 +1,7 @@
 ---
 title: "Programming"
 layout: category
-permalink: /categories/Programming/
+permalink: /categories/programming/
 taxonomy: Programming
 author_profile: true
 classes: wide

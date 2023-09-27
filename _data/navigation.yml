@@ -11,19 +11,19 @@ main:
     url: /tags/
 my-sidebar:
   - title: "Automation"
-    url: https://pradeepgadde.com/blog/categories/Automation
+    url: https://pradeepgadde.com/blog/categories/automation
 
   - title: "Cloud"
-    url: https://pradeepgadde.com/blog/categories/Cloud   
+    url: https://pradeepgadde.com/blog/categories/cloud   
 
   - title: "Kubernetes"
-    url: https://pradeepgadde.com/blog/categories/Kubernetes
+    url: https://pradeepgadde.com/blog/categories/kubernetes
     
   - title: "Networking"
-    url: https://pradeepgadde.com/blog/categories/Networking
+    url: https://pradeepgadde.com/blog/categories/networking
 
   - title: "Programming"
-    url: https://pradeepgadde.com/blog/categories/Programming    
+    url: https://pradeepgadde.com/blog/categories/programming    
 
   - title: "Wireless"
-    url: https://pradeepgadde.com/blog/categories/Wireless 
+    url: https://pradeepgadde.com/blog/categories/wireless 
