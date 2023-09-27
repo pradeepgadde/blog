@@ -40,4 +40,3 @@ In this post, let's take a look at various configuration options available while
 
 That's a quick summary of the Mist WLAN configuration options.
 
-
