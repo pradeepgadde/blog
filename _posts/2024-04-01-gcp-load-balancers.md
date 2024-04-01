@@ -8,7 +8,7 @@ show_date: true
 header:
   overlay_image: /assets/images/gcp-banner-1.png
   og_image: /assets/images/gcp-banner-1.png
-  teaser: /assets/images/gpcne.png
+  teaser: /assets/images/pca-gcp.png
 author:
   name     : "Professional Cloud Architect"
   avatar   : "/assets/images/pca-gcp.png"
