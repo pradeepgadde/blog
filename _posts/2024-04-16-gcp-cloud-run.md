@@ -6,8 +6,6 @@ tags: GCP
 classes: wide
 show_date: true
 header:
-  overlay_image: /assets/images/gcp-cloud-run-demo.png
-  og_image: /assets/images/gcp-cloud-run-demo.png
   teaser: /assets/images/pca-gcp.png
 author:
   name     : "Professional Cloud Architect"
