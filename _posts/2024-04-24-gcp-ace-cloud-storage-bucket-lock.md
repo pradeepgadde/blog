@@ -386,4 +386,33 @@ student_01_9b51dda9fd9c@cloudshell:~ (qwiklabs-gcp-02-01f28432cf1c)$ gsutil rb "
 Removing gs://qwiklabs-gcp-02-01f28432cf1c/...
 student_01_9b51dda9fd9c@cloudshell:~ (qwiklabs-gcp-02-01f28432cf1c)$ 
 ```
+###  Summary
+```sh
+student_01_9b51dda9fd9c@cloudshell:~ (qwiklabs-gcp-02-01f28432cf1c)$ history 
+    1  export BUCKET=$(gcloud config get-value project)
+    2  gsutil mb "gs://$BUCKET"
+    3  gsutil retention set 10s "gs://$BUCKET"
+    4  gsutil retention get "gs://$BUCKET"
+    5  gsutil cp gs://spls/gsp297/dummy_transactions "gs://$BUCKET/"
+    6  gsutil ls -L "gs://$BUCKET/dummy_transactions"
+    7  gsutil retention lock "gs://$BUCKET/"
+    8  gsutil retention get "gs://$Cloud Storage_BUCKET/"
+    9  gsutil retention get "gs://$BUCKET/"
+   10  gsutil retention temp set "gs://$BUCKET/dummy_transactions"
+   11  gsutil rm "gs://$BUCKET/dummy_transactions"
+   12  gsutil retention temp release "gs://$BUCKET/dummy_transactions"
+   13  gsutil rm "gs://$BUCKET/dummy_transactions"
+   14  gsutil retention event-default set "gs://$BUCKET/"
+   15  gsutil cp gs://spls/gsp297/dummy_loan "gs://$BUCKET/"
+   16  gsutil ls -L "gs://$BUCKET/dummy_loan"
+   17  gsutil retention event release "gs://$BUCKET/dummy_loan"
+   18  gsutil ls -L "gs://$BUCKET/dummy_loan"
+   19  gsutil rb "gs://$BUCKET/"
+   20  gsutil ls "gs://$BUCKET/"
+   21  gsutil rm gs://qwiklabs-gcp-02-01f28432cf1c/dummy_loan
+   22  gsutil ls "gs://$BUCKET/"
+   23  gsutil rb "gs://$BUCKET/"
+   24  history 
+student_01_9b51dda9fd9c@cloudshell:~ (qwiklabs-gcp-02-01f28432cf1c)$ 
+```
 
