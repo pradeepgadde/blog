@@ -101,3 +101,23 @@ https://source.cloud.google.com/qwiklabs-gcp-00-b39bf9625237/REPO_DEMO/+/master:
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-211.png)
 
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-212.png)
+
+
+
+```sh
+student_01_9b51dda9fd9c@cloudshell:~/REPO_DEMO (qwiklabs-gcp-01-398bc291b7f1)$ history 
+ <snip>
+    7  gcloud source repos create REPO_DEMO
+    8  gcloud source repos clone REPO_DEMO
+    9  cd REPO_DEMO
+   10  echo 'Hello World!' > myfile.txt
+   11  git config --global user.email "you@example.com"
+   12  git config --global user.name "Your Name"
+   13  git add myfile.txt
+   14  git commit -m "First file using Cloud Source Repositories" myfile.txt
+   15  git push origin master
+   16  gcloud source repos list
+   17  history 
+student_01_9b51dda9fd9c@cloudshell:~/REPO_DEMO (qwiklabs-gcp-01-398bc291b7f1)$ 
+```
+
