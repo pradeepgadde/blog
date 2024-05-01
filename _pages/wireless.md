@@ -18,9 +18,12 @@ author:
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://pradeepgadde.com"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/junivator"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github-square"
+      url: "https://github.com/pradeepgadde/"
+    - label: "Google Cloud Skills Boost"
+      icon: "fas fa-fw fa-link"
+      url: "https://www.cloudskillsboost.google/public_profiles/1a13c946-f39c-4f08-b6cb-aa47a9df2e81"
 sidebar:
   - title: "Topics"
     nav: my-sidebar
