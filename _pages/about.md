@@ -19,6 +19,10 @@ author:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/junivator"
+    - label: "Google Cloud Skills Boost"
+      icon: "fas fa-fw fa-link"
+      url: "https://www.cloudskillsboost.google/public_profiles/1a13c946-f39c-4f08-b6cb-aa47a9df2e81"
+      
 
 classes: wide
 sidebar:
