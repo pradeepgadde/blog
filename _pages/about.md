@@ -125,4 +125,3 @@ Pradeep
 
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="7c81c2cd-102d-476f-a486-e9a672c0b77e" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
- <iframe src="https://www.cloudskillsboost.google/public_profiles/1a13c946-f39c-4f08-b6cb-aa47a9df2e81" title="Pradeep Gadde's Google CloudSkillsBoost Profile"></iframe> 
