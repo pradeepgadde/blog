@@ -19,9 +19,8 @@ sidebar:
     nav: my-sidebar
 
 ---
-
+# GKE Services Ingress
 ```sh
-
 Welcome to Cloud Shell! Type "help" to get started.
 Your Cloud Platform project in this session is set to qwiklabs-gcp-04-f1b2097fd2bf.
 Use “gcloud config set project [PROJECT_ID]” to change to a different project.

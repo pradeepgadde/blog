@@ -136,16 +136,16 @@ student_01_3c1bb184aaad@cloudshell:~/python-docs-samples/trace/cloud-trace-demo-
 
 1. To create a trace by sending a curl request to cloud-trace-demo-a, use the following command:
 
-   ```sh
+```sh
    student_01_3c1bb184aaad@cloudshell:~/python-docs-samples/trace/cloud-trace-demo-app-opentelemetry (qwiklabs-gcp-03-2956453c7dee)$ curl $(kubectl get svc -o=jsonpath='{.items[?(@.metadata.name=="cloud-trace-demo-a")].status.loadBalancer.ingress[0].ip}')
    
    Hello, I am service A
    And I am service B
    Hello, I am service Cstudent_01_3c1bb184aaad@cloudshell:~/python-docs-samples/trace/cloud-trace-demo-app-opentelemetry (qwiklabs-gcp-03-2956453c7dee)$ 
    student_01_3c1bb184aaad@cloudshell:~/python-docs-samples/trace/cloud-trace-demo-app-opentelemetry (qwiklabs-gcp-03-2956453c7dee)$ 
-   ```
+```
 
-   ```py
+```py
    student_01_3c1bb184aaad@cloudshell:~/python-docs-samples/trace/cloud-trace-demo-app-opentelemetry (qwiklabs-gcp-03-2956453c7dee)$ cat app/app.py 
    # Copyright 2020 Google LLC
    #
@@ -240,9 +240,9 @@ student_01_3c1bb184aaad@cloudshell:~/python-docs-samples/trace/cloud-trace-demo-
    student_01_3c1bb184aaad@cloudshell:~/python-docs-samples/trace/cloud-trace-demo-app-opentelemetry (qwiklabs-gcp-03-2956453c7dee)$ ls
    app  example-trace.png  README.md  setup.sh
    student_01_3c1bb184aaad@cloudshell:~/python-docs-samples/trace/cloud-trace-demo-app-opentelemetry (qwiklabs-gcp-03-2956453c7dee)$ 
-   ```
+```
 
-   ```yaml
+```yaml
    student_01_3c1bb184aaad@cloudshell:~/python-docs-samples/trace/cloud-trace-demo-app-opentelemetry (qwiklabs-gcp-03-2956453c7dee)$ cat app/cloud-trace-demo.yaml 
    # Copyright 2022 Google LLC
    #
@@ -405,9 +405,7 @@ student_01_3c1bb184aaad@cloudshell:~/python-docs-samples/trace/cloud-trace-demo-
        targetPort: 8090
      type: ClusterIP
    student_01_3c1bb184aaad@cloudshell:~/python-docs-samples/trace/cloud-trace-demo-app-opentelemetry (qwiklabs-gcp-03-2956453c7dee)$ 
-   ```
-
-   
+```
 
 ### View the trace data
 
