@@ -25,14 +25,14 @@ sidebar:
 
 Secure communication between Google Cloud and other clouds or  on-premises systems is a common, critical need. Fortunately, Google  Cloud makes it easy for you to create a secure Internet Protocol  security (IPsec) virtual private networks (VPNs) to achieve this goal.  If a single tunnel does not provide necessary throughput, Google Cloud  can smoothly distribute traffic across multiple tunnels to provide  additional bandwidth.
 
-#### Create VPN
+## Create VPN
 
 - Create a Virtual Private Cloud (VPC) named `cloud` to simulate your Google Cloud network, and a VPC named `on-prem` (on-premises) to simulate an external network.
 - Create VPN gateways, forwarding rules, and addresses for the `cloud` VPC.
 - Form a tunnel for the new VPN, and route traffic through it.
 - Repeat the VPN creation process for the `on-prem` VPC, creating a second VPN.
 
-#### Test VPNs
+## Test VPNs
 
 - Create a virtual machine (VM) using  [Compute Engine](https://cloud.google.com/compute/) for throughput load testing.
 - Test throughput speed of a single VPN using `iperf`.
