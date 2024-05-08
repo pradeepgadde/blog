@@ -8,10 +8,10 @@ tags: GCP
 show_date: true
 classes: wide
 header:
-  teaser: /assets/images/gcp.png
+  teaser: /assets/images/gcpne.png
 author:
-  name     : "Google Cloud Platform"
-  avatar   : "/assets/images/gcp.png"
+  name     : "Cloud Network Engineer"
+  avatar   : "/assets/images/gcpne.png"
 
 sidebar:
   - title: "Blog"
