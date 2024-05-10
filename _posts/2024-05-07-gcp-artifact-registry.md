@@ -10,11 +10,10 @@ show_date: true
 header:
   overlay_image: /assets/images/gcp-banner.png
   og_image: /assets/images/gcp-banner.png
-  teaser: /assets/images/gpcne.png
+  teaser: /assets/images/ace-gcp.png
 author:
-  name     : "Cloud Network Engineer"
-  avatar   : "/assets/images/gpcne.png"
-
+  name     : "Associate Cloud Engineer"
+  avatar   : "/assets/images/ace-gcp.png"
 sidebar:
   - title: "Topics"
     nav: my-sidebar
@@ -29,7 +28,6 @@ As the evolution of Container Registry, [Artifact Registry](https://cloud.google
 - Manage container images with Artifact Registry
 - Integrate Artifact Registry with Cloud Code
 - Configure Maven to use Artifact Registry for Java Dependencies
-- 
 
 ## Prepare the lab environment
 
