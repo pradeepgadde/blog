@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "Getting Started with Scaffold"
+title:  "Getting Started with Skaffold"
 categories: Kubernetes
 tags: minikube
 author: "Pradeep Gadde"
