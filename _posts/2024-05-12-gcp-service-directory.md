@@ -22,257 +22,110 @@ sidebar:
 
 # Service Directory: Qwik Start
 
-[Service Directory](https://cloud.google.com/service-directory) helps reduce the complexity of management and operations by providing a single place to publish, discover, and connect services. It is a  managed service that enhances service inventory management at scale so  you don’t have to. Service Directory provides real-time service  information, whether you have a few service endpoints or thousands. This helps ensure that your applications only resolve the most updated  information of their resources, increasing the reachability of your  services.
-
-With Service Directory, you can easily understand all your services  across multi-cloud environments. This includes workloads running in  Compute Engine VMs, Google Kubernetes Engine (GKE), as well as external  services running on-prem and third-party clouds. It improves application reachability by maintaining the endpoint information for all your  services.
-
-Service Directory solves the following problems:
-
-1. **Interoperability**: Service Directory is a universal  naming service that works across Google Cloud, multi-cloud, and  on-premises. You can migrate services between these environments and  still use the same service name to register and resolve endpoints.
-2. **Service management**: Service Directory is a managed  service. Your organization doesn't have to worry about the high  availability, redundancy, scaling, or maintenance concerns of  maintaining your own service registry.
-3. **Access Control**: With Service Directory, you can  control who can register and resolve your services using IAM. Assign  Service Directory roles to teams, service accounts, and organizations.
-4. **Limitations of pure DNS**: DNS resolvers can be  unreliable in terms of respecting TTLs and caching, cannot handle larger record sizes, and do not offer an easy way to serve metadata to users.  In addition to DNS support, Service Directory offers HTTP and gRPC APIs  to query and resolve services.
+This lab illustrates a scenario for the **Cisco SD-WAN Cloud Hub with Google Cloud** solution, the application-centric multi-cloud networking fabric  developed in partnership by Cisco and Google. In this scenario, a video  is streamed from an application hosted in Google Cloud across a Wide  Area Network (WAN).
 
 
 
-- Configure Service Directory, with a namespace, service, and endpoint
-- Configure a Service Directory DNS zone
-- Use Cloud Logging with Service Directory
+The lab shows how to leverage Google Service Directory and Cisco SD-WAN  to optimize the performance of the video streaming application. You will learn how to use Google Service Directory to configure a *traffic  profile* associated with the video streaming application, and  (optionally) you will use Cisco SD-WAN vManage to better understand how  SD-WAN optimizes the applications associated with that *traffic  profile*.
 
-## Configuring Service Directory
+- Create a Compute Engine instance that hosts a streaming video  service, using a pre-built Docker container, and connect it to an SD-WAN edge router
+- Log on to a Windows client VM and use the VLC application to start streaming a video clip from the video service created above
+- Set up bandwidth monitoring on the client VM in order to observe the traffic optimization offered by the Cloud Hub solution
+- Associate  *traffic profile* service metadata to the video  streaming application via Service Directory, and observe how Cisco  SD-WAN optimizes in real time the quality of the received video clip
+- (Optional) Explore the Cisco SD-WAN management web UI (Cisco vManage) to better understand what's happening behind the scenes
 
-This section shows how to set up a Service Directory namespace, add a service to the namespace, and add endpoints to a service.
+### Lab network setup
 
-1. In the Console, search for "network services", then select **Service Directory**.
-2. Click **Enable** to enable the Service Directory API.
+The lab creates five VMs when deployed, and the user will manually  create one more VM for a total of six. The network topology is shown in  the figure below:
 
-> Service Directory is a platform for discovering, publishing, and connecting services. 
 
-### Configure a namespace
 
-Register a service that you can assign endpoints to. Use annotations for defining properties of the service (e.g. version number, location,  environment). When resolving a service, applications receive both the  endpoints and annotations associated with that service. 
+The `streaming-video-vm`, as the name suggests, hosts a  streaming video service in the cloud, and will be created in the next  step. The VM is connected to the `service-network` VPC, which connects using a virtual edge router (`sdwan-vedge-streaming-service`) to the Cisco SD-WAN. This is a "site" from the SD-WAN perspective, with site ID 111. The virtual edge router has two uplinks: a lower cost `sdwan-public-internet` with "best effort" traffic characteristics and a premium `sdwan-biz-internet` connection that offers guaranteed high throughput.
 
-1. In the Service Directory page, click **+REGISTER SERVICE**.
+While the whole lab is created on Google Cloud, we simulate an  enterprise with SD-WAN site ID 100 on the left side of the diagram. The  enterprise deploying the Cisco SD-WAN has its own edge router (`sdwan-vedge-client`), using the same connectivity. A Windows PC in the enterprise (`streaming-client`) connects to the edge router over the client-network.
 
-2. On the Register service page select **Standard** for Service type. 
+Finally, the Cisco SD-WAN control plane is contained in the `sdwan-in-a-box` VM.
 
-3. Click **Next**.
+A monitoring Compute Engine VM **vm-monitor** is used for evaluation of the lab tasks.
 
-4. In the **Region** pull-down menu, select a region for your namespace. For this lab, use .us-west1
 
-5. In the **Namespace** field, select **CREATE NAMESPACE**.
 
-6. In the **Namespace name** field give your namespace a name. For this lab, you can use `example-namespace`. A namespace is a way to group services within a  region. Each namespace can optionally be associated with a private Cloud DNS zone. 
+## Creating the streaming video service
 
-    You are now adding a namespace to location "us-west1" 
+To demonstrate how Cisco SD-WAN configuration optimizes network  traffic, you will observe the streaming of a video over the network. A  pre-built container uses VLC to stream a ~15 minute variable bitrate  video clip, reaching an average data rate of ~7 Mbps.
 
-7. Enter a **Service name**. For this lab use `example-service`.
+## Creating the Service Directory entry for the streaming video service
 
+[Service Directory](https://cloud.google.com/service-directory) is a single place to publish, discover and connect services. The Cloud  Hub solution uses Service Directory to publish metadata associated with  those cloud services that want to benefit from Cisco SD-WAN network  optimizations.
+
+In a typical Cloud Hub workflow, two teams are collaborating to offer improved end-to-end application experience: the *NetOps* configure and maintain the SD-WAN, the *DevOps* deploy the applications. The two teams agree on a set of metadata (called *traffic profiles*) that reflects the network needs for the services that are labeled with  that specific traffic profile. The example used in this lab will show  that:
+
+- NetOps and DevOps agree to use two *traffic profiles*: `standard` and `video`
+- DevOps associate the *traffic profile* to the application(s)
+- The *traffic profile* is added as service metadata for the video streaming application via Service Directory. Note that the the metadata key used is `traffic-profile,` while the metadata value is either `standard` or `video`
+- NetOps create appropriate SD-WAN policies for each of the different profiles agreed upon
+- `standard` traffic is transported  with a "best effort" policy
+- `video` traffic is steered towards a high bandwidth link
+
+1. In the Cloud Console, use the **Navigation Menu** to browse to **Network services** > **Service Directory**.
+
+First, you may need to enable the Service Directory API.
+
+1. Once the API is enabled, you will be able to click **Register Service**.
+2. For **Service Type** choose Standard and click **Next**. Services are defined in namespaces, and namespaces are associated with regions.
+3. Choose the region corresponding to the zone that was determined at the creation of the video streaming VM.
+4. You can’t choose an existing **Namespace**, so click **Create Namespace** and enter `cloud-hub-lab` for the **Namespace name**.
+5. Click **Create**
+6. For the **Service name** use `streaming-video`.
+7. Click **Add Annotation**, for the **Key** use `traffic-profile` and the **Value** use `standard`. You will be using the standard traffic profile here to make sure that  the traffic flows through the best effort link initially.
 8. Click **Create**.
+9. Finally, click on the newly created service and click **Add Endpoint**.
+10. For the **Endpoint name** use `streaming-video-vm`, and use the IP (`10.111.1.111`) and port (`8080`) of the streaming video service.
+11. Click **Create**.
 
-### Configuring an endpoint
+**Note:**  The annotation is associated with the service, not the endpoints.
 
-Once the service is registered, add some endpoints. An endpoint  consists of a unique name and the optional fields of address, port, and  key/value metadata. The address, if specified, must be valid IPv4 or  IPv6. An endpoint is an individual instance that is able to handle requests  for a given service. Endpoints consist of an IP address, port, and  annotations. Any service can have one or more endpoints. 
+## Preparing the client VM
 
-1. In the Service Directory page, click on your namespace, then click the service you just created.
-2. Click **+Add Endpoint**.
-3. Provide an **Endpoint name**. For this example, you can use `example-endpoint`.
-4. Enter an IPv4 or IPv6 **IP address**. For this example, you can use `0.0.0.0`.
-5. Enter a **Port number**. For this example, you can use `80`.
-6. Click **Create**.
+In this section, you will log into the Windows VM that is used for  streaming the video clip using the VLC media player and set up the  network bandwidth monitoring. You will use an RDP client to log into the Windows VM. If you want to RDP directly from the browser, you can use  the [Chrome RDP for Google Cloud](https://chrome.google.com/webstore/detail/chrome-rdp-for-google-clo/mpbbnannobiobpnfblimoapbephgifkm) extension, but if you are using a Windows machine, it is highly recommended to use [Microsoft Remote Desktop](https://www.microsoft.com/en-us/p/microsoft-remote-desktop/9wzdncrfj3ps), as other solutions are very slow for a video streaming media player application.
 
-## Configuring a Service Directory DNS zone
+1. In the Cloud Console, navigate to the compute instances by going to **Compute Engine** > **VM instances**.
+2. Click on the `streaming-client` Windows machine.
+3. Choose **Set Windows Password**.
+4. Leave the default user and click **Set**.
+5. Copy the password and close the message.
+6. Click **RDP** to connect with either the Chrome extension or Microsoft Remote Desktop.
+7. Once you are logged in, click "Yes" in the Networks dialog box, and  close the "Server Manager" application that is automatically started.
+8. Start monitoring the network throughput usage with Task Manager: Click **Start > Task Manager > More details > Performance > Ethernet**.
+9. Locate the **VLC media player** icon on the desktop.  Double click on the VLC icon to get it started, accept the Privacy and  Network Access Policy, and then click once on the two arrows shaped as a circle to configure  the loop video playing feature.
 
-You can create a Service Directory zone that allows your Google  Cloud-based services to query your Service Directory namespace via DNS.
+If you've started the lab more than 15 minutes ago, the SD-WAN connectivity required for streaming the video should be working.
 
-1. From the **Network Services** menu, select **Cloud DNS**.
+1. You can check for basic connectivity using the ping CLI command in PowerShell.
+2. To start streaming the video from the service configured in the previous steps, choose: **Media > Open Network Stream**. For the URL, enter `http://10.111.1.111:8080` (not https!) and click **Play**.
 
-2. Click **Create zone**.
-
-3. In the Zone type section, select **Private**.
-
-4. Give the zone a name. For this example, you can use: `example-zone-name`.
-
-5. Give the zone a DNS name. For this example, you can use: `myzone.example.com`.
-
-6. Under **Options**, select `Use a service directory namespace`.
-
-7. Under **Networks**, select one or more networks that can use the Service Directory zone. You should use the `default` network here, then click **OK**.
-
-8. Select the **Region** where the namespace you want to link lives. Start typing  then select it.
-
-   Select the **Namespace** you want to link. This should be the namespace you created earlier `example-namespace`. 
-
-   Click **Create**.
-
-> You can associate only one Service Directory zone with a given namespace, and you cannot associate a given zone with multiple  namespaces. You must create the Cloud DNS zone and the Service Directory namespace in the same project.
-
-```sh
-Welcome to Cloud Shell! Type "help" to get started.
-Your Cloud Platform project in this session is set to qwiklabs-gcp-00-7ef88f0476fc.
-Use “gcloud config set project [PROJECT_ID]” to change to a different project.
-gcloud dns --project=qwiklabs-gcp-00-7ef88f0476fc managed-zones create example-zone-name --description="" --dns-name="myzone.example.com." --visibility="private" --networks="https://compute.googleapis.com/compute/v1/projects/qwiklabs-gcp-00-7ef88f0476fc/global/networks/default" --service-directory-namespace="https://servicedirectory.googleapis.com/v1/project
-student_01_aa8f3a74b714@cloudshell:~ (qwiklabs-gcp-00-7ef88f0476fc)$ gcloud dns --project=qwiklabs-gcp-00-7ef88f0476fc managed-zones create example-zone-name --description="" --dns-name="myzone.example.com." --visibility="private" --networks="https://compute.googleapis.com/compute/v1/projects/qwiklabs-gcp-00-7ef88f0476fc/global/networks/default" --service-directory-namespace="https://servicedirectory.googleapis.com/v1/projects/qwiklabs-gcp-00-7ef88f0476fc/locations/us-west1/namespaces/example-namespace"
-Created [https://dns.googleapis.com/dns/v1/projects/qwiklabs-gcp-00-7ef88f0476fc/managedZones/example-zone-name].
-student_01_aa8f3a74b714@cloudshell:~ (qwiklabs-gcp-00-7ef88f0476fc)$ 
-```
+You should now have the video playing in VLC with the occasional hiccup  (corrupted or dropped frames, the video freezing for short amounts of  time). In the Task Manager window monitoring the network performance,  the received throughput should be around 5 Mbps.
 
 
 
-## Securing Service Directory in a service perimeter
+## Changing traffic profile annotations
 
-[VPC Service Controls](https://cloud.google.com/vpc-service-controls/docs/overview) improves your ability to mitigate the risk of data exfiltration from  Google Cloud services. With VPC Service Controls, you can configure  security perimeters around the resources and data of services that you  explicitly specify.
+It is now time to annotate your streaming application with the video *traffic profile*, which is more appropriate, and allows the Cisco SD-WAN to optimize accordingly.
 
-## Querying using DNS
+1. In the Cloud Console, use the **Navigation Menu** to browse to **Network services** > **Service Directory**.
+2. Click on the `cloud-hub-lab` namespace, then click on the `streaming-video` service.
+3. Next to the Service Details, click **Edit**.
+4. Replace the value `standard` with the value `video` for the `traffic-profile` metadata key.
+5. Now, switch back to the Windows client VM and watch how after a few  seconds the video quality improves as the Ethernet throughput changes  from a flat ~5Mbps to a variable bitrate around 7.7Mbps!
 
-This section covers DNS querying, but there are no tasks you need to complete.
+## Optional) Exploring the Cisco SD-WAN user interface
 
-DNS queries for the following record types are supported:
+1. To understand what's happening at the SD-WAN level, open the Cisco  vMange UI in a new browser tab. You can find the link in the Connection  Details panel, under the "Start/Stop Lab" button.
+2. Log in with username `admin`, password `cloudHub-lab`.
 
-- **A/AAAA/SRV** records for a service or an endpoint
-- **SOA/NS** records for the private zone origin
+After a successful login, you are greeted with the Viptela dashboard, showing the number of connected control and data plane elements, and  the health of the SD-WAN connectivity.
 
-## Logging and Monitoring
+1. Click on the left-hand navigation menu and navigate to **Monitor > Network > sdwan-vedge-client**.
+2. Once on the **sdwan-vedge-client** page, click **Interface**, then click on **Real Time** on the top right of the graph.
 
-You can use [Cloud Monitoring](https://cloud.google.com/monitoring) and [Cloud Logging](https://cloud.google.com/logging) with Service Directory.
-
-### Logging
-
-Service Directory produces audit logs that can be viewed through Logging.
-
-#### Audit logs
-
-[Audit logs](https://cloud.google.com/logging/docs/audit) can help you answer the questions "Who did what, where, and when?". Service Directory writes two types of audit logs: **admin activity** and **data access**. Admin activity logs are always enabled and apply to the following Service Directory operations:
-
-- CreateNamespace
-- UpdateNamespace
-- DeleteNamespace
-- SetIamPolicy
-
-All other Service Directory operations are considered data access  logs and are not enabled by default. Data access logs are also subject  to Logging pricing and quota, whereas neither applies to admin activity  logs. To enable data access logging, see [Configuring Data Access logs](https://cloud.google.com/logging/docs/audit/configure-data-access#config-console).
-
-1. To see these logs in [Logging](https://cloud.google.com/logging/docs/view/overview#getting_started), in the Cloud Console, search for "logging" then select **Logging**. You'll be on the **Logs Explorer** page.
-2. From the **Resource** dropdown select `Service Directory Namespace`, then select your region and expand the log for the namespace you created earlier.
-3. Select `activity` from the **Log name** dropdown. You should see one `CreateNamespace` log.
-
-```json
-{
-  "protoPayload": {
-    "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
-    "authenticationInfo": {
-      "principalEmail": "student-01-aa8f3a74b714@qwiklabs.net"
-    },
-    "requestMetadata": {
-      "callerIp": "122.171.21.43",
-      "callerSuppliedUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:125.0) Gecko/20100101 Firefox/125.0,gzip(gfe),gzip(gfe)",
-      "requestAttributes": {
-        "time": "2024-05-14T01:58:02.262379896Z",
-        "auth": {}
-      },
-      "destinationAttributes": {}
-    },
-    "serviceName": "servicedirectory.googleapis.com",
-    "methodName": "google.cloud.servicedirectory.v1beta1.RegistrationService.CreateNamespace",
-    "authorizationInfo": [
-      {
-        "resource": "projects/00000011308f6a1a",
-        "permission": "servicedirectory.namespaces.create",
-        "granted": true,
-        "resourceAttributes": {},
-        "permissionType": "ADMIN_WRITE"
-      }
-    ],
-    "resourceName": "projects/00000011308f6a1a",
-    "request": {
-      "parent": "projects/qwiklabs-gcp-00-7ef88f0476fc/locations/us-west1",
-      "@type": "type.googleapis.com/google.cloud.servicedirectory.v1beta1.CreateNamespaceRequest",
-      "namespace": {},
-      "namespaceId": "example-namespace"
-    },
-    "response": {
-      "name": "projects/qwiklabs-gcp-00-7ef88f0476fc/locations/us-west1/namespaces/example-namespace",
-      "uid": "7cc0dba0fa124dbaa7a6074156068c93",
-      "createTime": "2024-05-14T01:58:02.280888Z",
-      "@type": "type.googleapis.com/google.cloud.servicedirectory.v1beta1.Namespace",
-      "updateTime": "2024-05-14T01:58:02.280888Z"
-    }
-  },
-  "insertId": "b41avkd6sdg",
-  "resource": {
-    "type": "servicedirectory_namespace",
-    "labels": {
-      "namespace_name": "example-namespace",
-      "location": "us-west1",
-      "project_id": "qwiklabs-gcp-00-7ef88f0476fc"
-    }
-  },
-  "timestamp": "2024-05-14T01:58:02.256349627Z",
-  "severity": "NOTICE",
-  "logName": "projects/qwiklabs-gcp-00-7ef88f0476fc/logs/cloudaudit.googleapis.com%2Factivity",
-  "receiveTimestamp": "2024-05-14T01:58:03.118380571Z"
-}
-```
-
-
-
-1. In the Cloud Console return to  **Network Services** and select **Service Directory**.
-2. For the namespace you created, click the three dots on the right side of the row. Click **Delete**, then **Delete** again.
-3. Now go back to **Logging** and go to the **Logs Explorer** page.
-4. You should now see a `DeleteNamespace` log.
-
-```json
-{
-  "protoPayload": {
-    "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
-    "authenticationInfo": {
-      "principalEmail": "student-01-aa8f3a74b714@qwiklabs.net"
-    },
-    "requestMetadata": {
-      "callerIp": "122.171.21.43",
-      "callerSuppliedUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:125.0) Gecko/20100101 Firefox/125.0,gzip(gfe),gzip(gfe)",
-      "requestAttributes": {
-        "time": "2024-05-14T02:06:22.203405248Z",
-        "auth": {}
-      },
-      "destinationAttributes": {}
-    },
-    "serviceName": "servicedirectory.googleapis.com",
-    "methodName": "google.cloud.servicedirectory.v1beta1.RegistrationService.DeleteNamespace",
-    "authorizationInfo": [
-      {
-        "resource": "projects/00000011308f6a1a/locations/us-west1/namespaces/example-namespace",
-        "permission": "servicedirectory.namespaces.delete",
-        "granted": true,
-        "resourceAttributes": {},
-        "permissionType": "ADMIN_WRITE"
-      }
-    ],
-    "resourceName": "projects/00000011308f6a1a/locations/us-west1/namespaces/example-namespace",
-    "request": {
-      "@type": "type.googleapis.com/google.cloud.servicedirectory.v1beta1.DeleteNamespaceRequest",
-      "name": "projects/qwiklabs-gcp-00-7ef88f0476fc/locations/us-west1/namespaces/example-namespace"
-    }
-  },
-  "insertId": "n1eko3d67jo",
-  "resource": {
-    "type": "servicedirectory_namespace",
-    "labels": {
-      "location": "us-west1",
-      "project_id": "qwiklabs-gcp-00-7ef88f0476fc",
-      "namespace_name": "example-namespace"
-    }
-  },
-  "timestamp": "2024-05-14T02:06:22.197103965Z",
-  "severity": "NOTICE",
-  "logName": "projects/qwiklabs-gcp-00-7ef88f0476fc/logs/cloudaudit.googleapis.com%2Factivity",
-  "receiveTimestamp": "2024-05-14T02:06:22.846838945Z"
-}
-```
-
-
-
-### Monitoring
-
-Monitoring allows you to create dashboards or set up alerts and can be accessed by visiting Monitoring in Cloud Console.
-
-To view basic monitoring metrics (request count, size and latency), you can go to the Metrics Explorer and filter by `resource_type:consumed_api` and `service:servicedirectory.googleapis.com`.
+You can keep changing the metadata labels to observe how the traffic  is shifted from one interface to the other (corresponding to WAN links), depending on the traffic profile associated with the video streaming  service.

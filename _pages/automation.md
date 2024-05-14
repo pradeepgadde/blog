@@ -23,7 +23,7 @@ author:
       url: "https://github.com/pradeepgadde/"
     - label: "Google Cloud Skills Boost"
       icon: "fas fa-fw fa-link"
-      url: "https://www.cloudskillsboost.google/public_profiles/1a13c946-f39c-4f08-b6cb-aa47a9df2e81"
+      url: "https://www.cloudskillsboost.google/public_profiles/5fc5d272-577c-44e5-ac69-bcc7f38e9662"
 sidebar:
   - title: "Topics"
     nav: my-sidebar
