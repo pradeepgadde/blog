@@ -121,7 +121,7 @@ student_04_bf71fa739d08@cloudshell:~/flex_and_vision (qwiklabs-gcp-02-b310319973
 {
   "type": "service_account",
   "project_id": "qwiklabs-gcp-02-b31031997333",
-  "private_key_id": "b69c5916c15aa1f440cfd60644e8dcb4949c615d",
+  "private_key_id": "",
   "private_key": "-----",
   "client_email": "qwiklab@qwiklabs-gcp-02-b31031997333.iam.gserviceaccount.com",
   "client_id": "115156694934979817423",
