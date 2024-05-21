@@ -545,10 +545,6 @@ student_02_0bc8a0c336eb@cloudshell:~ (qwiklabs-gcp-02-b72e20704fdb)$ kubectl log
 2024/05/21 08:48:12 Server listening on port 8000
 student_02_0bc8a0c336eb@cloudshell:~ (qwiklabs-gcp-02-b72e20704fdb)$ kubectl logs echo-web-5cd58676b4-jsjcd
 2024/05/21 08:48:12 Server listening on port 8000
-student_02_0bc8a0c336eb@cloudshell:~ (qwiklabs-gcp-02-b72e20704fdb)$ kubectl get svc
-NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
-echo-web     ClusterIP   10.84.142.174   <none>        80/TCP    4m37s
-kubernetes   ClusterIP   10.84.128.1     <none>        443/TCP   35m
 student_02_0bc8a0c336eb@cloudshell:~ (qwiklabs-gcp-02-b72e20704fdb)$ 
 student_02_0bc8a0c336eb@cloudshell:~ (qwiklabs-gcp-02-b72e20704fdb)$ kubectl expose deploy echo-web --port=80 --target-port=8000 --type=LoadBalancer
 service/echo-web exposed
