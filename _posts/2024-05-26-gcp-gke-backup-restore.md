@@ -9,10 +9,10 @@ show_date: true
 header:
   overlay_image: /assets/images/gcp-gke.png
   og_image: /assets/images/gcp-gke.png
-  teaser: /assets/images/pac-gcp.png
+  teaser: /assets/images/pca-gcp.png
 author:
   name     : "Professional Cloud Architect"
-  avatar   : "/assets/images/pac-gcp.png"
+  avatar   : "/assets/images/pca-gcp.png"
 
 sidebar:
   - title: "Topics"
