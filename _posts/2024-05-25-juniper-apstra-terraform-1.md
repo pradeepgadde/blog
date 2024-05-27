@@ -1,3 +1,23 @@
+---
+
+layout: single
+title:  "Getting Started with Juniper Apstra Terraform Provider"
+categories: Automation
+tags: Terraform
+toc: true
+toc_sticky: true
+show_date: true
+header:
+  teaser: /assets/images/terraform.png
+author:
+  name     : "Juniper Apstra Terraform"
+  avatar   : "/assets/images/apstra.png"
+
+sidebar:
+  - title: "Topics"
+    nav: my-sidebar
+---
+
 # Getting Started with Juniper Apstra Terraform Provider
 
 ## Infrastructure as Code (IaC)  
