@@ -33,5 +33,5 @@ Here is a link to the Packet Pushers Heavy Networking Podcast on Kubernetes Netw
 
 <iframe width="320" height="30" src="https://packetpushers.net/?powerpress_embed=62952-podcast&amp;powerpress_player=mediaelement-audio" title="Blubrry Podcast Player" frameborder="0" scrolling="no"></iframe>
 
-![][https://packetpushers.net/wp-content/uploads/2024/03/HN727-episode-artwork-scaled.jpg] 
+
 
