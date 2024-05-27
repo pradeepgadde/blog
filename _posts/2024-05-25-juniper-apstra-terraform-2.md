@@ -1,5 +1,3 @@
----
-
 --- 
 layout: single
 title:  "Juniper Apstra Terraform Provider Versions"
