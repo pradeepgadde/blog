@@ -8,7 +8,7 @@ toc: true
 toc_sticky: true
 show_date: true
 header:
-  teaser: /assets/images/terraform.png
+  teaser: /assets/images/apstra.png
 author:
   name     : "Juniper Apstra Terraform"
   avatar   : "/assets/images/apstra.png"
