@@ -166,10 +166,7 @@ student_03_2a004b33a597@cloudshell:~ (qwiklabs-gcp-04-2d8ba71b6ea2)$ history
     5  gcloud compute ssh --zone "us-central1-c" "blog" --project "qwiklabs-gcp-04-2d8ba71b6ea2"
     6  scp 34.66.17.32:/home/student-03-2a004b33a597/wordpress.sql .
     7  ls
-    8  gcloud compute ssh --zone "us-central1-c" "blog" --project "qwiklabs-gcp-04-2d8ba71b6ea2" scp /home/student-03-2a004b33a597/wordpress.sql .
-    9  gcloud compute ssh --zone "us-central1-c" "blog" --project "qwiklabs-gcp-04-2d8ba71b6ea2" 
-   10  gcloud compute ssh --zone "us-central1-c" "blog" --project "qwiklabs-gcp-04-2d8ba71b6ea2"
-   11  gcloud compute scp --recurse blog:/home/student-03-2a004b33a597/wordpress.sql .
+    {snip}
    12  gcloud compute scp --zone "us-central1-c" blog:/home/student-03-2a004b33a597/wordpress.sql .
    13  ls
    14  gsutil cp ~/wordpress.sql gs://${PROJECT_ID}
