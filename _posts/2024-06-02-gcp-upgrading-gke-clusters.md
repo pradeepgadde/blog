@@ -42,6 +42,38 @@ Select the lowest version number in the list.
 
 Leave all of the other settings at the defaults and click Create to begin creating a GKE cluster.
 
+```sh
+
+Welcome to Cloud Shell! Type "help" to get started.
+Your Cloud Platform project in this session is set to qwiklabs-gcp-00-7f5a9810db45.
+Use “gcloud config set project [PROJECT_ID]” to change to a different project.
+student_01_ea69a93ec367@cloudshell:~ (qwiklabs-gcp-00-7f5a9810db45)$ gcloud beta container --project "qwiklabs-gcp-00-7f5a9810db45" clusters create "cluster-1" --zone "us-central1-c" --no-enable-basic-auth --cluster-version "1.26.15-gke.1090000" --release-channel "None" --machine-type "e2-medium" --image-type "COS_CONTAINERD" --disk-type "pd-balanced" --disk-size "100" --metadata disable-legacy-endpoints=true --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" --num-nodes "3" --logging=SYSTEM,WORKLOAD --monitoring=SYSTEM --enable-ip-alias --network "projects/qwiklabs-gcp-00-7f5a9810db45/global/networks/default" --subnetwork "projects/qwiklabs-gcp-00-7f5a9810db45/regions/us-central1/subnetworks/default" --no-enable-intra-node-visibility --default-max-pods-per-node "110" --security-posture=disabled --workload-vulnerability-scanning=disabled --no-enable-master-authorized-networks --addons HorizontalPodAutoscaling,HttpLoadBalancing,GcePersistentDiskCsiDriver --enable-autoupgrade --enable-autorepair --max-surge-upgrade 1 --max-unavailable-upgrade 0 --binauthz-evaluation-mode=DISABLED --no-enable-managed-prometheus --enable-shielded-nodes --node-locations "us-central1-c"
+Creating cluster cluster-1 in us-central1-c... Cluster is being health-checked (master is healthy)...done.                                  
+Created [https://container.googleapis.com/v1beta1/projects/qwiklabs-gcp-00-7f5a9810db45/zones/us-central1-c/clusters/cluster-1].
+To inspect the contents of your cluster, go to: https://console.cloud.google.com/kubernetes/workload_/gcloud/us-central1-c/cluster-1?project=qwiklabs-gcp-00-7f5a9810db45
+kubeconfig entry generated for cluster-1.
+NAME: cluster-1
+LOCATION: us-central1-c
+MASTER_VERSION: 1.26.15-gke.1090000
+MASTER_IP: 104.154.241.19
+MACHINE_TYPE: e2-medium
+NODE_VERSION: 1.26.15-gke.1090000
+NUM_NODES: 3
+STATUS: RUNNING
+student_01_ea69a93ec367@cloudshell:~ (qwiklabs-gcp-00-7f5a9810db45)$ 
+```
+
+```sh
+student_01_ea69a93ec367@cloudshell:~ (qwiklabs-gcp-00-7f5a9810db45)$ kubectl get nodes -o wide
+NAME                                       STATUS   ROLES    AGE   VERSION                INTERNAL-IP   EXTERNAL-IP      OS-IMAGE                             KERNEL-VERSION   CONTAINER-RUNTIME
+gke-cluster-1-default-pool-4d839da4-jttf   Ready    <none>   11m   v1.26.15-gke.1090000   10.128.0.5    34.71.122.4      Container-Optimized OS from Google   5.15.146+        containerd://1.6.28
+gke-cluster-1-default-pool-4d839da4-rq4h   Ready    <none>   11m   v1.26.15-gke.1090000   10.128.0.4    34.123.18.100    Container-Optimized OS from Google   5.15.146+        containerd://1.6.28
+gke-cluster-1-default-pool-4d839da4-x19m   Ready    <none>   11m   v1.26.15-gke.1090000   10.128.0.3    104.197.240.94   Container-Optimized OS from Google   5.15.146+        containerd://1.6.28
+student_01_ea69a93ec367@cloudshell:~ (qwiklabs-gcp-00-7f5a9810db45)$ 
+```
+
+
+
 ## Upgrade your GKE cluster
 
 In this task, you upgrade your GKE cluster and all of the nodes.
@@ -72,6 +104,10 @@ You must now upgrade the nodes of your cluster to the same version as the contro
 
 Refresh your web browser to display the prompt, and then click Upgrade oldest node pool.
 
+```sh
+Node pools with auto-upgrade enabled have upcoming node upgrade to 1.27.14-gke.1022000. Learn more
+```
+
 In the upgrade wizard window, choose the most recent version (at the top of the list), and then click Upgrade to continue with the upgrade.
 
 Because this process must upgrade all nodes in your cluster, it might take several minutes to complete.
@@ -79,3 +115,25 @@ Because this process must upgrade all nodes in your cluster, it might take sever
 You can check the status by refreshing the web browser. A progress bar appears.
 
 When the node pool upgrade process finishes, your cluster upgrade is complete.
+
+```sh
+Updating nodes in the node pool default-pool. For node version upgrades, it typically takes 4-5 minutes to upgrade a single node or longer (e.g., due to pod disruption budget or grace period). For updates to node metadata like kubernetes labels, taints and tags, it takes less than a minute per node and it does not recreate the nodes or cause any disruption to running workloads. Learn more
+33%
+33% -- 1 out of 3 complete. 
+```
+
+```sh
+Updating nodes in the node pool default-pool. For node version upgrades, it typically takes 4-5 minutes to upgrade a single node or longer (e.g., due to pod disruption budget or grace period). For updates to node metadata like kubernetes labels, taints and tags, it takes less than a minute per node and it does not recreate the nodes or cause any disruption to running workloads. Learn more
+67%
+67% -- 2 out of 3 complete. 
+```
+
+```sh
+student_01_ea69a93ec367@cloudshell:~ (qwiklabs-gcp-00-7f5a9810db45)$ kubectl get nodes -o wide
+NAME                                       STATUS   ROLES    AGE     VERSION                INTERNAL-IP   EXTERNAL-IP      OS-IMAGE                             KERNEL-VERSION   CONTAINER-RUNTIME
+gke-cluster-1-default-pool-4d839da4-6qp0   Ready    <none>   8m21s   v1.27.14-gke.1022000   10.128.0.8    34.123.18.100    Container-Optimized OS from Google   5.15.154+        containerd://1.7.15
+gke-cluster-1-default-pool-4d839da4-edvk   Ready    <none>   11m     v1.27.14-gke.1022000   10.128.0.7    34.71.122.4      Container-Optimized OS from Google   5.15.154+        containerd://1.7.15
+gke-cluster-1-default-pool-4d839da4-h8uk   Ready    <none>   15m     v1.27.14-gke.1022000   10.128.0.6    34.170.101.170   Container-Optimized OS from Google   5.15.154+        containerd://1.7.15
+student_01_ea69a93ec367@cloudshell:~ (qwiklabs-gcp-00-7f5a9810db45)$ 
+```
+
