@@ -2,7 +2,7 @@
 layout: single
 title:  "About"
 permalink: /about/
-date:   2024-05-01 10:55:04 +0530
+date:   2024-06-27 10:55:04 +0530
 categories: about
 author:
   name     : "Pradeep"
@@ -107,6 +107,11 @@ Pradeep
 
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="7928b262-37e6-4bbc-9ebf-0a5857cf6acd" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="0558f214-c0be-493e-93bd-2aaaf6ed6196" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+
+
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="763b1bbd-28ec-4705-b3cc-12be397282ae" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+
 
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="942a89f8-8df8-407c-b264-23e84d796d1c" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
@@ -132,9 +137,6 @@ Pradeep
 
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="7c81c2cd-102d-476f-a486-e9a672c0b77e" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
-<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="0558f214-c0be-493e-93bd-2aaaf6ed6196" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
-
-<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="763b1bbd-28ec-4705-b3cc-12be397282ae" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
 
