@@ -46,7 +46,19 @@ You created your bucket. Remember the bucket name for later steps.
 
 1. Open **Cloud Shell** and run the following command:
 
-2. You should see a message saying the service identity was created.
+```sh
+Welcome to Cloud Shell! Type "help" to get started.
+To set your Cloud Platform project in this session use “gcloud config set project [PROJECT_ID]”
+student_01_932d053b64d1@cloudshell:~$ gcloud config set project         qwiklabs-gcp-00-8ff6ea4c38ae 
+Updated property [core/project].
+student_01_932d053b64d1@cloudshell:~ (qwiklabs-gcp-00-8ff6ea4c38ae)$ gcloud beta services identity create --service=dataprep.googleapis.com
+Service identity created: service-239293164562@trifacta-gcloud-prod.iam.gserviceaccount.com
+student_01_932d053b64d1@cloudshell:~ (qwiklabs-gcp-00-8ff6ea4c38ae)$ 
+```
+
+
+
+1. You should see a message saying the service identity was created.
 
    1. Select **Navigation menu** > **Dataprep**.
    2. Check to accept the Google Dataprep Terms of Service, then click **Accept**.
@@ -177,4 +189,10 @@ Click Add to open a summary table of major US presidential candidates and their 
 
 You can make the data easier to interpret by renaming the columns.
 
-    Add each of the renaming and rounding steps individually to the recipe by clicking New Step, then enter:
+Add each of the renaming and rounding steps individually to the recipe by clicking New Step, then enter:
+
+1. Then click **Add**.
+2. Add in this last **New Step** to round the Average Contribution amount:
+3. Then click **Add**.
+
+You used Dataprep to add a dataset and created recipes to wrangle the data into meaningful results.
