@@ -306,6 +306,130 @@ Updated [https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-f5adeb76
 student_03_9717f3e77292@cloudshell:~ (qwiklabs-gcp-02-f5adeb762d87)$ 
 ```
 
+```sh
+student_03_9717f3e77292@cloudshell:~ (qwiklabs-gcp-02-f5adeb762d87)$ gcloud compute instances describe juice-shop
+Did you mean zone [asia-southeast1-b] for instance: [juice-shop] (Y/n)?  n
+
+No zone specified. Using zone [europe-west1-c] for instance: [juice-shop].
+^[[AcanIpForward: false
+cpuPlatform: Intel Broadwell
+creationTimestamp: '2024-07-02T09:27:19.340-07:00'
+deletionProtection: false
+disks:
+- architecture: X86_64
+  autoDelete: true
+  boot: true
+  deviceName: juice-shop
+  diskSizeGb: '100'
+  guestOsFeatures:
+  - type: UEFI_COMPATIBLE
+  - type: VIRTIO_SCSI_MULTIQUEUE
+  - type: GVNIC
+  - type: SEV_CAPABLE
+  index: 0
+  interface: SCSI
+  kind: compute#attachedDisk
+  licenses:
+  - https://www.googleapis.com/compute/v1/projects/debian-cloud/global/licenses/debian-11-bullseye
+  mode: READ_WRITE
+  source: https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-f5adeb762d87/zones/europe-west1-c/disks/juice-shop
+  type: PERSISTENT
+fingerprint: 5eSm1LILHNI=
+id: '5248019034538611849'
+kind: compute#instance
+labelFingerprint: 42WmSpB8rSM=
+lastStartTimestamp: '2024-07-02T09:27:25.675-07:00'
+machineType: https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-f5adeb762d87/zones/europe-west1-c/machineTypes/e2-micro
+metadata:
+  fingerprint: 0Fan7C48a20=
+  items:
+  - key: foo
+    value: bar
+  - key: startup-script
+    value: |-
+      #!/bin/bash
+
+      ## SCRIPT START
+      apt update
+      curl -sSO https://dl.google.com/cloudagents/install-logging-agent.sh
+      bash install-logging-agent.sh
+      cat > /tmp/file <<EOF
+      <source>
+        @type tail
+
+        # Parse the timestamp, but still collect the entire line as 'message'
+        format /^(?<message>(?<time>[^ ]*\s*[^ ]* [^ ]*) .*)$/
+
+        path /var/log/auth.log
+        pos_file /var/lib/google-fluentd/pos/auth.log.pos
+        read_from_head true
+        tag auth
+      </source>
+      EOF
+      bash -c "cat /tmp/file >> /etc/google-fluentd/config.d/syslog.conf"
+      service google-fluentd restart
+      curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -
+      apt install nodejs nginx -y
+      cat > /etc/nginx/sites-enabled/default <<EOF
+      server {
+        listen 80;
+        location / {
+          proxy_pass         http://127.0.0.1:3000;
+        }
+      }
+      EOF
+      systemctl restart nginx
+      cd /tmp
+      wget https://github.com/bkimminich/juice-shop/releases/download/v9.3.1/juice-shop-9.3.1_node12_linux_x64.tgz
+      tar -xzf juice-shop-9.3.1_node12_linux_x64.tgz
+      cd juice-shop_9.3.1
+      npm start
+      ## SCRIPT END 
+  kind: compute#metadata
+name: juice-shop
+networkInterfaces:
+- accessConfigs:
+  - kind: compute#accessConfig
+    name: external-nat
+    natIP: 34.76.141.117
+    networkTier: PREMIUM
+    type: ONE_TO_ONE_NAT
+  fingerprint: BH1IQsaPYng=
+  kind: compute#networkInterface
+  name: nic0
+  network: https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-f5adeb762d87/global/networks/acme-vpc
+  networkIP: 192.168.11.2
+  stackType: IPV4_ONLY
+  subnetwork: https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-f5adeb762d87/regions/europe-west1/subnetworks/acme-app-subnet
+satisfiesPzi: true
+scheduling:
+  automaticRestart: true
+  onHostMaintenance: MIGRATE
+  preemptible: false
+  provisioningModel: STANDARD
+selfLink: https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-f5adeb762d87/zones/europe-west1-c/instances/juice-shop
+serviceAccounts:
+- email: 1058778023706-compute@developer.gserviceaccount.com
+  scopes:
+  - https://www.googleapis.com/auth/cloud-platform
+shieldedInstanceConfig:
+  enableIntegrityMonitoring: true
+  enableSecureBoot: false
+  enableVtpm: true
+shieldedInstanceIntegrityPolicy:
+  updateAutoLearnPolicy: true
+startRestricted: false
+status: RUNNING
+tags:
+  fingerprint: Uqu_qzXNAA8=
+  items:
+  - allow-http-ingress-ql-752
+  - allow-ssh-internal-ingress-ql-752
+  - lab-vm
+zone: https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-f5adeb762d87/zones/europe-west1-c
+student_03_9717f3e77292@cloudshell:~ (qwiklabs-gcp-02-f5adeb762d87)$ 
+```
+
 
 
 In the Compute Engine instances page, click the SSH button for the bastion host. Once connected, SSH to `juice-shop`.
