@@ -2,7 +2,7 @@
 layout: single
 title:  "About"
 permalink: /about/
-date:   2024-07-03 10:55:04 +0530
+date:   2024-07-06 00:55:04 +0530
 categories: about
 author:
   name     : "Pradeep"
@@ -52,6 +52,8 @@ Best regards,
 Pradeep
 
 ## Badges 
+
+<div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="3cf61246-a562-47b8-8bb4-2463b8d613b1" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
 <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="314bfc92-d879-4527-8a67-84984dcb0822" data-share-badge-host="https://www.credly.com"></div><script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
