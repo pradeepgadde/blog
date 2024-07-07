@@ -2,16 +2,18 @@
 
 layout: single
 title:  "GCP—Analyzing network traffic with VPC Flow Logs"
-date:   2022-10-08 04:59:04 +0530
+
 categories: Cloud
 tags: GCP
 show_date: true
 classes: wide
 header:
-  teaser: /assets/images/gcpne.png
+  overlay_image: /assets/images/gcp-banner-2.png
+  og_image: /assets/images/gcp-banner-2.png
+  teaser: /assets/images/pca-gcp.png
 author:
-  name     : "Google Cloud Platform"
-  avatar   : "/assets/images/gcpne.png"
+  name     : "Professional Cloud Architect"
+  avatar   : "/assets/images/pca-gcp.png"
 
 sidebar:
   - title: "Topics"
@@ -284,10 +286,95 @@ student-01-e3c2b9ab4419@web-server:~$
 Access the VPC Flow Logs
 In the Cloud Console, go to Navigation menu > Logging > Logs Explorer.
 
+In the **Log fields** panel, under **Resource type**, click **Subnetwork**. In the Query results pane, entries from the subnetwork logs appear.
+
+In the **Log fields** panel, under **Log name**, click **compute.googleapis.com/vpc_flows**.
+
+Enter `"YOUR_IP_ADDRESS"` in the Query search box at the top. Then Click **Run Query**.
+
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-122.png)
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-123.png)
 
+```sh
+resource.type="gce_subnetwork"
+log_name="projects/qwiklabs-gcp-03-9a1e7be07c45/logs/compute.googleapis.com%2Fvpc_flows"
+"122.171.20.79"
+```
+
+
+
+```json
+{
+  "insertId": "1ac59m6fh4mq35",
+  "jsonPayload": {
+    "connection": {
+      "src_port": 4566,
+      "dest_ip": "10.1.3.2",
+      "dest_port": 80,
+      "protocol": 6,
+      "src_ip": "122.171.20.79"
+    },
+    "dest_instance": {
+      "project_id": "qwiklabs-gcp-03-9a1e7be07c45",
+      "region": "us-east1",
+      "zone": "us-east1-c",
+      "vm_name": "web-server"
+    },
+    "end_time": "2024-07-07T06:47:28.252975448Z",
+    "reporter": "DEST",
+    "src_location": {
+      "asn": 24560,
+      "continent": "Asia",
+      "country": "ind",
+      "region": "Karnataka",
+      "city": "Bengaluru"
+    },
+    "bytes_sent": "0",
+    "packets_sent": "8",
+    "dest_vpc": {
+      "vpc_name": "vpc-net",
+      "subnetwork_name": "vpc-subnet",
+      "project_id": "qwiklabs-gcp-03-9a1e7be07c45"
+    },
+    "start_time": "2024-07-07T06:47:27.992698117Z"
+  },
+  "resource": {
+    "type": "gce_subnetwork",
+    "labels": {
+      "location": "us-east1",
+      "subnetwork_name": "vpc-subnet",
+      "project_id": "qwiklabs-gcp-03-9a1e7be07c45",
+      "subnetwork_id": "4356594977366050425"
+    }
+  },
+  "timestamp": "2024-07-07T06:47:37.036054126Z",
+  "logName": "projects/qwiklabs-gcp-03-9a1e7be07c45/logs/compute.googleapis.com%2Fvpc_flows",
+  "receiveTimestamp": "2024-07-07T06:47:37.036054126Z"
+}
+```
+
+
+
 ## Task 4. Export the network traffic to BigQuery to further analyze the logs
+
+In the Console, in the left pane, click **Logs Explorer**.
+
+From **Resources** dropdown, select **Subnetwork**. Then click **Apply**.
+
+From **Log name** dropdown, check **vpc_flows** and click **Apply**. Then, click **Run query**.
+
+Click **More Actions > Create Sink**.
+
+For "Sink Name", type **vpc-flows** and click **NEXT**.
+
+For "Select sink service", select the **BigQuery dataset**.
+
+For "Sink Destination", select **Create new BigQuery dataset**.
+
+For "Dataset ID", type **bq_vpcflows**, and then click **CREATE DATASET**.
+
+Click **CREATE SINK**. The Logs Router Sinks page  appears. You should be able to see the sink you created (vpc-flows). If  you are unable to see the sink click on **Logs Router**.
+
 Create an export sink
 ![]({{ site.url }}{{ site.baseurl }}/assets/images/gcp-124.png)
 
@@ -355,11 +442,91 @@ student_01_e3c2b9ab4419@cloudshell:~ (qwiklabs-gcp-02-91a00c91652c)$
 Visualize the VPC Flow Logs in BigQuery
 In the Cloud Console, on the Navigation menu, click BigQuery.
 
+1. In the Console, navigate to  **Navigation menu** (![Navigation menu icon](https://cdn.qwiklabs.com/tkgw1TDgj4Q%2BYKQUW4jUFd0O5OEKlUMBRYbhlCrF0WY%3D)) > **BigQuery**.
+2. Click **Done**.
+3. On the left-hand side, expand the **bq_vpcflows** dataset to reveal the table. You might have to first expand the **Project ID** to reveal the dataset.
+4. Click on the name of the table. It should start with **compute_googleapis**.
+5. Click on **Details** tab.
+6. Copy the **Table ID** provided in the `Details` tab.
+7. Add the following to the Query Editor and replace **your_table_id** with `TABLE_ID` while leaving the accents (`) on both sides:
+
+```sql
+#standardSQL
+SELECT
+jsonPayload.src_vpc.vpc_name,
+SUM(CAST(jsonPayload.bytes_sent AS INT64)) AS bytes,
+jsonPayload.src_vpc.subnetwork_name,
+jsonPayload.connection.src_ip,
+jsonPayload.connection.src_port,
+jsonPayload.connection.dest_ip,
+jsonPayload.connection.dest_port,
+jsonPayload.connection.protocol
+FROM
+`qwiklabs-gcp-03-9a1e7be07c45.bq_vpcflows.compute_googleapis_com_vpc_flows_20240707`
+GROUP BY
+jsonPayload.src_vpc.vpc_name,
+jsonPayload.src_vpc.subnetwork_name,
+jsonPayload.connection.src_ip,
+jsonPayload.connection.src_port,
+jsonPayload.connection.dest_ip,
+jsonPayload.connection.dest_port,
+jsonPayload.connection.protocol
+ORDER BY
+bytes DESC
+LIMIT
+15
+```
+
+The results table shows the total bytes sent, source IP address,  destination IP address, destination port, protocol, and the respective  vpc name and subnet name.
+
+
+
+### Analyze the VPC Flow Logs in BigQuery
+
+The previous query gave you the same information that you saw in the  Cloud Console. Now change the query to identify the top IP addresses  that have exchanged traffic with your **web-server**.
+
+1. Create a new query in the Query Editor with the following and replace **your_table_id** with `TABLE_ID` while leaving the accents (`) on both sides
+2. The results table now has a row for each source IP and is sorted by the highest amount of bytes sent to the **web-server**. The top result should reflect your Cloud Shell IP address.
+
+```json
+[{
+  "src_ip": "34.143.173.99",
+  "dest_ip": "10.1.3.2",
+  "bytes": "3120",
+  "dest_port": "80.0",
+  "protocol": "6.0"
+}]
+```
+
+
+
 
 ## Task 5. Add VPC Flow Log aggregation
 In this task, you will now explore a new release of VPC flow log volume reduction. Not every packet is captured into its own log record. However, even with sampling, log record captures can be quite large.
 
 You can balance your traffic visibility and storage cost needs by adjusting specific aspects of logs collection, which you will explore in this section.
+
+1. In the Console, navigate to **Navigation menu** (![Navigation menu icon](https://cdn.qwiklabs.com/tkgw1TDgj4Q%2BYKQUW4jUFd0O5OEKlUMBRYbhlCrF0WY%3D)) > **VPC network** > **VPC networks**.
+
+2. Click **vpc-net**, and then click **Edit**.
+
+3. In the Subnets tab, click **vpc-subnet**:
+
+4. Click **Edit** > **Configure logs** to expose the following fields:
+
+5. The purpose of each field is explained below:
+
+   - **Aggregation time interval**: Sampled packets for a  time interval are aggregated into a single log entry. This time interval can be 5 sec (default), 30 sec, 1 min, 5 min, 10 min, or 15 min.
+   - **Metadata annotations**: By default, flow log entries  are annotated with metadata information, such as the names of the source and destination VMs or the geographic region of external sources and  destinations. This metadata annotation can be turned off to save storage space.
+   - **Log entry sampling**: Before being written to the  database, the number of logs can be sampled to reduce their number. By  default, the log entry volume is scaled by 0.50 (50%), which means that  half of entries are kept. You can set this from 1.0 (100%, all log  entries are kept) to 0.0 (0%, no logs are kept).
+
+   1. Set the **Aggregation Interval** to **30 seconds**.
+   2. Set the **Sample rate** to **25%**.
+   3. Click **Save**. 
+
+   Setting the aggregation level to 30 seconds can reduce your flow logs size by up to *83%* compared to the default aggregation interval of 5 seconds. Configuring  your flow log aggregation can seriously affect your traffic visibility  and storage costs.
+
+
 
 Review
 You configured a VPC network, enabled VPC Flow Logs, and created a web server in that network. Then, you generated HTTP traffic to the web server, viewed the traffic logs in the Cloud Console, and analyzed the traffic logs in BigQuery. Finally, you used VPC Flow Log aggregation for balancing your traffic visibility and storage cost.
