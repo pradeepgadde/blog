@@ -4,7 +4,7 @@ permalink: /
 hidden: true
 header:
   overlay_color: "#5e616c"
-  overlay_image: /assets/images/gcp-pca-banner.png
+  overlay_image: /assets/images/gcp-pca-banner.jpg
   actions:
    - label: "About Me"
      url: "https://pradeepgadde.com/blog/about"
