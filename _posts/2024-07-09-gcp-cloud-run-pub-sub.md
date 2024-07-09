@@ -21,6 +21,13 @@ sidebar:
 ---
 # Using Cloud PubSub with Cloud Run 
 
+What is Cloud Run?
+
+- Cloud Run provides fully-managed compute to run containers, simplifying running containerized workloads and abstracting away infrastructure management.
+- Write code using a language of your choice, package your code as a container, and run `gcloud run deploy` to launch your application with Cloud Run.
+
+
+
 Pub/Sub enables applications to take advantage of efficient message queues. The service is compatible with a range of Google Cloud services, and in this lab, you learn how to integrate it with Cloud Run.
 
 This lab is based on resolving a customer use case by using serverless infrastructure. 
