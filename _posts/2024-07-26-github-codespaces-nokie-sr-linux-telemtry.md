@@ -7,12 +7,12 @@ tags: Nokia
 classes: wide
 show_date: true
 header:
-  overlay_image: /assets/images/gcp-banner-1.png
-  og_image: /assets/images/gcp-banner-1.png
-  teaser: /assets/images/pca-gcp.png
+  overlay_image: /assets/images/clab.png
+  og_image: /assets/images/clab.png
+  teaser: /assets/images/clab.png
 author:
-  name     : "Professional Cloud Architect"
-  avatar   : "/assets/images/pca-gcp.png"
+  name     : "CONTAINERlab"
+  avatar   : "/assets/images/clab.png"
 
 sidebar:
   - title: "Topics"
@@ -23,8 +23,6 @@ sidebar:
 
 GitHub Codespaces gets you up and coding faster with fully configured, secure cloud development environments native to GitHub. Individuals can use Codespaces for free each month for 60 hours, with  pay-as-you-go pricing after. Teams or Enterprises pay for Codespaces. A  maximum monthly cap can also be set for extra pricing control.
 
-This lab represents a small Clos fabric with [Nokia SR Linux](https://learn.srlinux.dev/) switches running as containers. The lab topology consists of a Clos topology, plus a Streaming Telemetry stack comprised of [gnmic](https://gnmic.openconfig.net/), prometheus and grafana applications.
-
 ```sh
 👋 Welcome to Codespaces! You are on a custom image defined in your devcontainer.json file.
 
@@ -34,6 +32,23 @@ This lab represents a small Clos fabric with [Nokia SR Linux](https://learn.srli
 @pradeepgadde ➜ /workspaces/srl-telemetry-lab (main) $ 
 
 ```
+```json
+{
+    "image": "ghcr.io/srl-labs/containerlab/clab-devcontainer:0.55.0",
+    "hostRequirements": {
+        "cpus": 4,
+        "memory": "16gb",
+        "storage": "32gb"
+    }
+}
+```
+
+https://urban-happiness-xpjvx6544rpcpp7p.github.dev
+
+
+This lab represents a small Clos fabric with [Nokia SR Linux](https://learn.srlinux.dev/) switches running as containers. The lab topology consists of a Clos topology, plus a Streaming Telemetry stack comprised of [gnmic](https://gnmic.openconfig.net/), prometheus and grafana applications.
+
+
 
 In addition to the telemetry stack, the lab also includes a modern logging stack comprised of [promtail](https://grafana.com/docs/loki/latest/clients/promtail/) and [loki](https://grafana.com/oss/loki/).
 
@@ -49,18 +64,7 @@ Goals of this lab:
 
 The lab is deployed with the [containerlab](https://containerlab.dev/) project, where [`st.clab.yml`](https://vscode-remote+codespaces-002burban-002dhappiness-002dxpjvx6544rpcpp7p.vscode-resource.vscode-cdn.net/workspaces/srl-telemetry-lab/st.clab.yml) file declaratively describes the lab topology.
 
-```json
-{
-    "image": "ghcr.io/srl-labs/containerlab/clab-devcontainer:0.55.0",
-    "hostRequirements": {
-        "cpus": 4,
-        "memory": "16gb",
-        "storage": "32gb"
-    }
-}
-```
 
-https://urban-happiness-xpjvx6544rpcpp7p.github.dev
 
 ```bash
 # change into the cloned directory
