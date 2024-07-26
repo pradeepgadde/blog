@@ -7,8 +7,8 @@ tags: Nokia
 classes: wide
 show_date: true
 header:
-  overlay_image: /assets/images/clab.png
-  og_image: /assets/images/clab.png
+  overlay_image: /assets/images/networking-3.jpg
+  og_image: /assets/images/networking-3.jpg
   teaser: /assets/images/clab.png
 author:
   name     : "CONTAINERlab"
