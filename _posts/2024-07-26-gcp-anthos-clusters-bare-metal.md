@@ -7,8 +7,8 @@ tags: GCP
 classes: wide
 show_date: true
 header:
-  overlay_image: /assets/images/gke-banner.png
-  og_image: /assets/images/gke-banner.png
+  overlay_image: /assets/images/gcp-banner-1.png
+  og_image: /assets/images/gcp-banner-1.png
   teaser: /assets/images/pca-gcp.png
 author:
   name     : "Professional Cloud Architect"
