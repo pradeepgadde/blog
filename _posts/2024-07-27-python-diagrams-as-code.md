@@ -219,7 +219,7 @@ with Diagram("Sample K8s Diagram with Python Code", show=False):
 @pradeepgadde ➜ /workspaces/codespaces-blank $ python k8s-diagram.py 
 @pradeepgadde ➜ /workspaces/codespaces-blank $ 
 ```
-## Diagram
+## Diagrams
 Here is the diagram generated
 
 ```sh
@@ -230,9 +230,37 @@ k8s-diagram.py  sample_k8s_diagram_with_python_code.png
 
 ![sample_k8s_diagram_with_python_code]({{ site.url }}{{ site.baseurl }}/assets/images/sample_k8s_diagram_with_python_code.png)
 
-Another example, this time from GCP
+A simple exampe from GCP
+
+```sh
+@pradeepgadde ➜ /workspaces/codespaces-blank $ cat gcp2.py 
+from diagrams import Cluster, Diagram
+from diagrams.gcp.compute import ComputeEngine
+from diagrams.gcp.database import SQL
+from diagrams.gcp.network import DNS
+
+with Diagram("Simple Web Service with DB Cluster", show=False):
+    dns = DNS("dns")
+    web = ComputeEngine("service")
+
+    with Cluster("DB Cluster"):
+        db_primary = SQL("primary")
+        db_primary - [SQL("replica1"),
+                     SQL("replica2")]
+
+    dns >> web >> db_primary
+
+
+
+@pradeepgadde ➜ /workspaces/codespaces-blank $ 
+```
+
+![simple_web_service_with_db_cluster]({{ site.url }}{{ site.baseurl }}/assets/images/simple_web_service_with_db_cluster.png)
+
+Another example, this time with nested clustering
 
 ```py
+@pradeepgadde ➜ /workspaces/codespaces-blank $ cat gcp.py 
 from diagrams import Cluster, Diagram
 from diagrams.gcp.analytics import BigQuery, Dataflow, PubSub
 from diagrams.gcp.compute import AppEngine, Functions
@@ -266,9 +294,8 @@ with Diagram("Message Collecting", show=False):
     pubsub >> flow
 
 
-
+@pradeepgadde ➜ /workspaces/codespaces-blank $ 
+@pradeepgadde ➜ /workspaces/codespaces-blank $ python gcp.py 
 ```
-
-GCP Diagram
 
 ![message_collecting]({{ site.url }}{{ site.baseurl }}/assets/images/message_collecting.png)
