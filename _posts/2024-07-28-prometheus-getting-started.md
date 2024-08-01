@@ -7,9 +7,9 @@ tags: GCP
 classes: wide
 show_date: true
 header:
-  overlay_image: /assets/images/prometheus.png
-  og_image: /assets/images/prometheus.png
-  teaser: /assets/images/prometheus.png
+  overlay_image: /assets/images/prometheus.webp
+  og_image: /assets/images/prometheus.webp
+  teaser: /assets/images/prometheus.webp
 author:
   name     : "Professional Cloud Architect"
   avatar   : "/assets/images/pca-gcp.png"
