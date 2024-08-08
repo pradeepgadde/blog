@@ -1,7 +1,11 @@
 ---
 
 layout: single
+<<<<<<< HEAD
 title:  "Introduction to Git Recap"
+=======
+title:  "Introduction to Git Recap | Learn with Dr G"
+>>>>>>> 9b3acbf152c61af19b191f81b12a2c5738702475
 categories: Programming
 tags: git
 show_date: true
@@ -19,7 +23,11 @@ sidebar:
     nav: my-sidebar
 
 ---
+<<<<<<< HEAD
 # Intro to Git Recap — Learn with Dr G
+=======
+# Intro to Git Recap
+>>>>>>> 9b3acbf152c61af19b191f81b12a2c5738702475
 - Learn what version control is
 - Understand distributed version control systems, like Git
 - Recognize the differences between Git and GitHub and the roles they play in the software development lifecycle
