@@ -22,11 +22,8 @@ sidebar:
 
 # Intro to Git Recap — Learn with Dr G
 
-<<<<<<< HEAD
 ## Intro to Git Recap
-=======
-# Intro to Git Recap
->>>>>>> a387471a24165473186a31dcfd39415a12383cd0
+
 
 - Learn what version control is
 - Understand distributed version control systems, like Git
