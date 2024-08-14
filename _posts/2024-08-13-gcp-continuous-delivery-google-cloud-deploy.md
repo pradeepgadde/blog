@@ -7,8 +7,8 @@ tags: GCP
 classes: wide
 show_date: true
 header:
-  overlay_image: /assets/images/anthos.png
-  og_image: /assets/images/anthos.png
+  overlay_image: /assets/images/gcp-gke.png
+  og_image: /assets/images/gcp-gke.png
   teaser: /assets/images/pca-gcp.png
 author:
   name     : "Professional Cloud Architect"
