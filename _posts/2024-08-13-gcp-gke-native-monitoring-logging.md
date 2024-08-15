@@ -409,3 +409,25 @@ Now, you will return to the monitoring dashboard where an incident is being repo
 7. Open the web interface for the GCP-GKE-Monitor-Test tool.
 8. In the **Generate CPU Load** section, click the **Stop CPU Load** button to resolve the issue by stopping the CPU Load Generator.
 9. You may now close the GCP-GKE-Monitor-Test web browser window.
+
+​          ![error icon](https://ci3.googleusercontent.com/meips/ADKq_NYUObvm0FtynsZdLxh0nvZIjvj1zfw8M8zdgv_hIfgj3MCfUm3J_mQqgCHcz4wnbGFbC9_OL33PINqaA984aQL3RqghE3oHqhLnqU0Gizro=s0-d-e1-ft#https://www.gstatic.com/stackdriver/notification/error.png)          Alert firing                  No severity      
+
+### **Kubernetes Container - CPU request utilization** is **above threshold** of **0.99** with a value of **8.0790349730652622**    
+
+| **Start time**           Aug 15, 2024 at 4:46PM UTC (less than 1 sec ago) |      | **Policy**           [           CPU request utilization](https://console.cloud.google.com/monitoring/alerting/policies/7786764858231802900?project=qwiklabs-gcp-02-23e581467e33) |
+| ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| **Project**           [           qwiklabs-gcp-02-23e581467e33](https://console.cloud.google.com/?project=qwiklabs-gcp-02-23e581467e33) |      | **Condition**           Kubernetes Container - CPU request utilization |
+
+​      metric : kubernetes.io/container/cpu/request_utilization      
+
+​      cluster_name : standard-cluster-1    
+
+​      container_name : metrics-server-nanny    
+
+​      location : us-central1-c    
+
+​      namespace_name : kube-system    
+
+​      pod_name : metrics-server-v0.7.1-868cd77b76-24szw    
+
+​      project_id : qwiklabs-gcp-02-23e581467e33    
