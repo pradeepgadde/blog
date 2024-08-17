@@ -4,6 +4,7 @@ title:  "Python Object Oriented Programming"
 categories: Programming
 tags: Python
 show_date: true
+classes: wide
 header:
   teaser: /assets/images/python.png
 author:
