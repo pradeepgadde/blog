@@ -347,7 +347,8 @@ rs/pradeep/LearnPython/inheritance.py
 ```
 
 ## Getters and Setters
->item.py
+**item.py**
+
 ```py
 import csv
 
@@ -414,7 +415,8 @@ class Item:
     def __repr__(self):
         return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
 ```
->phone.py
+**phone.py**
+
 ```py
 from item import Item
 
@@ -432,7 +434,7 @@ class Phone(Item):
         # Assign to self object
         self.broken_phones = broken_phones
 ```
->main.py
+**main.py**
 
 ```py
 from item import Item
@@ -446,7 +448,8 @@ item1.name = "OtherItem"
 print(item1.name)
 ```
 
->Output
+**Output**
+
 ```sh
 (Python4Networking) (base) pradeep:~$/Users/pradeep/LearnPython/Python4Networking/bin/python /Use
 rs/pradeep/LearnPython/main.py
