@@ -17,6 +17,8 @@ sidebar:
 ---
 # Python Functions and Decorators
 
+Intro to Decoratiors
+
 Reference:  https://pythonbasics.org/decorators/
 
 In Python, everything is an object and that applies to functions as well. So, you can assign one function to other.
