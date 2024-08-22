@@ -38,3 +38,32 @@ base) pradeep:~$/usr/local/bin/python3 /Users/pradeep/LearnPython/generator.py
 3
 (base) pradeep:~$
 ```
+
+## Generators to save memory
+
+```py
+import sys
+mylist = [i for i in range(100000)]
+print(sum(mylist))
+print(sys.getsizeof(mylist), "bytes")
+print(type(mylist))
+mygen = (i for i in range(100000))
+print(sum(mygen))
+print(sys.getsizeof(mygen), "bytes")
+print(type(mygen))
+```
+
+As seen in the output, instead of usings Lists, if we use generators, we can save a lot of space.
+
+```sh
+base) pradeep:~$/usr/local/bin/python3 /Users/pradeep/LearnPython/sizeof.py
+4999950000
+800984 bytes
+<class 'list'>
+4999950000
+200 bytes
+<class 'generator'>
+(base) pradeep:~$
+```
+
+`sys.getsizeof()` will help us find the amount of memory.
