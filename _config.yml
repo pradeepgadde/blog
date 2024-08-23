@@ -48,6 +48,7 @@ plugins:
   - jekyll-gist
   - jekyll-feed
   - jekyll-include-cache
+  - jemoji
 
 # Exclude from processing.
 # The following items will not be processed, by default.
