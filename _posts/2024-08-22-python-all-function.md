@@ -17,8 +17,7 @@ sidebar:
 ---
 # Python All Function
 
-:evergreen_tree:
-
+:evergreen_tree::evergreen_tree::evergreen_tree:
 ## all()
 
 Return True if bool(x) is True for all values x in the iterable.
@@ -105,6 +104,29 @@ print(x,y,z)
 ```sh
 (base) pradeep:~$/usr/local/bin/python3 /Users/pradeep/LearnPython/palindrome_string.py
 False False True
+(base) pradeep:~$
+```
+
+:hand:  Another way to find palindrome:
+
+```py
+s="pradeep"
+print(s[::-1])
+
+def is_palindrome(s):
+    if s == s[::-1]:
+        return True
+    return False
+
+print(is_palindrome("pradeep"))
+print(is_palindrome("racecar"))
+```
+
+```sh
+(base) pradeep:~$/usr/local/bin/python3 /Users/pradeep/LearnPython/palindrome_string.py
+peedarp
+False
+True
 (base) pradeep:~$
 ```
 
