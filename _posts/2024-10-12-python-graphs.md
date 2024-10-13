@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "Hash Table - Python"
+title:  "Graph - Python"
 categories: Programming
 tags: Python
 show_date: true
