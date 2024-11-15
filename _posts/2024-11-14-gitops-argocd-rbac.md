@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "GitOps: ArgoCD Multi-Cluster, Declarative, and Helm-Chart Deployment"
+title:  "GitOps: ArgoCD User Management"
 categories: Kubernetes
 tags: ArgoCD
 classes: wide
