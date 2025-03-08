@@ -2,7 +2,7 @@
 layout: single
 title:  "Getting Started with Linkerd Service Mesh"
 categories: Kubernetes
-tags: ArgoCD
+tags: Linkerd
 classes: wide
 show_date: true
 header:
