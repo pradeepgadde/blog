@@ -367,3 +367,225 @@ mySRX
 
 
 ```
+
+Here is a sample XML file 
+```xml
+<?xml version="1.0"?>
+<inventory xmlns="https://www.acme.com/ns/routers"
+           xmlns:qa="https://www.acme.com/ns/routers/qa"
+           xmlns:dev="https://www.acme.com/ns/routers/dev">
+    <qa:device name="R1">
+        <qa:osversion>25.01</qa:osversion>
+        <qa:uptime>2 days</qa:uptime>
+        <qa:vendor>acme</qa:vendor>
+        <qa:serial>ABC12341</qa:serial>
+        <qa:snmp name="public" permission="ro"/>
+        <qa:snmp name="private" permission="rw"/>
+    </qa:device>
+    <qa:device name="R2">
+        <qa:osversion>25.01</qa:osversion>
+        <qa:uptime>14 days</qa:uptime>
+        <qa:vendor>acme</qa:vendor>
+        <qa:serial>ABC12342</qa:serial>
+        <qa:snmp name="public" permission="ro"/>
+        <qa:snmp name="private" permission="rw"/>
+    </qa:device>
+    <dev:device name="R3">
+        <dev:osversion>25.01</dev:osversion>
+        <dev:uptime>182 days</dev:uptime>
+        <dev:vendor>acme</dev:vendor>
+        <dev:serial>ABC12343</dev:serial>
+        <dev:snmp name="public" permission="ro"/>
+        <dev:snmp name="private" permission="rw"/>
+    </dev:device>
+</inventory>
+```
+
+and the Python program
+
+```py
+#! /Users/pradeep/opt/anaconda3/bin/python3
+
+print("Hello!\nWelcome to Data Serialization in Networking.\n")
+
+import os
+import yaml
+import json
+import xml.etree.ElementTree as ET
+import xmltodict
+
+
+tree = ET.parse('myXMLdemo.xml')
+myroot = tree.getroot()
+print(myroot.tag)
+for child in myroot:
+    print(child.tag, child.attrib)
+
+for serial in myroot.iter('{https://www.acme.com/ns/routers/qa}serial'):
+    print(serial.text)
+
+for serial in myroot.iter('{https://www.acme.com/ns/routers/dev}serial'):
+    print(serial.text)
+
+for device in myroot.findall('{https://www.acme.com/ns/routers/qa}device'):
+    name=device.attrib['name']
+    serial=device.find('{https://www.acme.com/ns/routers/qa}serial').text
+    print(name, serial)
+
+for snmp in myroot.iter('{https://www.acme.com/ns/routers/dev}snmp'):
+    print(snmp.attrib)
+
+with open('myXMLdemo.xml') as xml_file:
+    xml = xmltodict.parse(xml_file.read())
+
+print("Our XML file in Dictionary format\n")
+print(json.dumps(xml, indent=4))
+
+print("This time, without the @ attribute prefix:\n")
+
+print(json.dumps(xml, indent=4).replace("@", "")) # to get rid of @ attr_prefix
+```
+
+and the output:
+```
+Hello!
+Welcome to Data Serialization in Networking.
+
+{https://www.acme.com/ns/routers}inventory
+{https://www.acme.com/ns/routers/qa}device {'name': 'R1'}
+{https://www.acme.com/ns/routers/qa}device {'name': 'R2'}
+{https://www.acme.com/ns/routers/dev}device {'name': 'R3'}
+ABC12341
+ABC12342
+ABC12343
+R1 ABC12341
+R2 ABC12342
+{'name': 'public', 'permission': 'ro'}
+{'name': 'private', 'permission': 'rw'}
+Our XML file in Dictionary format
+
+{
+    "inventory": {
+        "@xmlns": "https://www.acme.com/ns/routers",
+        "@xmlns:qa": "https://www.acme.com/ns/routers/qa",
+        "@xmlns:dev": "https://www.acme.com/ns/routers/dev",
+        "qa:device": [
+            {
+                "@name": "R1",
+                "qa:osversion": "25.01",
+                "qa:uptime": "2 days",
+                "qa:vendor": "acme",
+                "qa:serial": "ABC12341",
+                "qa:snmp": [
+                    {
+                        "@name": "public",
+                        "@permission": "ro"
+                    },
+                    {
+                        "@name": "private",
+                        "@permission": "rw"
+                    }
+                ]
+            },
+            {
+                "@name": "R2",
+                "qa:osversion": "25.01",
+                "qa:uptime": "14 days",
+                "qa:vendor": "acme",
+                "qa:serial": "ABC12342",
+                "qa:snmp": [
+                    {
+                        "@name": "public",
+                        "@permission": "ro"
+                    },
+                    {
+                        "@name": "private",
+                        "@permission": "rw"
+                    }
+                ]
+            }
+        ],
+        "dev:device": {
+            "@name": "R3",
+            "dev:osversion": "25.01",
+            "dev:uptime": "182 days",
+            "dev:vendor": "acme",
+            "dev:serial": "ABC12343",
+            "dev:snmp": [
+                {
+                    "@name": "public",
+                    "@permission": "ro"
+                },
+                {
+                    "@name": "private",
+                    "@permission": "rw"
+                }
+            ]
+        }
+    }
+}
+This time, without the @ attribute prefix:
+
+{
+    "inventory": {
+        "xmlns": "https://www.acme.com/ns/routers",
+        "xmlns:qa": "https://www.acme.com/ns/routers/qa",
+        "xmlns:dev": "https://www.acme.com/ns/routers/dev",
+        "qa:device": [
+            {
+                "name": "R1",
+                "qa:osversion": "25.01",
+                "qa:uptime": "2 days",
+                "qa:vendor": "acme",
+                "qa:serial": "ABC12341",
+                "qa:snmp": [
+                    {
+                        "name": "public",
+                        "permission": "ro"
+                    },
+                    {
+                        "name": "private",
+                        "permission": "rw"
+                    }
+                ]
+            },
+            {
+                "name": "R2",
+                "qa:osversion": "25.01",
+                "qa:uptime": "14 days",
+                "qa:vendor": "acme",
+                "qa:serial": "ABC12342",
+                "qa:snmp": [
+                    {
+                        "name": "public",
+                        "permission": "ro"
+                    },
+                    {
+                        "name": "private",
+                        "permission": "rw"
+                    }
+                ]
+            }
+        ],
+        "dev:device": {
+            "name": "R3",
+            "dev:osversion": "25.01",
+            "dev:uptime": "182 days",
+            "dev:vendor": "acme",
+            "dev:serial": "ABC12343",
+            "dev:snmp": [
+                {
+                    "name": "public",
+                    "permission": "ro"
+                },
+                {
+                    "name": "private",
+                    "permission": "rw"
+                }
+            ]
+        }
+    }
+}
+
+
+```
